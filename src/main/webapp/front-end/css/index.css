@@ -3,7 +3,7 @@
     src: url('../fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
 }
 :root {
-    --primary-color: #30503d;
+    --primary-color: #017681;
     --text-color: #333333;
     --background-color: #f4f4f4;
 }
@@ -15,8 +15,7 @@ body, html{
 }
 
 *{
-    font-family: Helvetica, sans-serif;
-    font-size: 0.8rem;
+    font-family: Verdana, sans-serif;
 }
 
 header{
@@ -55,29 +54,28 @@ header{
 }
 
 .outlineButtons{
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 10px;
+    padding: 0.6vw;
     border: 2px solid white;
     color: white;
     background-color: var(--primary-color);
-    padding: 10px;
-    font-weight: bold;
+    font-weight: lighter;
+    font-size: 0.7rem;
 }
 
 .outlineButtons:hover{
-    border-radius: 15px;
     color: var(--primary-color);
     background-color: white;
     border: 2px solid var(--primary-color);
 }
 svg path{
     transition: fill 0.5s linear;
-    fill: black;
+    fill: var(--text-color);
 }
 
 svg .cls-1{
     transition: stroke 0.5s linear;
-    stroke: black;
+    stroke: var(--text-color);
 }
 
 svg:hover path{
@@ -87,4 +85,49 @@ svg:hover path{
 svg:hover .cls-1{
     transition: stroke 0.5s linear;
     stroke: var(--primary-color);
+}
+.homeFascination{
+    text-align: center;
+    font-size: 1.9rem !important;
+    color: var(--text-color);
+    font-style: italic;
+}
+.homeFascinationSpan{
+    font-family: SignPainter, sans-serif;
+    font-size: 3.7rem !important;
+    color: var(--primary-color);
+}
+
+#banner1Container{
+    min-height: 350px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#banner1Inner{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90vw;
+    min-height: 350px;
+    border-radius: 10px;
+    background-image: url("../../images/banner1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.bannerText{
+    text-align: left;
+    font-size: 1.3rem !important;
+    color: var(--text-color);
+    font-style: italic;
+    padding-left: 30px;
+}
+.bannerTextSpan{
+    font-style: italic;
+    font-size: 1.3rem !important;
+    color: var(--primary-color);
 }

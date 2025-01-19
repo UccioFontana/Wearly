@@ -2,10 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homepage</title>
   <link rel="stylesheet" href="front-end/css/index.css">
 </head>
 <body>
+
   <header>
     <div id="logoContainer">
       <img id="logo" src="images/Wearly_Logo.png">
@@ -19,5 +21,18 @@
       <svg width="42px" height="42px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#30503d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#30503d;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><rect class="cls-1" x="2.43" y="1.5" width="9.57" height="20.09"></rect><rect class="cls-1" x="12" y="1.5" width="9.57" height="20.09"></rect><line class="cls-1" x1="4.35" y1="23.5" x2="4.35" y2="21.59"></line><line class="cls-1" x1="19.65" y1="23.5" x2="19.65" y2="21.59"></line><line class="cls-1" x1="8.17" y1="11.07" x2="8.17" y2="12.98"></line><path class="cls-1" d="M16.78,18.72h0a1.91,1.91,0,0,0-1.91-1.92V6.28a1.9,1.9,0,0,0,1.91-1.91h0A1.91,1.91,0,0,0,18.7,6.28V16.8A1.92,1.92,0,0,0,16.78,18.72Z"></path></g></svg>
     </div>
   </header>
+
+  <h1 class="homeFascination">Against the <span class="homeFascinationSpan">"I have nothing to wear"</span> <br> since 2024.</h1>
+
+  <div id="banner1Container">
+    <div id="banner1Inner">
+      <div id="banner1TextContainer">
+        <h1 class="bannerText"><span class="bannerTextSpan">Create</span> outfits <br>at the <span class="bannerTextSpan">blink of an eye</span>.</h1>
+      </div>
+      <div>
+
+      </div>
+    </div>
+  </div>
 </body>
 </html>
