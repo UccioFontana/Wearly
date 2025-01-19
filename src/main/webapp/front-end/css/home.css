@@ -14,6 +14,19 @@ body, html{
     height: 100vh;
 }
 
+body{
+    animation: brightnessAnimation 1.5s ease-in-out forwards;
+}
+
+@keyframes brightnessAnimation {
+    from {
+        filter: brightness(0); /* Dark */
+    }
+    to {
+        filter: brightness(1); /* Full bright */
+    }
+}
+
 *{
     font-family: Verdana, sans-serif;
 }
@@ -71,24 +84,31 @@ header{
     font-size: 0.75rem;
     transition: font-size 0.5s ease, padding 0.5s ease;
     font-weight: bold;
+    cursor: pointer;
 }
 svg path{
-    transition: fill 0.5s linear;
+    transition: fill 0.2s linear;
     fill: var(--text-color);
 }
 
 svg .cls-1{
-    transition: stroke 0.5s linear;
+    transition: stroke 0.2s linear;
     stroke: var(--text-color);
 }
 
 svg:hover path{
-    transition: fill 0.5s linear;
+    transition: fill 0.2s linear;
     fill: var(--primary-color);
+    cursor: pointer;
 }
 svg:hover .cls-1{
-    transition: stroke 0.5s linear;
+    transition: stroke 0.2s linear;
     stroke: var(--primary-color);
+    cursor: pointer;
+}
+
+svg:hover{
+    cursor: pointer;
 }
 .homeFascination{
     text-align: center;

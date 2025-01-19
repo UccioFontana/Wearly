@@ -3,14 +3,14 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/css/login.css">
 </head>
 <body>
 <div class="container">
   <div class="screen">
     <div class="screen__content">
       <form class="login">
-        <img id="logo" src="../../images/Wearly_Logo.png">
+        <img id="logo" src="${pageContext.request.contextPath}/images/Wearly_Logo.png">
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
           <input type="text" class="login__input" placeholder="User name / Email">
@@ -26,6 +26,7 @@
         <button class="button login__submit">
           <span class="button__text">Create An Account</span>
         </button>
+        <h2 class="backHomepage" onclick="window.location.href = 'home'">Back Homepage</h2>
       </form>
     </div>
     <div class="screen__background">
