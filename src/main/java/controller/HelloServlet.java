@@ -1,4 +1,4 @@
-package com.example.progettoids;
+package controller;
 
 import java.io.*;
 import jakarta.servlet.http.*;
