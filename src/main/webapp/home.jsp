@@ -117,7 +117,7 @@
         <div class="faq_box">
           <dt class="faq_title_box">
                     <span class="faq_box_titlecontent">
-                        <h4 class="faq_title"> Is Wearly secure? Are my data protected?</h4>
+                        <h4 class="faq_title"> Is Wearly respecting my privacy? Are my data protected?</h4>
                         <span id="third_faq" class="faq-icons">
                             <svg id="third_faq_icon" xmlns="http://www.w3.org/2000/svg" height="30px" width="30px" viewBox="0 0 20 20">
                                 <path d="M19.113 8.095a1.496 1.496 0 010 2.008l-6.397 5.948a1 1 0 01-1.358.003l-6.532-6.01a1.427 1.427 0 01.138-1.949 1.572 1.572 0 011.997-.103l5.078 4.638 4.97-4.535a1.72 1.72 0 012.104 0z"></path>
@@ -184,8 +184,8 @@
     <div id="footerContent">
       <img id="logo2" src="images/Wearly_Logo.png">
       <ul>
-        <li><a class="footerLinks" href="index.jsp">Home</a></li>
-        <li><a class="footerLinks" href="${pageContext.request.contextPath}/login">Sign In</a></li>
+        <li><a class="footerLinks" href="${pageContext.request.contextPath}/home">Home</a></li>
+        <li><a class="footerLinks" href="${pageContext.request.contextPath}/authservlet">Sign In</a></li>
       </ul>
       <h5 style="color: var(--primary-color); font-weight: lighter">Wearly | © All rights reserved</h5>
     </div>

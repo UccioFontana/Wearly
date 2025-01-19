@@ -12,11 +12,10 @@ body, html{
     margin: 0;
     width: 100vw;
     height: 100vh;
-}
-
-body{
     animation: brightnessAnimation 1.5s ease-in-out forwards;
 }
+
+
 
 @keyframes brightnessAnimation {
     from {

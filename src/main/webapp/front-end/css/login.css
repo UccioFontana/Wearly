@@ -14,6 +14,23 @@
     --background-color: #f4f4f4;
 }
 
+
+@keyframes brightnessAnimation {
+    from {
+        filter: brightness(0); /* Dark */
+    }
+    to {
+        filter: brightness(1); /* Full bright */
+    }
+}
+
+body, html{
+    margin: 0;
+    width: 100vw;
+    height: 100%;
+    animation: brightnessAnimation 1.5s ease-in-out forwards;
+}
+
 body {
     background: linear-gradient(90deg, white, var(--primary-color));
 }
@@ -42,7 +59,6 @@ body {
 .screen__content {
     z-index: 1;
     position: relative;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -90,10 +106,10 @@ body {
     top: -24px;
     right: 0;
     border-radius: 32px;
-}
+}Va
 
 .screen__background__shape4 {
-    height: 400px;
+    height: 200px;
     width: 200px;
     background: white;
     top: 420px;
