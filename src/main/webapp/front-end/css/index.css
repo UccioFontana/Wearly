@@ -39,6 +39,9 @@ header{
 #logo{
     width: 80px;
 }
+#logo2{
+    width: 80px;
+}
 
 #spaceFiller{
     width: 60vw;
@@ -133,4 +136,175 @@ svg:hover .cls-1{
     font-style: italic;
     font-size: 1.3rem !important;
     color: var(--primary-color);
+}
+
+.line-outer{
+    display: flex;
+    justify-content: center;
+    min-height: 400px;
+}
+
+/* Contenitore della linea */
+.line-container {
+    display: flex;
+    opacity: 1; /* Rendi la linea visibile immediatamente */
+    pointer-events: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 2;
+}
+
+/* Linea orizzontale */
+.line.horizontal {
+    width: 0;
+    height: 4px;
+    background: var(--primary-color);
+    transition: width 1s ease;
+}
+
+.line.vertical.line1{
+    width: 4px;
+    height: 0;
+    background: var(--primary-color);
+    transition: height 1s ease;
+}
+
+.line-container.active .horizontal {
+    width: 35.5vw;
+}
+
+.line-container.active .vertical {
+    height: 150px;
+    transition-delay: 0.8s;
+}
+
+.verticalLinesContainer{
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.benefitsContainerOuter{
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.benefitsContainer{
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0%);
+    transition: transform 1s ease, opacity 1s ease;
+    opacity: 0;
+}
+.line-container.active .benefitsContainer{
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition-delay: 1.5s;
+    transform: scale(100%);
+    opacity: 1;
+}
+.benefitsText{
+    font-size: 0.8rem;
+    text-align: center;
+}
+.content {
+    padding-top: 50px;
+}
+
+
+
+#faq_section_main{
+    display: block;
+    min-height: 200px;
+    margin-top: -60px;
+}
+#faq_section_main_inner{
+    min-height: 200px;
+    display: flex;
+    margin: 4%;
+}
+
+#left_faq, #right_faq{
+    width: 50%;
+    height: 100%;
+    padding: 0px 30px;
+}
+
+.faq_box{
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+.faq_title_box{
+    display: flex;
+    width: 100%;
+}
+.faq_box_titlecontent{
+    width: 100%;
+    justify-content: flex-end;
+}
+.faq_title{
+    display: inline-block;
+    width: 90%;
+}
+.faq_text{
+    display: none;
+}
+dd{
+    margin-left: 0px;
+}
+#faq_t{
+    color:black;
+    font-family: 'Montserrat', sans-serif;
+}
+dd{
+    font-size: 1.4vw;
+}
+
+
+#footer{
+    border-top: 3px var(--text-color);
+    position: relative;
+    min-height: 300px;
+    background: white no-repeat;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#footerContent{
+    width: 50%;
+    min-height: 200px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+#footerLogo{
+    width: 30%;
+}
+
+.footerLinks {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+ul{
+    display: inline-flex;
+    gap: 40px;
+    list-style: none;
+    padding-left: 0;
 }
