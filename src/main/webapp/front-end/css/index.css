@@ -144,10 +144,9 @@ svg:hover .cls-1{
     min-height: 400px;
 }
 
-/* Contenitore della linea */
 .line-container {
     display: flex;
-    opacity: 1; /* Rendi la linea visibile immediatamente */
+    opacity: 1;
     pointer-events: none;
     flex-direction: column;
     align-items: center;
@@ -155,7 +154,7 @@ svg:hover .cls-1{
     z-index: 2;
 }
 
-/* Linea orizzontale */
+
 .line.horizontal {
     width: 0;
     height: 4px;
