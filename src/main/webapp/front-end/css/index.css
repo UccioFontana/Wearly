@@ -64,13 +64,13 @@ header{
     font-weight: lighter;
     font-size: 0.75rem;
     font-style: italic;
-    transition: font-size 0.5s linear, padding 0.5s linear;
+    transition: font-size 0.5s ease, padding 0.5s ease;
 }
 
 .defaultButtons:hover{
     padding: 0.8vw;
     font-size: 0.75rem;
-    transition: font-size 0.5s linear, padding 0.5s linear;
+    transition: font-size 0.5s ease, padding 0.5s ease;
     font-weight: bold;
 }
 svg path{
@@ -218,6 +218,37 @@ svg:hover .cls-1{
     padding-top: 50px;
 }
 
+
+#banner2Container{
+    min-height: 350px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10vw;
+}
+
+#banner2Inner{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90vw;
+    min-height: 350px;
+    border-radius: 10px;
+    background-image: url("../../images/banner2.jpg");
+    background-repeat: no-repeat;
+    background-position-y: -250px;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+#banner2TextContainer{
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 
 
 #faq_section_main{

@@ -68,7 +68,20 @@
     </div>
   </div>
 
+  <div id="banner2Container">
+      <div id="banner2Inner">
+          <div>
 
+          </div>
+          <div id="banner2TextContainer">
+              <h1 class="bannerText" style="text-align: right">Are there<span class="bannerTextSpan"style=" text-align: right"> New Clothes</span> <br>you just bought?</h1>
+              <button class="defaultButtons">Add to your Wardrobe</button>
+          </div>
+
+      </div>
+  </div>
+
+  <h1 style="text-align: center" class="bannerText">Most <span class="bannerTextSpan"> Frequently Asked Questions</span>:</h1>
   <div id="faq_section_main">
     <div id="faq_section_main_inner">
       <dl id="right_faq">
