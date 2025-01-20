@@ -248,15 +248,23 @@ input:hover {
     min-height: 500px;
     display: grid;
     background: #FFFFFF;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2vw;
+    animation: revealOpacity 2s ease-out;
+    opacity: 0;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
 }
 
-
-
-body{
-    font-family: 'Verdana', sans-serif;
+@keyframes revealOpacity {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
+
 
 .wsk-cp-product{
     background:#fff;
@@ -276,7 +284,7 @@ body{
     -moz-transform:translate(-50%);
     -o-transform:translate(-50%);
     -khtml-transform:translate(-50%);
-    width: 100%;
+    width: 70%;
     padding: 15px;
     transition: all 0.2s ease-in-out;
 }
@@ -397,8 +405,8 @@ a.buy-btn{
     transition: all 0.2s ease-in-out;
 }
 a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
-    border-color: #FF9800;
-    background: #FF9800;
+    border-color: var(--primary-color);
+    background: var(--primary-color);
     color: #fff;
     text-decoration:none;
 }
@@ -408,8 +416,8 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
     text-align:center;
     font-size: 18px;
     transition: all 0.2s ease-in-out;
-    border-color: #FF9800;
-    background: #FF9800;
+    border-color: var(--primary-color);
+    background: var(--primary-color);
     padding:12px 30px;
     border-radius:12px;
     margin: 0 5px;
@@ -442,8 +450,8 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
         margin-top: 0px;
     }
     a.buy-btn{
-        border-color: #FF9800;
-        background: #FF9800;
+        border-color: var(--primary-color);
+        background: var(--primary-color);
         color: #fff;
     }
 }
