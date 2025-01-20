@@ -10,7 +10,7 @@
 
   <header>
     <div id="logoContainer">
-      <img id="logo" src="images/Wearly_Logo.png">
+      <img id="logo" src="images/Wearly_Logo.png" onclick="window.location.href = ('home')">
     </div>
     <div id="spaceFiller">
 

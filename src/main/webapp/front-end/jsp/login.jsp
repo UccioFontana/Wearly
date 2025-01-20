@@ -10,7 +10,7 @@
   <div class="screen">
     <div class="screen__content">
       <form class="login">
-        <img id="logo" src="${pageContext.request.contextPath}/images/Wearly_Logo.png">
+        <img id="logo" src="${pageContext.request.contextPath}/images/Wearly_Logo.png" onclick="window.location.href = ('${pageContext.request.contextPath}/home')">
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
           <input type="text" class="login__input" placeholder="User name / Email">
