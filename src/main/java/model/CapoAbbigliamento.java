@@ -3,14 +3,12 @@ package model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-@Entity
-public class CapoAbbigliamento implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+public class CapoAbbigliamento {
+
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "idUtente", nullable = false)
-    private Utente utente;
+
+    private int idUtente;
     private String descrizione;
     private String nome;
     private String categoria;
@@ -22,8 +20,8 @@ public class CapoAbbigliamento implements Serializable {
     public CapoAbbigliamento() {
     }
 
-    public CapoAbbigliamento(Utente utente, String descrizione, String nome, String categoria, String stagione, String colore, String immagine, String materiale) {
-        this.utente = utente;
+    public CapoAbbigliamento(int utente, String descrizione, String nome, String categoria, String stagione, String colore, String immagine, String materiale) {
+        this.idUtente = utente;
         this.descrizione = descrizione;
         this.nome = nome;
         this.categoria = categoria;
@@ -41,12 +39,12 @@ public class CapoAbbigliamento implements Serializable {
         this.id = id;
     }
 
-    public Utente getUtente() {
-        return utente;
+    public int getIdUtente() {
+        return idUtente;
     }
 
-    public void setUtente(Utente utente) {
-        this.utente = utente;
+    public void setIdUtente(int utente) {
+        this.idUtente = utente;
     }
 
     public String getDescrizione() {
@@ -109,7 +107,7 @@ public class CapoAbbigliamento implements Serializable {
     public String toString() {
         return "CapoAbbigliamento{" +
                 "id=" + id +
-                ", utente=" + utente +
+                ", idutente=" + idUtente +
                 ", descrizione='" + descrizione + '\'' +
                 ", nome='" + nome + '\'' +
                 ", categoria='" + categoria + '\'' +

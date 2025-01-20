@@ -5,18 +5,14 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity
-public class Utente implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+public class Utente {
+
     private int id;
     private String email;
     private String password;
     private String nome;
     private String cognome;
-
-    @OneToMany(mappedBy = "Utente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CapoAbbigliamento> capiAbbigliamento;
 
     public Utente(String email, String password, String nome, String cognome) {
         this.email = email;
@@ -69,13 +65,7 @@ public class Utente implements Serializable {
         this.cognome = cognome;
     }
 
-    public List<CapoAbbigliamento> getCapiAbbigliamento() {
-        return capiAbbigliamento;
-    }
 
-    public void setCapiAbbigliamento(List<CapoAbbigliamento> capiAbbigliamento) {
-        this.capiAbbigliamento = capiAbbigliamento;
-    }
 
     @Override
     public String toString() {
