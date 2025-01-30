@@ -53,37 +53,6 @@ public class ConPool {
         }
     }
 
-    public static void main(String[] args) {
-        Connection connection = null;
-        try {
-            // Ottieni una connessione dal pool
-            connection = ConPool.getConnection();
-            System.out.println("Connessione al database avvenuta con successo!");
 
-            // Esegui la query per visualizzare tutti gli utenti
-            Statement stmt = connection.createStatement();
-            String query = "SELECT * FROM UtenteRegistrato";
-            ResultSet rs = stmt.executeQuery(query);
-
-            // Stampa i risultati
-            System.out.println("Utenti nel database:");
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String username = rs.getString("nome");
-
-
-                System.out.println("ID: " + id + ", nome: " + username  );
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Errore durante la connessione al database:");
-            e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            // Chiudi la connessione
-            ConPool.closeConnection(connection);
-        }
-    }
 
 }

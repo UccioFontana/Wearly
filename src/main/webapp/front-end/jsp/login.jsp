@@ -9,21 +9,22 @@
 <div class="container">
   <div class="screen">
     <div class="screen__content">
-      <form class="login">
+
+      <form class="login" action="${pageContext.request.contextPath}/loginServlet" method="POST" >
         <img id="logo" src="${pageContext.request.contextPath}/images/Wearly_Logo.png" onclick="window.location.href = ('${pageContext.request.contextPath}/home')">
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="text" class="login__input" placeholder="User name / Email">
+          <input type="text" class="login__input" name="email" placeholder="User name / Email" >
         </div>
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
-          <input type="password" class="login__input" placeholder="Password">
+          <input type="password" class="login__input" name="password" placeholder="Password" >
         </div>
-        <button class="button login__submit">
+        <button class="button login__submit" type="submit" >
           <span class="button__text">Log In Wearly</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
-        <button class="button login__submit">
+        <button class="button login__submit" type="button">
           <span class="button__text">Create An Account</span>
         </button>
         <h2 class="backHomepage" onclick="window.location.href = 'home'">Back Homepage</h2>

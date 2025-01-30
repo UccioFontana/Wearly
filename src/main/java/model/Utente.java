@@ -14,11 +14,11 @@ public class Utente {
     private String nome;
     private String cognome;
 
-    public Utente(String email, String password, String nome, String cognome) {
-        this.email = email;
-        this.password = password;
+    public Utente(String nome, String cognome, String email, String password) {
         this.nome = nome;
         this.cognome = cognome;
+        this.email = email;
+        this.password = password;
     }
 
     public Utente() {
