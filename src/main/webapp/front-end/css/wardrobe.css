@@ -135,7 +135,7 @@ svg:hover{
         scale: 100%}
 }
 
-#addItemButton{
+.addItemButton{
     width: 15vw;
     text-align: center;
     padding: 10px 0;
@@ -147,7 +147,7 @@ svg:hover{
 }
 
 
-#addItemButton:hover {
+.addItemButton:hover {
     transition: font-size 0.5s ease-out;
     font-size: 1rem;
     cursor: pointer;
@@ -265,6 +265,176 @@ input:hover {
     }
 }
 
+/* Overlay (Sfondo oscurato) */
+.overlay {
+    display: none; /* Nascosto di default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Sfondo scuro trasparente */
+    z-index: 999;
+}
+
+/* Pop-up */
+.popup {
+    display: none; /* Nascosto di default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 300px;
+    text-align: center;
+}
+
+/* Bottone per chiudere */
+.closeButton {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    background: none;
+    border: none;
+    font-size: 2vw;
+    cursor: pointer;
+    color: #333;
+    transition: font-size 0.8s, top 0.8s;
+}
+
+.closeButton:hover {
+    color: var(--primary-color);
+    font-size: 2.5vw;
+    transition: font-size 0.8s, top 0.8s;
+    top: 0.5vw;
+}
+
+#outfitSelectionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    max-height: 80vh; /* Imposta un'altezza massima */
+    background: white;
+    padding: 2vw;
+    border-radius: 1vw;
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto; /* Abilita la scrollbar verticale se necessario */
+}
+
+.outfitRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
+    border-bottom: 0.1vw solid #ddd;
+    padding-bottom: 3vw;
+}
+
+.content{
+    width: 50vw;
+}
+
+.categoryRow {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category img {
+    width: 10vw;
+    height: auto;
+    border-radius: 1vw;
+    box-shadow: 0 0 0.5vw rgba(0, 0, 0, 0.1);
+}
+
+
+.outfitDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    margin-top: 2vw;
+}
+
+
+
+.outfitForms{
+    border: 2px solid #D1D1D4;
+    background: none;
+    padding: 10px 5px;
+    font-style: italic;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: .2s;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+.outfitForms:active,
+.outfitForms:focus,
+.outfitForms:hover {
+    outline: none;
+    border: none;
+    border-bottom:2px solid;
+    border-radius: 0;
+    border-color: var(--primary-color);
+}
+
+.selectButton.selected {
+    background-color: darkgreen;
+    color: white;
+}
+
+.selectButton{
+    width: 15vw;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transition: font-size 0.5s ease-out;
+}
+
+
+.selectButton:hover {
+    transition: font-size 0.5s ease-out;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+.saveButton{
+    width: 15vw;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transition: font-size 0.5s ease-out;
+}
+
+
+.saveButton:hover {
+    transition: font-size 0.5s ease-out;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 
 .wsk-cp-product{
     background:#fff;
@@ -297,7 +467,7 @@ input:hover {
     top:-40px;
 }
 .wsk-cp-product:hover .wsk-cp-img img{
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 .wsk-cp-text{
     padding-top:150%;

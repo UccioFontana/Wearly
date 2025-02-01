@@ -28,7 +28,10 @@
 
   <div id="fascinationContainer">
     <h1 id="fascination">Your wardrobe just got a <span id="fascinationSpan">personal assistant.</span></h1>
-    <button id="addItemButton">Add New Item</button>
+    <div style="display: flex; justify-content: center; gap: 1vw">
+      <button class="addItemButton">Add New Item</button>
+      <button class="addItemButton">Generate Outfit ✨</button>
+    </div>
   </div>
   <div id="outerWaveContainer">
     <div id="waveContainer"></div>
@@ -93,21 +96,89 @@
     </div>
   </div>
 
+  <div id="popupOverlay" class="overlay"></div>
+  <div id="popup" class="popup">
 
+    <div id="outfitSelectionContainer">
+      <div style="z-index: 2000">
+        <button class="closeButton" onclick="closePopup()">✖</button>
+      </div>
+      <!-- Outfit 1 -->
+      <div class="outfitRow">
+        <div class="content">
+          <h2>Outfit 1</h2>
+          <div class="categoryRow">
+            <div class="category">
+              <h3>Top</h3>
+              <img src="top1.jpg" alt="Top 1">
+            </div>
+            <div class="category">
+              <h3>Bottom</h3>
+              <img src="bottom1.jpg" alt="Bottom 1">
+            </div>
+            <div class="category">
+              <h3>Shoes</h3>
+              <img src="shoes1.jpg" alt="Shoes 1">
+            </div>
+          </div>
+        </div>
+        <button class="selectButton" style="margin-top: 5vw">Select</button>
+      </div>
 
+      <!-- Outfit 2 -->
+      <div class="outfitRow">
+        <div class="content">
+          <h2>Outfit 2</h2>
+          <div class="categoryRow">
+            <div class="category">
+              <h3>Top</h3>
+              <img src="top2.jpg" alt="Top 2">
+            </div>
+            <div class="category">
+              <h3>Bottom</h3>
+              <img src="bottom2.jpg" alt="Bottom 2">
+            </div>
+            <div class="category">
+              <h3>Shoes</h3>
+              <img src="shoes2.jpg" alt="Shoes 2">
+            </div>
+          </div>
+        </div>
+        <button class="selectButton" style="margin-top: 5vw">Select</button>
+      </div>
 
+      <!-- Outfit 3 -->
+      <div class="outfitRow">
+        <div class="content">
+          <h2>Outfit 3</h2>
+          <div class="categoryRow">
+            <div class="category">
+              <h3>Top</h3>
+              <img src="top3.jpg" alt="Top 3">
+            </div>
+            <div class="category">
+              <h3>Bottom</h3>
+              <img src="bottom3.jpg" alt="Bottom 3">
+            </div>
+            <div class="category">
+              <h3>Shoes</h3>
+              <img src="shoes3.jpg" alt="Shoes 3">
+            </div>
+          </div>
+        </div>
+        <button class="selectButton" style="margin-top: 5vw">Select</button>
+      </div>
 
+      <!-- Input per Nome e Descrizione -->
+      <div class="outfitDetails">
+        <input  class="outfitForms" type="text" placeholder="Outfit Name">
+        <textarea class="outfitForms" placeholder="Outfit Description"></textarea>
+      </div>
 
-
-
-
-
-
-
-
-
-
-
+      <!-- Pulsante "Salva Outfit" -->
+      <button class="saveButton" style="margin-top: 2vw">Save Outfit</button>
+    </div>
+  </div>
 
 
   <script src="${pageContext.request.contextPath}/front-end/js/wardrobe.js"></script>
