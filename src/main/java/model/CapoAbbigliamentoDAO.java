@@ -18,8 +18,8 @@ public class CapoAbbigliamentoDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                 int id= Integer.parseInt(rs.getString("id"));
-                 int idU= Integer.parseInt(rs.getString("idUtenteRegistrato"));
+                int id= rs.getInt("id");
+                int idU= rs.getInt("idUtenteRegistrato");
                  String nome= rs.getString("Nome");
                  String descrizione=rs.getString("Descrizione");
                  String materiale=rs.getString("Materiale");
@@ -178,6 +178,76 @@ public class CapoAbbigliamentoDAO {
                 System.out.println("Nessun capo d'abbigliamento trovato con ID " + idCapo);
             }
         }
+    }
+
+
+    public List<CapoAbbigliamento> getCapiByIdOufit(int idOutfit){
+        List<CapoAbbigliamento> list = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT c.* FROM CapoDAbbigliamento c JOIN DettagliOutfit d ON c.Id = d.IdCapo JOIN Outfit o ON d.IdOutfit = o.Id WHERE o.Id = ?");
+            ps.setInt(1, idOutfit);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                int id= rs.getInt("id");
+                int idU= rs.getInt("idUtenteRegistrato");
+                String nome= rs.getString("Nome");
+                String descrizione=rs.getString("Descrizione");
+                String materiale=rs.getString("Materiale");
+                String colore =rs.getString("Colore");
+                String stile= rs.getString("Stile");
+                String stagione= rs.getString("Stagione");
+                String immagine= rs.getString("Immagine");
+                String categoria= rs.getString("Categoria");
+                String parteDelCorpo=rs.getString("ParteDelCorpo");
+
+                CapoAbbigliamento c= new CapoAbbigliamento(idU,nome,descrizione,materiale,colore,stile,stagione,immagine,categoria,parteDelCorpo);
+                c.setId(id);
+                list.add(c);
+
+            }
+            ConPool.closeConnection(con);
+            return list;
+
+        }catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public CapoAbbigliamento getCapoByCategoriaMaterialeColore(String categoria, String materiale, String colore){
+        try (Connection con = ConPool.getConnection()){
+
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM CapoDAbbigliamento c where c.categoria = ? AND c.materiale=? AND c.colore=?");
+            ps.setString(1,categoria);
+            ps.setString(2,materiale);
+            ps.setString(3,colore);
+
+            ResultSet rs = ps.executeQuery();
+            CapoAbbigliamento c = null;
+            if(rs.next()){
+                int id= rs.getInt("id");
+                int idU= rs.getInt("idUtenteRegistrato");
+                String nome= rs.getString("Nome");
+                String descrizione=rs.getString("Descrizione");
+                String mat=rs.getString("Materiale");
+                String col =rs.getString("Colore");
+                String stile= rs.getString("Stile");
+                String stagione= rs.getString("Stagione");
+                String immagine= rs.getString("Immagine");
+                String cat= rs.getString("Categoria");
+                String parteDelCorpo=rs.getString("ParteDelCorpo");
+
+                c= new CapoAbbigliamento(idU,nome,descrizione,mat,col,stile,stagione,immagine,cat,parteDelCorpo);
+                c.setId(id);
+            }
+            ConPool.closeConnection(con);
+            return c;
+
+        }catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
