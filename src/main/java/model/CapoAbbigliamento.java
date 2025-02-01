@@ -7,28 +7,31 @@ import java.io.Serializable;
 public class CapoAbbigliamento {
 
     private int id;
-
     private int idUtente;
-    private String descrizione;
     private String nome;
-    private String categoria;
-    private String stagione;
-    private String colore;
-    private String immagine;
+    private String descrizione;
     private String materiale;
+    private String colore;
+    private String stile;
+    private String stagione;
+    private String immagine;
+    private String categoria;
+    private String parteDelCorpo;
 
     public CapoAbbigliamento() {
     }
 
-    public CapoAbbigliamento(int utente, String descrizione, String nome, String categoria, String stagione, String colore, String immagine, String materiale) {
-        this.idUtente = utente;
-        this.descrizione = descrizione;
+    public CapoAbbigliamento(int idUtente, String nome, String descrizione, String materiale, String colore, String stile, String stagione, String immagine, String categoria, String parteDelCorpo) {
+        this.idUtente = idUtente;
         this.nome = nome;
-        this.categoria = categoria;
-        this.stagione = stagione;
-        this.colore = colore;
-        this.immagine = immagine;
+        this.descrizione = descrizione;
         this.materiale = materiale;
+        this.colore = colore;
+        this.stile = stile;
+        this.stagione = stagione;
+        this.immagine = immagine;
+        this.categoria = categoria;
+        this.parteDelCorpo = parteDelCorpo;
     }
 
     public int getId() {
@@ -43,16 +46,8 @@ public class CapoAbbigliamento {
         return idUtente;
     }
 
-    public void setIdUtente(int utente) {
-        this.idUtente = utente;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setIdUtente(int idUtente) {
+        this.idUtente = idUtente;
     }
 
     public String getNome() {
@@ -63,12 +58,20 @@ public class CapoAbbigliamento {
         this.nome = nome;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public String getMateriale() {
+        return materiale;
+    }
+
+    public void setMateriale(String materiale) {
+        this.materiale = materiale;
     }
 
     public String getColore() {
@@ -77,6 +80,14 @@ public class CapoAbbigliamento {
 
     public void setColore(String colore) {
         this.colore = colore;
+    }
+
+    public String getStile() {
+        return stile;
+    }
+
+    public void setStile(String stile) {
+        this.stile = stile;
     }
 
     public String getStagione() {
@@ -95,26 +106,36 @@ public class CapoAbbigliamento {
         this.immagine = immagine;
     }
 
-    public String getMateriale() {
-        return materiale;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setMateriale(String materiale) {
-        this.materiale = materiale;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getParteDelCorpo() {
+        return parteDelCorpo;
+    }
+
+    public void setParteDelCorpo(String parteDelCorpo) {
+        this.parteDelCorpo = parteDelCorpo;
     }
 
     @Override
     public String toString() {
         return "CapoAbbigliamento{" +
                 "id=" + id +
-                ", idutente=" + idUtente +
-                ", descrizione='" + descrizione + '\'' +
+                ", idUtente=" + idUtente +
                 ", nome='" + nome + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", stagione='" + stagione + '\'' +
-                ", colore='" + colore + '\'' +
-                ", immagine='" + immagine + '\'' +
+                ", descrizione='" + descrizione + '\'' +
                 ", materiale='" + materiale + '\'' +
+                ", colore='" + colore + '\'' +
+                ", stile='" + stile + '\'' +
+                ", stagione='" + stagione + '\'' +
+                ", immagine='" + immagine + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", parteDelCorpo='" + parteDelCorpo + '\'' +
                 '}';
     }
 }

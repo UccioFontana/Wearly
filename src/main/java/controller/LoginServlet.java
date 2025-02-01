@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.CapoAbbigliamento;
+import model.CapoAbbigliamentoDAO;
 import model.Utente;
 import model.UtenteDAO;
 import org.mindrot.jbcrypt.BCrypt;
@@ -28,6 +30,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("utente", u);
 
             // Reindirizzamento alla pagina utente
+            CapoAbbigliamentoDAO C= new CapoAbbigliamentoDAO();
+            List<CapoAbbigliamento> list = C.getCapoByUser(u.getId());
+            req.setAttribute("listaCapi",list);
             RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/userPage.jsp");
             dispatcher.forward(req, resp);
 
@@ -45,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                 */
             }
             else{
-                resp.getWriter().write("HAI SBAGLIATO GAY");
+                resp.getWriter().write("HAI SBAGLIATO");
             }
         }
 

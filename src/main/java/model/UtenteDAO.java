@@ -65,7 +65,7 @@ public class UtenteDAO {
     public boolean doSave(Utente user) {
         if (this.getUserByEmail(user.getEmail()) == null) {
             try (Connection con = ConPool.getConnection()) {
-                PreparedStatement ps = con.prepareStatement("INSERT INTO utenteRegistrato (nome,cognome,email,password) VALUES(?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("INSERT INTO UtenteRegistrato (nome,cognome,email,password) VALUES(?,?,?,?,?)");
                 ps.setString(1, user.getNome());
                 ps.setString(2, user.getCognome());
                 ps.setString(3, user.getEmail());
@@ -86,6 +86,94 @@ public class UtenteDAO {
     }
 
 
+    public void deleteUser(int id) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM UtenteRegistrato WHERE id =?");
+            ps.setInt(1, id);
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ConPool.closeConnection(con);
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public List<Utente> getUsers() {
+        List<Utente> users = new ArrayList<>();
+
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps =
+                    con.prepareStatement("SELECT * FROM UtenteRegistrato");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String cognome = rs.getString("cognome");
+                String em = rs.getString("email");
+                String password = rs.getString("password");
+                Utente user = new Utente(nome,cognome,em,password);
+                user.setId(id);
+                ConPool.closeConnection(con);
+                users.add(user);
+            }
+            ConPool.closeConnection(con);
+            return users;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    public void updateUser(Utente user) {
+        try (Connection con = ConPool.getConnection()) {
+            if (!user.getNome().isEmpty()) {
+                aggiornaCampo(con, user.getId(), "nome", user.getNome());
+            }
+            if (!user.getCognome().isEmpty()) {
+                aggiornaCampo(con, user.getId(), "cognome", user.getCognome());
+            }
+            if (!user.getEmail().isEmpty()) {
+                aggiornaCampo(con, user.getId(), "email", user.getEmail());
+            }
+            /*if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+                aggiornaCampo(con, user.getId(), "pass", user.getPassword());
+            }*/
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void aggiornaCampo(Connection connection, int idUtente, String campo, Object valore) throws SQLException {
+        // Query di aggiornamento utilizzando PreparedStatement
+        String query = "UPDATE UtenteRegistrato SET " + campo + " = ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            // Imposta il valore del campo nella query
+            if (valore instanceof Integer) {
+                preparedStatement.setInt(1, (Integer) valore);
+            } else if (valore instanceof String) {
+                preparedStatement.setString(1, (String) valore);
+            }
+
+            // Imposta l'ID dell'utente nella clausola WHERE
+            preparedStatement.setInt(2, idUtente);
+
+            // Eseguire l'aggiornamento
+            int righeAggiornate = preparedStatement.executeUpdate();
+
+            // Verifica quante righe sono state effettivamente aggiornate
+            if (righeAggiornate > 0) {
+                System.out.println("Aggiornamento completato con successo per l'utente con ID " + idUtente);
+            } else {
+                System.out.println("Nessun utente trovato con ID " + idUtente);
+            }
+        }
+    }
 
 
 
