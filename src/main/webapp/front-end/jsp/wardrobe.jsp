@@ -29,7 +29,7 @@
   <div id="fascinationContainer">
     <h1 id="fascination">Your wardrobe just got a <span id="fascinationSpan">personal assistant.</span></h1>
     <div style="display: flex; justify-content: center; gap: 1vw">
-      <button class="addItemButton">Add New Item</button>
+      <button class="addItemButton" onclick="openPopup2()">Add New Item</button>
       <button class="addItemButton" onclick="openPopup()">Generate Outfit ✨</button>
     </div>
   </div>
@@ -103,10 +103,11 @@
       <div style="z-index: 2000">
         <button class="closeButton" onclick="closePopup()">✖</button>
       </div>
+
+      <h3>Seleziona l'outfit desiderato e scorri in fondo alla pagina per salvarlo</h3>
       <!-- Outfit 1 -->
       <div class="outfitRow">
         <div class="content">
-          <h2>Outfit 1</h2>
           <div class="categoryRow">
             <div class="category">
               <h3>Top</h3>
@@ -128,7 +129,6 @@
       <!-- Outfit 2 -->
       <div class="outfitRow">
         <div class="content">
-          <h2>Outfit 2</h2>
           <div class="categoryRow">
             <div class="category">
               <h3>Top</h3>
@@ -150,7 +150,6 @@
       <!-- Outfit 3 -->
       <div class="outfitRow">
         <div class="content">
-          <h2>Outfit 3</h2>
           <div class="categoryRow">
             <div class="category">
               <h3>Top</h3>
@@ -179,6 +178,60 @@
       <button class="saveButton" style="margin-top: 2vw">Save Outfit</button>
     </div>
   </div>
+
+<div id="popupOverlay2" class="overlay2"></div>
+<div id="popup2" class="popup2">
+  <div style="z-index: 2000">
+    <button class="closeButton" onclick="closePopup2()">✖</button>
+  </div>
+
+  <form id="capoForm">
+    <label for="name">Clothing Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+
+    <label for="material">Material:</label>
+    <select id="material" name="material" required>
+      <option value="Material1">Material1</option>
+      <option value="Material2">Material2</option>
+    </select>
+
+    <label for="color">Color:</label>
+    <select id="color" name="color" required>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Green">Green</option>
+    </select>
+
+    <label for="style">Style:</label>
+    <select id="style" name="style" required>
+      <option value="Casual">Casual</option>
+      <option value="Elegant">Elegant</option>
+      <option value="Sporty">Sporty</option>
+    </select>
+
+    <label for="image">Upload an Image:</label>
+    <input type="file" id="image" name="image" accept="image/*" required>
+
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+      <option value="T-Shirt">T-Shirt</option>
+      <option value="Pants">Pants</option>
+      <option value="Shoes">Shoes</option>
+    </select>
+
+    <label for="bodyPart">Body Part:</label>
+    <select id="bodyPart" name="bodyPart" required>
+      <option value="top">Top</option>
+      <option value="bottom">Bottom</option>
+      <option value="shoes">Shoes</option>
+    </select>
+
+    <button type="submit" class="bottoneSubmit">Add Clothing Item</button>
+  </form>
+</div>
 
 
   <script src="${pageContext.request.contextPath}/front-end/js/wardrobe.js"></script>

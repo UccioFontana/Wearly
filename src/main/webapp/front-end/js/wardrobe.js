@@ -108,3 +108,12 @@ buttons.forEach(button => {
     });
 });
 
+
+function openPopup2() {
+    document.getElementById("popup2").style.display = "flex";
+    document.getElementById("popupOverlay2").style.display = "block";
+}
+function closePopup2() {
+    document.getElementById("popup2").style.display = "none";
+    document.getElementById("popupOverlay2").style.display = "none";
+}
