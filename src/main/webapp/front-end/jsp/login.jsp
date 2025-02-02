@@ -57,11 +57,11 @@
         <div id="registerFields" style="display: none;">
           <div class="login__field">
             <i class="login__icon fas fa-user"></i>
-            <input type="text" class="login__input" name="fullName" placeholder="Full Name">
+            <input type="text" class="login__input" name="name" placeholder="Your Name">
           </div>
           <div class="login__field">
             <i class="login__icon fas fa-lock"></i>
-            <input type="password" class="login__input" name="confirmPassword" placeholder="Confirm Password">
+            <input type="text" class="login__input" name="surname" placeholder="Your Surname">
           </div>
         </div>
 

@@ -16,8 +16,8 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String nome= req.getParameter("nome");
-        String cognome = req.getParameter("cognome");
+        String nome= req.getParameter("name");
+        String cognome = req.getParameter("surname");
         String email = req.getParameter("email");
         String password= req.getParameter("password");
 
