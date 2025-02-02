@@ -24,7 +24,7 @@
           <span class="button__text">Log In Wearly</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
-        <button class="button login__submit" type="button">
+        <button class="button login__submit" type="button" onclick="window.location.href = ('${pageContext.request.contextPath}/front-end/jsp/register.jsp')">
           <span class="button__text">Create An Account</span>
         </button>
         <h2 class="backHomepage" onclick="window.location.href = 'home'">Back Homepage</h2>
