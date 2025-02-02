@@ -36,8 +36,7 @@ public class AdminPageCRUDServlet extends HttpServlet {
         int idUtente = Integer.parseInt(req.getParameter("idUtente"));
         UtenteDAO U = new UtenteDAO();
         U.deleteUser(idUtente);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("AdminServlet");
-        dispatcher.forward(req, resp);
+
     }
     private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
