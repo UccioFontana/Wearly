@@ -16,6 +16,21 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String nome= req.getParameter("nome");
+        String cognome = req.getParameter("cognome");
+        String email = req.getParameter("email");
+        String password= req.getParameter("password");
+
+        String hashPass = BCrypt.hashpw(password,BCrypt.gensalt());
+        UtenteDAO U = new UtenteDAO();
+        Utente user = new Utente(nome,cognome,email,password);
+       if( U.doSave(user)){
+           resp.sendRedirect("front-end/jsp/home.jsp");
+       }
+       else{
+           resp.getWriter().write("UTENTE PRESENTE");
+       }
+
     }
 
     @Override
