@@ -13,10 +13,17 @@ import java.io.IOException;
 public class AuthenticationServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //need to get the session of the user to check if logged
+        if(req.getSession(false).getAttribute("utente") != null){
+            RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/userPage.jsp");
+            dispatcher.forward(req, resp);
+        }
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/login.jsp");
-        dispatcher.forward(req, resp);
+        else{
+            RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/login.jsp");
+            dispatcher.forward(req, resp);
+        }
+
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

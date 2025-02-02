@@ -148,10 +148,10 @@ app = Flask(__name__)
 @app.route('/generate_outfit', methods=['POST'])
 def generate_outfit_api():
     data = request.json
-    if 'user_items' not in data or 'temperature' not in data or 'weather_condition' not in data:
+    if 'userItems' not in data or 'temperature' not in data or 'weatherCondition' not in data:
         return jsonify({"error": "Dati mancanti."}), 400
 
-    user_items = data['user_items']
+    user_items = data['userItems']
     user_data = generate_outfits(user_items)
     user_df = pd.DataFrame(user_data)
 
@@ -167,7 +167,7 @@ def generate_outfit_api():
 
     training_data = preprocess_data(training_data, label_encoder)
     user_df = preprocess_data(user_df, label_encoder, is_user_data=True, temperature=data['temperature'])
-    filtered_items = filter_by_weather(user_df, label_encoder, data['temperature'], data['weather_condition'])
+    filtered_items = filter_by_weather(user_df, label_encoder, data['temperature'], data['weatherCondition'])
 
     model = train_outfit_model(training_data)
     scored_outfits = evaluate_outfits(filtered_items.to_dict(orient='records'), model, label_encoder, data['temperature'])

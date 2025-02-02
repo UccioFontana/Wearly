@@ -30,7 +30,7 @@
     <h1 id="fascination">Your wardrobe just got a <span id="fascinationSpan">personal assistant.</span></h1>
     <div style="display: flex; justify-content: center; gap: 1vw">
       <button class="addItemButton">Add New Item</button>
-      <button class="addItemButton">Generate Outfit ✨</button>
+      <button class="addItemButton" onclick="openPopup()">Generate Outfit ✨</button>
     </div>
   </div>
   <div id="outerWaveContainer">

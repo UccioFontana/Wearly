@@ -33,9 +33,59 @@ function closePopup() {
 
 // Funzione per aprire il popup (da chiamare quando necessario)
 function openPopup() {
+    console.log("sono qui");
     document.getElementById("popup").style.display = "flex";
     document.getElementById("popupOverlay").style.display = "block";
+    console.log("sono qui");
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "outfitAIServlet", true);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response);
+
+                    var outfitRows = document.querySelectorAll(".outfitRow");
+
+                    response.forEach(function(outfit, index) {
+                        if (index >= outfitRows.length) return;
+
+                        var outfitRow = outfitRows[index];
+                        var categories = outfitRow.querySelectorAll(".category");
+
+                        console.log("Nome Outfit: ", outfit.nome);
+                        console.log("Descrizione: ", outfit.descrizione);
+
+                        outfit.listaCapi.forEach(function(capo, capoIndex) {
+                            if (capoIndex >= categories.length) return;
+
+                            var category = categories[capoIndex];
+                            var imgElement = category.querySelector("img");
+                            var textElement = category.querySelector("h3");
+
+                            if (imgElement) imgElement.src = capo.immagine;
+                            if (textElement) textElement.textContent = capo.nome;
+
+                            console.log(capo.nome + ": " + capo.descrizione);
+                        });
+                    });
+                } catch (e) {
+                    console.error("Errore nell'analizzare la risposta JSON:", e);
+                    alert("Si è verificato un errore nel ricevere i dati.");
+                }
+            } else {
+                console.error('Errore nella richiesta:', xhr.status, xhr.statusText);
+                alert("Si è verificato un errore durante la richiesta.");
+            }
+        }
+    };
+    xhr.send();
 }
+
+
 
 // Funzione per gestire la selezione dei pulsanti
 function selectButton(button) {
@@ -57,3 +107,4 @@ buttons.forEach(button => {
         selectButton(button);
     });
 });
+

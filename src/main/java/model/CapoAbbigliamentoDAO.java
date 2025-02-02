@@ -241,6 +241,9 @@ public class CapoAbbigliamentoDAO {
                 c= new CapoAbbigliamento(idU,nome,descrizione,mat,col,stile,stagione,immagine,cat,parteDelCorpo);
                 c.setId(id);
             }
+
+            System.out.println(c.toString());
+
             ConPool.closeConnection(con);
             return c;
 

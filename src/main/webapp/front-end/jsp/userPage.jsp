@@ -1,5 +1,6 @@
 <%@ page import="model.CapoAbbigliamento" %>
 <%@ page import="java.util.List" %>
+<%@ page import="model.Utente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -22,7 +23,7 @@
     </header>
 
     <div id="welcomeBackContainer">
-        <h1 id="welcomeBackText" style="color: white"> <!--data-username="<%= request.getAttribute("utente") %>"--></h1>
+        <h1 id="welcomeBackText" style="color: white" >Hello, <% Utente u = (Utente) session.getAttribute("utente");%><%=u.getNome()%> </h1>
         <div id="lineContainer"></div>
         <h2 id="welcomeBackSubtitle">In this page you can find your profile details.</h2>
     </div>

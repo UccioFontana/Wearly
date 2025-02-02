@@ -1,19 +1,26 @@
-const text = "Hello, Uccio";
+function typeWriterEffect(text, elementId, speed) {
+    const element = document.getElementById(elementId);
+    if (!element) return; // Evita errori se l'elemento non esiste
 
-const typingSpeed = 200;
+    element.textContent = ""; // Cancella il contenuto iniziale
+    let index = 0;
 
-const welcomeBackText = document.getElementById("welcomeBackText");
-
-let index = 0;
-function typeWriter() {
-    if (index < text.length) {
-        welcomeBackText.textContent += text.charAt(index);
-        index++;
-        setTimeout(typeWriter, typingSpeed);
+    function type() {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, speed);
+        }
     }
+
+    type(); // Avvia l'animazione
 }
 
-window.onload = typeWriter;
+// Ottieni il testo originale dall'elemento e avvia l'effetto
+window.onload = function () {
+    const welcomeBackText = document.getElementById("welcomeBackText").textContent.trim();
+    typeWriterEffect(welcomeBackText, "welcomeBackText", 100);
+};
 
 /*
  _______ USA QUESTO QUANDO ABBIAMO LA JSP CHE PRENDE IL NOME UTENTE____
