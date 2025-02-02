@@ -8,25 +8,34 @@
       const registerFields = document.getElementById("registerFields");
       const loginForm = document.getElementById("loginForm");
       const registerButton = document.getElementById("registerButton");
+      const submitLogin = document.getElementById("submitLogin");
+      const submitRegister = document.getElementById("submitRegister");
+      const loginInsteadButton = document.getElementById("loginInsteadButton");
 
       if (registerFields.style.display === "none" || registerFields.style.display === "") {
         registerFields.style.display = "block";
         loginForm.action = "${pageContext.request.contextPath}/registerServlet";
         registerButton.style.display = "none";
+        submitLogin.style.display = "none";
+        submitRegister.style.display = "block";
+        loginInsteadButton.style.display = "block";
       }
     }
 
-    function resetToLogin(event) {
+    function resetToLogin() {
       const registerFields = document.getElementById("registerFields");
       const loginForm = document.getElementById("loginForm");
       const registerButton = document.getElementById("registerButton");
+      const submitLogin = document.getElementById("submitLogin");
+      const submitRegister = document.getElementById("submitRegister");
+      const loginInsteadButton = document.getElementById("loginInsteadButton");
 
-      if (registerFields.style.display === "block") {
-        event.preventDefault(); // Evita l'invio del form
-        registerFields.style.display = "none";
-        loginForm.action = "${pageContext.request.contextPath}/loginServlet";
-        registerButton.style.display = "block";
-      }
+      registerFields.style.display = "none";
+      loginForm.action = "${pageContext.request.contextPath}/loginServlet";
+      registerButton.style.display = "block";
+      submitLogin.style.display = "block";
+      submitRegister.style.display = "none";
+      loginInsteadButton.style.display = "none";
     }
   </script>
 </head>
@@ -56,16 +65,23 @@
           </div>
         </div>
 
-        <button class="button login__submit" type="submit" onclick="resetToLogin(event)">
+        <button class="button login__submit" type="submit" id="submitLogin">
           <span class="button__text">Log In Wearly</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
 
-        <button class="button login__submit" type="button" id="registerButton" onclick="toggleRegisterFields()">
-          <span class="button__text">Non hai un account? Registrati</span>
+        <button class="button login__submit" type="submit" id="submitRegister" style="display: none;">
+          <span class="button__text">Register</span>
+          <i class="button__icon fas fa-user-plus"></i>
         </button>
 
-        <h2 class="backHomepage" onclick="window.location.href = 'home'">Back Homepage</h2>
+        <button class="button login__submit" type="button" id="loginInsteadButton" style="display: none;" onclick="resetToLogin()">
+          <span class="button__text">Login Instead</span>
+        </button>
+
+        <button class="button login__submit" type="button" id="registerButton" onclick="toggleRegisterFields()">
+          <span class="button__text">Register Instead</span>
+        </button>
       </form>
     </div>
     <div class="screen__background">
