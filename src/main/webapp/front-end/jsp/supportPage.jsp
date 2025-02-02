@@ -20,6 +20,30 @@
         </div>
     </header>
 
+    <div id="supportContainer">
+        <div id="ticketForm">
+            <h2 style="font-family: SignPainter, sans-serif; color: var(--primary-color); font-size: 2.5rem;">Submit a Support Ticket</h2>
+            <form action="${pageContext.request.contextPath}/ticketServlet" method="POST">
+                <label for="ticketSubject">Subject</label>
+                <input type="text" id="ticketSubject" name="ticketObject" placeholder="Enter the subject" required>
+
+                <label for="ticketMessage">Message</label>
+                <textarea id="ticketMessage" name="ticketIssue" placeholder="Describe your issue" required></textarea>
+
+                <button type="submit" class="defaultButtons">Submit Ticket</button>
+            </form>
+        </div>
+
+        <div id="ticketHistory">
+            <h2 style="font-family: SignPainter, sans-serif; color: var(--primary-color); font-size: 2.5rem;">Previous Tickets</h2>
+            <div class="ticket"> <!-- Example of a previous ticket -->
+                <h3>Issue with Login</h3>
+                <p>Status: <span class="ticketStatus">Pending</span></p>
+                <p>Submitted on: 2024-02-02</p>
+            </div>
+        </div>
+    </div>
+
     <script src="${pageContext.request.contextPath}/front-end/js/supportPage.js.css"></script>
 </body>
 </html>

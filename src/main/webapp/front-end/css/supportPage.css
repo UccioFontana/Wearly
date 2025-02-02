@@ -107,3 +107,98 @@ svg:hover .cls-1{
 svg:hover{
     cursor: pointer;
 }
+
+#supportContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#ticketForm {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 70vw;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#ticketForm h2, #ticketHistory h2 {
+    text-align: center;
+    color: var(--text-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+button {
+    margin-top: 10px;
+}
+
+#ticketHistory {
+    margin-top: 30px;
+    width: 70vw;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-in-out;
+    margin-bottom: 30px;
+}
+
+.ticket {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.ticket:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+input, textarea {
+    border: 2px solid #D1D1D4;
+    background: none;
+    padding: 10px 5px;
+    font-style: italic;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: .2s;
+    border-radius: 10px;
+}
+
+input:active,
+input:focus,
+input:hover,
+textarea:active,
+textarea:focus,
+textarea:hover{
+    outline: none;
+    border: none;
+    border-bottom:2px solid;
+    border-radius: 0;
+    border-color: var(--primary-color);
+}
