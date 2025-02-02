@@ -6,14 +6,32 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/authservlet")
 public class AuthenticationServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if(req.getSession(false).getAttribute("utente") != null){
+        Utente u = (Utente) req.getSession(false).getAttribute("utente");
+        if( u!= null){
+            CapoAbbigliamentoDAO C= new CapoAbbigliamentoDAO();
+            List<CapoAbbigliamento> list = C.getCapoByUser(u.getId());
+            int contCapi =0;
+            for(CapoAbbigliamento c: list)
+                contCapi++;
+
+            OutfitDAO O = new OutfitDAO();
+            List<Outfit> lOut = O.getOutfitByUser(u.getId());
+            int contOutfit=0;
+            for(Outfit o: lOut)
+                contOutfit++;
+
+
+            req.setAttribute("numOutfit",contOutfit);
+            req.setAttribute("numCapi",contCapi);
             RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/userPage.jsp");
             dispatcher.forward(req, resp);
         }

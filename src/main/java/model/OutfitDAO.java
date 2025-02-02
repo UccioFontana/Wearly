@@ -165,6 +165,37 @@ public class OutfitDAO {
         }
     }
 
+    public List<Outfit> getOutfitByUser(int idUtente){
+        List<Outfit> list = new ArrayList<>();
+
+        try (Connection con = ConPool.getConnection()){
+
+            PreparedStatement ps = con.prepareStatement("SELECT DISTINCT o.* FROM Outfit o JOIN DettagliOutfit d ON o.Id = d.IdOutfit JOIN CapoDAbbigliamento c ON d.IdCapo = c.Id WHERE c.IdUtenteRegistrato = ?");
+            ps.setInt(1,idUtente);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("Id");
+                String nome= rs.getString("Nome");
+                String descrizione= rs.getString("Descrizione");
+                Outfit out = new Outfit(nome,descrizione);
+                out.setId(id);
+                CapoAbbigliamentoDAO C = new CapoAbbigliamentoDAO();
+                out.setListaCapi(C.getCapiByIdOufit(out.getId()));
+
+                list.add(out);
+            }
+
+            ConPool.closeConnection(con);
+            return list;
+
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
 
 

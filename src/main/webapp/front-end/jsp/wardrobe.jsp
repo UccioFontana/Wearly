@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="model.CapoAbbigliamento" %><%--
   Created by IntelliJ IDEA.
   User: ucciofontana
   Date: 20/01/25
@@ -44,47 +45,30 @@
 
   <div id="outerItemsContainer">
     <div id="innerItemsContainer">
+      <%
+        List<CapoAbbigliamento> listaCapi = (List<CapoAbbigliamento>) request.getAttribute("listaCapi");
+
+        if(!listaCapi.isEmpty()){
+          for(CapoAbbigliamento c: listaCapi){
+      %>
 
         <div class="col-md-3">
           <div class="wsk-cp-product">
             <div class="wsk-cp-img">
-              <img src="${pageContext.request.contextPath}/images/3DB0DB89-7F7D-47D2-8B25-AD71FADC9D71.JPG" alt="Product" class="img-responsive"  height="330px"/>
+              <img src=" <%=c.getImmagine()%>" alt="Product" class="img-responsive"  height="330px"/>
             </div>
             <div class="wsk-cp-text">
               <div class="category">
                 <span style="font-size: 0.5rem;">Ethnic</span>
               </div>
               <div class="title-product">
-                <h3 style="font-size: 0.8rem;">My face not my heart</h3>
+                <h3 style="font-size: 0.8rem; "><%= c.getNome()%></h3>
               </div>
               <div class="description-prod">
-                <p style="font-size: 0.8rem;">Description Product tell me how to change playlist height size like 600px in html5 player. player good work now check this link</p>
+                <p style="font-size: 0.8rem;"> <%=c.getDescrizione()%></p>
               </div>
               <div class="card-footer">
-                <div class="wcf-left"><span class="price">Estate</span></div>
-                <div class="wcf-right"><a href="#" class="buy-btn"><i class="zmdi zmdi-shopping-basket"></i></a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="wsk-cp-product">
-            <div class="wsk-cp-img">
-              <img src="${pageContext.request.contextPath}/images/banner1.jpg" alt="Product" class="img-responsive"  height="330px"/>
-            </div>
-            <div class="wsk-cp-text">
-              <div class="category">
-                <span style="font-size: 0.5rem;">Ethnic</span>
-              </div>
-              <div class="title-product">
-                <h3 style="font-size: 0.8rem;">My face not my heart</h3>
-              </div>
-              <div class="description-prod">
-                <p style="font-size: 0.8rem;">Description Product tell me how to change playlist height size like 600px in html5 player. player good work now check this link</p>
-              </div>
-              <div class="card-footer">
-                <div class="wcf-left"><span class="price">Estate</span></div>
+                <div class="wcf-left"><span class="price"> <%= c.getStagione()%> </span></div>
                 <div class="wcf-right"><a href="#" class="buy-btn"><i class="zmdi zmdi-shopping-basket"></i></a></div>
               </div>
             </div>
@@ -92,7 +76,11 @@
         </div>
 
 
-
+ <%} }
+        else{
+ %>
+      <p>Non sono presenti capi salvati</p>
+<%}%>
     </div>
   </div>
 

@@ -40,11 +40,11 @@
                 <div class="doubleInputInner">
                     <div class="Input">
                         <h1 class="sectionHeading">Nome</h1>
-                        <input type="text" placeholder="Uccio">
+                        <input type="text" placeholder=" <%= u.getNome()%>" id="newNome">
                     </div>
                     <div class="Input">
                         <h1 class="sectionHeading">Cognome</h1>
-                        <input type="text" placeholder="Fontana">
+                        <input type="text" placeholder="<%= u.getCognome()%>" id="newCognome">
                     </div>
                 </div>
             </div>
@@ -53,11 +53,11 @@
                 <div class="doubleInputInner">
                     <div class="Input">
                         <h1 class="sectionHeading">Email</h1>
-                        <input type="email" placeholder="example@example.com">
+                        <input type="email" placeholder="<%= u.getEmail()%>" id="newEmail">
                     </div>
                     <div class="Input">
                         <h1 class="sectionHeading">Password</h1>
-                        <input type="password">
+                        <input type="password" id="newPassword">
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
             <div class="doubleInputContainer">
                 <div class="doubleInputInner">
                     <div id="saveButtonContainer">
-                        <input type="submit" value="Save">
+                        <input type="submit" value="Save" onclick="updateUser(<%=u.getId()%>)">
                     </div>
                 </div>
             </div>
@@ -79,63 +79,21 @@
 
         </div>
 
-
         <div id="innerContainerRight">
             <div id="profileImage"></div>
             <div id="profileDetails">
                 <div class="profileDetailsElement">
-                    <h1 class="elementCounter">15</h1>
+                    <h1 class="elementCounter"> <%= request.getAttribute("numCapi")%></h1>
                     <h2 class="elementName">Clothes</h2>
                 </div>
                 <div class="profileDetailsElement">
-                    <h1 class="elementCounter">3</h1>
+                    <h1 class="elementCounter"><%= request.getAttribute("numOutfit")%></h1>
                     <h2 class="elementName">Outfits</h2>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="infoCapiAbbigliamento">
-
-        <h3 style="color: #2C2C2C;font-size: 1.3em;">Informazioni Capi d'Abbigliamento</h3>
-        <% List<CapoAbbigliamento> capiAbbigliamento = (List<CapoAbbigliamento>) request.getAttribute("listaCapi"); %>
-        <% if (capiAbbigliamento == null || capiAbbigliamento.isEmpty()) { %>
-        <span style="text-align: center">Non ci sono capi d'abbigliamento disponibili per questo utente</span>
-        <% } else { %>
-
-        <table>
-            <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Descrizione</th>
-                <th>Materiale</th>
-                <th>Colore</th>
-                <th>Stile</th>
-                <th>Stagione</th>
-                <th>Immagine</th>
-                <th>Categoria</th>
-                <th>Parte del Corpo</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for (CapoAbbigliamento capo : capiAbbigliamento) { %>
-            <tr>
-                <td><%= capo.getNome() %></td>
-                <td><%= capo.getDescrizione() %></td>
-                <td><%= capo.getMateriale() %></td>
-                <td><%= capo.getColore() %></td>
-                <td><%= capo.getStile() %></td>
-                <td><%= capo.getStagione() %></td>
-                <td><img src="<%= capo.getImmagine() %>" alt="<%= capo.getNome() %>" width="50" height="50"/></td>
-                <td><%= capo.getCategoria() %></td>
-                <td><%= capo.getParteDelCorpo() %></td>
-            </tr>
-            <% } %>
-            </tbody>
-        </table>
-
-        <% } %>
-    </div>
 
 
 
@@ -145,6 +103,6 @@
 
 
 
-    <script src="../js/userPage.js"></script>
+    <script src="front-end/js/userPage.js"></script>
 </body>
 </html>

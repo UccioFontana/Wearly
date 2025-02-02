@@ -1,5 +1,7 @@
 package model;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -140,9 +142,10 @@ public class UtenteDAO {
             if (!user.getEmail().isEmpty()) {
                 aggiornaCampo(con, user.getId(), "email", user.getEmail());
             }
-            /*if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-                aggiornaCampo(con, user.getId(), "pass", user.getPassword());
-            }*/
+            if(!user.getPassword().isEmpty()) {
+                String hashPass = BCrypt.hashpw(user.getPassword(),BCrypt.gensalt());
+                aggiornaCampo(con, user.getId(), "password", hashPass);
+            }
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }

@@ -7,30 +7,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Utente;
 import model.UtenteDAO;
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
-@WebServlet("/registerServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/userPageUpdateServlet")
+public class UserPageUpdateServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        int idUtente = Integer.parseInt(req.getParameter("idUtente"));
         String nome= req.getParameter("nome");
         String cognome = req.getParameter("cognome");
         String email = req.getParameter("email");
-        String password= req.getParameter("password");
+        String password = req.getParameter("password");
 
-        String hashPass = BCrypt.hashpw(password,BCrypt.gensalt());
+        Utente user = new Utente(nome,cognome,email,password);
+        user.setId(idUtente);
         UtenteDAO U = new UtenteDAO();
-        Utente user = new Utente(nome,cognome,email,hashPass);
-       if( U.doSave(user)){
-           resp.sendRedirect("front-end/jsp/home.jsp");
-       }
-       else{
-           resp.getWriter().write("UTENTE PRESENTE");
-       }
-
+        U.updateUser(user);
     }
 
     @Override

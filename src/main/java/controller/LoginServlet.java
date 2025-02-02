@@ -7,10 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.CapoAbbigliamento;
-import model.CapoAbbigliamentoDAO;
-import model.Utente;
-import model.UtenteDAO;
+import model.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
@@ -24,6 +21,12 @@ public class LoginServlet extends HttpServlet {
         UtenteDAO U = new UtenteDAO();
         Utente u = U.getUserByEmail(email);
 
+        System.out.println("Email ricevuta: " + email);
+        System.out.println("Utente trovato nel DB: " + (u != null ? u.getEmail() : "null"));
+        System.out.println("Password ricevuta: " + password);
+        System.out.println("Hash nel DB: " + (u != null ? u.getPassword() : "null"));
+
+
 
         if(u != null && BCrypt.checkpw(password,u.getPassword())){
             HttpSession session = req.getSession();
@@ -32,7 +35,19 @@ public class LoginServlet extends HttpServlet {
             // Reindirizzamento alla pagina utente
             CapoAbbigliamentoDAO C= new CapoAbbigliamentoDAO();
             List<CapoAbbigliamento> list = C.getCapoByUser(u.getId());
-            req.setAttribute("listaCapi",list);
+            int contCapi =0;
+            for(CapoAbbigliamento c: list)
+                contCapi++;
+
+            OutfitDAO O = new OutfitDAO();
+            List<Outfit> lOut = O.getOutfitByUser(u.getId());
+            int contOutfit=0;
+            for(Outfit o: lOut)
+                contOutfit++;
+
+
+            req.setAttribute("numOutfit",contOutfit);
+            req.setAttribute("numCapi",contCapi);
             RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/userPage.jsp");
             dispatcher.forward(req, resp);
 

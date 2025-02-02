@@ -58,5 +58,29 @@ const interval = setInterval(() => {
     }
 }, 1000); // Ritardo di 1000ms (1 secondo)
 
+function updateUser(idUtente){
+    const nome = document.getElementById("newNome").value;
+    const cognome = document.getElementById("newCognome").value;
+    const email = document.getElementById("newEmail").value;
+    const password = document.getElementById("newPassword").value;
 
+    if(nome ==="" && cognome === "" && email === "" && password===""){
+        alert("non hai inserito nessun campo da modificare");
+        return;
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState==4 && xhr.status==200){
+            alert("Modifica effettuata con successo");
+
+        }
+    };
+
+    const url = `userPageUpdateServlet?idUtente=${encodeURIComponent(idUtente)}&nome=${encodeURIComponent(nome)}&cognome=${encodeURIComponent(cognome)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+    xhr.open("GET", url, true);
+    xhr.send();
+
+
+}
 
