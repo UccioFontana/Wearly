@@ -14,17 +14,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/toWardrobe")
-public class ToWardrobeServlet extends HttpServlet {
+@WebServlet("/toSupportPage")
+public class toSupportPage extends HttpServlet {
 
+    @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
         //check se è loggato o no
         Utente user = (Utente) req.getSession(false).getAttribute("utente");
 
         if(user != null){
-            CapoAbbigliamentoDAO C = new CapoAbbigliamentoDAO();
-            List<CapoAbbigliamento> list = C.getCapoByUser(user.getId());
-            req.setAttribute("listaCapi",list);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/supportPage.jsp");
+
+            try {
+                dispatcher.forward(req, resp);
+            } catch (ServletException | IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         else{
             RequestDispatcher dispatcherLogin = req.getRequestDispatcher("front-end/jsp/login.jsp");
@@ -35,19 +40,13 @@ public class ToWardrobeServlet extends HttpServlet {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            req.setAttribute("listaCapi",new ArrayList<>());
-        }
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/wardrobe.jsp");
-
-        try {
-            dispatcher.forward(req, resp);
-        } catch (ServletException | IOException e) {
-            throw new RuntimeException(e);
         }
 
     }
+
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
         doGet(req, resp);
     }
+
 }

@@ -1,0 +1,109 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+:root {
+    --primary-color: #017681;
+    --text-color: #333333;
+    --background-color: #f4f4f4;
+}
+
+body, html{
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+body{
+    height: 100%;
+    width: 100vw;
+    background: url("../../images/userPageBackground.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0px -390px;
+    background-attachment: fixed;
+}
+
+*{
+    font-family: Verdana, sans-serif;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    flex-direction: row;
+}
+
+#logoContainer{
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#logo{
+    width: 80px;
+}
+#logo2{
+    width: 80px;
+}
+
+#spaceFiller{
+    width: 60vw;
+}
+
+#buttonsContainer{
+    width: 20vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.defaultButtons{
+    border-radius: 10px;
+    padding: 0.6vw;
+    color: white;
+    background-color: var(--primary-color);
+    font-weight: lighter;
+    font-size: 0.75rem;
+    font-style: italic;
+    transition: font-size 0.5s ease, padding 0.5s ease;
+}
+
+.defaultButtons:hover{
+    padding: 0.8vw;
+    font-size: 0.75rem;
+    transition: font-size 0.5s ease, padding 0.5s ease;
+    font-weight: bold;
+    cursor: pointer;
+}
+svg path{
+    transition: fill 0.2s linear;
+    fill: var(--text-color);
+}
+
+svg .cls-1{
+    transition: stroke 0.2s linear;
+    stroke: var(--text-color);
+}
+
+svg:hover path{
+    transition: fill 0.2s linear;
+    fill: var(--primary-color);
+    cursor: pointer;
+}
+svg:hover .cls-1{
+    transition: stroke 0.2s linear;
+    stroke: var(--primary-color);
+    cursor: pointer;
+}
+
+svg:hover{
+    cursor: pointer;
+}
