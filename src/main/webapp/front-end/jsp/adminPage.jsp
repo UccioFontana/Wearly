@@ -1,4 +1,5 @@
-<%--
+<%@ page import="model.Utente" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: pietro
   Date: 02/02/25
@@ -12,6 +13,13 @@
 </head>
 <body>
 <p>testttttt</p>
+
+<% List<Utente> list= (List<Utente>) request.getAttribute("users");
+for(Utente u : list){
+%>
+    <p><%= u.getId()%></p>
+
+<%}%>
 
 </body>
 </html>

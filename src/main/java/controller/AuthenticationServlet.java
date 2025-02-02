@@ -19,7 +19,7 @@ public class AuthenticationServlet extends HttpServlet {
         Utente admin = (Utente) req.getSession(false).getAttribute("admin");
 
         if(admin != null){
-            RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/adminPage.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("adminServlet");
             dispatcher.forward(req, resp);
         }
 

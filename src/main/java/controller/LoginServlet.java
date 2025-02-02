@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("admin", user);
 
                     // Reindirizzamento alla pagina utente
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/adminPage.jsp");
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("adminServlet");
                     dispatcher.forward(req, resp);
 
                 }
