@@ -47,7 +47,7 @@
         <img id="logo" src="${pageContext.request.contextPath}/images/Wearly_Logo.png" onclick="window.location.href = ('${pageContext.request.contextPath}/home')">
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="text" class="login__input" name="email" placeholder="User name / Email">
+          <input type="email" class="login__input" name="email" placeholder="Email">
         </div>
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>

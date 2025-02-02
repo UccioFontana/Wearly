@@ -59,7 +59,7 @@
             </div>
             <div class="wsk-cp-text">
               <div class="category">
-                <span style="font-size: 0.5rem;">Ethnic</span>
+                <span style="font-size: 0.5rem;"><%=c.getParteDelCorpo()%></span>
               </div>
               <div class="title-product">
                 <h3 style="font-size: 0.8rem; "><%= c.getNome()%></h3>

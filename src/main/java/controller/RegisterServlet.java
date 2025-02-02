@@ -25,7 +25,7 @@ public class RegisterServlet extends HttpServlet {
         UtenteDAO U = new UtenteDAO();
         Utente user = new Utente(nome,cognome,email,hashPass);
        if( U.doSave(user)){
-           resp.sendRedirect("front-end/jsp/home.jsp");
+           resp.sendRedirect("home.jsp");
        }
        else{
            resp.getWriter().write("UTENTE PRESENTE");

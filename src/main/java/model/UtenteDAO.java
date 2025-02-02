@@ -67,7 +67,7 @@ public class UtenteDAO {
     public boolean doSave(Utente user) {
         if (this.getUserByEmail(user.getEmail()) == null) {
             try (Connection con = ConPool.getConnection()) {
-                PreparedStatement ps = con.prepareStatement("INSERT INTO UtenteRegistrato (nome,cognome,email,password) VALUES(?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("INSERT INTO UtenteRegistrato (nome,cognome,email,password) VALUES(?,?,?,?)");
                 ps.setString(1, user.getNome());
                 ps.setString(2, user.getCognome());
                 ps.setString(3, user.getEmail());

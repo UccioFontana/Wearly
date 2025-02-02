@@ -26,6 +26,7 @@
         <h1 id="welcomeBackText" style="color: white" >Hello, <% Utente u = (Utente) session.getAttribute("utente");%><%=u.getNome()%> </h1>
         <div id="lineContainer"></div>
         <h2 id="welcomeBackSubtitle">In this page you can find your profile details.</h2>
+        <button class="defaultButtons" onclick="window.location.href = 'logoutServlet'" style="width: 10vw;">Logout</button>
     </div>
 
     <div id="outerContainer">
