@@ -16,6 +16,13 @@ public class AuthenticationServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Utente u = (Utente) req.getSession(false).getAttribute("utente");
+        Utente admin = (Utente) req.getSession(false).getAttribute("admin");
+
+        if(admin != null){
+            RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/adminPage.jsp");
+            dispatcher.forward(req, resp);
+        }
+
         if( u!= null){
             CapoAbbigliamentoDAO C= new CapoAbbigliamentoDAO();
             List<CapoAbbigliamento> list = C.getCapoByUser(u.getId());

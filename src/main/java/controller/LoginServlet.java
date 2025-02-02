@@ -21,10 +21,6 @@ public class LoginServlet extends HttpServlet {
         UtenteDAO U = new UtenteDAO();
         Utente u = U.getUserByEmail(email);
 
-        System.out.println("Email ricevuta: " + email);
-        System.out.println("Utente trovato nel DB: " + (u != null ? u.getEmail() : "null"));
-        System.out.println("Password ricevuta: " + password);
-        System.out.println("Hash nel DB: " + (u != null ? u.getPassword() : "null"));
 
 
 
@@ -54,19 +50,25 @@ public class LoginServlet extends HttpServlet {
         }
         else{
             List<Utente> adminL = U.getAdmin();
-            if(adminL.contains(u) && BCrypt.checkpw(password,u.getPassword())){
-                /* fai la admin page
-                HttpSession session = req.getSession();
-                session.setAttribute("utente", u);
+            for(Utente user :adminL){
+                System.out.println(user);
 
-                // Reindirizzamento alla pagina utente
-                RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/userPage.jsp");
-                dispatcher.forward(req, resp);
-                */
             }
-            else{
-                resp.getWriter().write("HAI SBAGLIATO");
+            for(Utente user :adminL){
+                if(BCrypt.checkpw(password,user.getPassword())){
+
+                    HttpSession session = req.getSession();
+                    session.setAttribute("admin", user);
+
+                    // Reindirizzamento alla pagina utente
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/adminPage.jsp");
+                    dispatcher.forward(req, resp);
+
+                }
             }
+
+            resp.getWriter().write("HAI SBAGLIATO");
+
         }
 
 
