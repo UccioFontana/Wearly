@@ -92,7 +92,7 @@
         <button class="closeButton" onclick="closePopup()">✖</button>
       </div>
 
-      <h3>Seleziona l'outfit desiderato e scorri in fondo alla pagina per salvarlo</h3>
+      <h3>Select your favorite outfit, then go all the way down to save it!</h3>
       <!-- Outfit 1 -->
       <div class="outfitRow">
         <div class="content">
@@ -220,6 +220,12 @@
     <button type="submit" class="bottoneSubmit">Add Clothing Item</button>
   </form>
 </div>
+
+<div style="display: none;" id="loadingOverlay">
+  <div class="spinner"></div>
+  <h3>We're creating your outfits...</h3>
+</div>
+
 
 
   <script src="${pageContext.request.contextPath}/front-end/js/wardrobe.js"></script>

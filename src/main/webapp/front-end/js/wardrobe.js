@@ -34,15 +34,19 @@ function closePopup() {
 // Funzione per aprire il popup (da chiamare quando necessario)
 function openPopup() {
     console.log("sono qui");
+
+    // Mostra il popup e il loader
     document.getElementById("popup").style.display = "flex";
     document.getElementById("popupOverlay").style.display = "block";
-    console.log("sono qui");
+    document.getElementById("loadingOverlay").style.display = "flex"; // Mostra il loader
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "outfitAIServlet", true);
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
+            document.getElementById("loadingOverlay").style.display = "none"; // Nasconde il loader
+
             if (xhr.status === 200) {
                 try {
                     var response = JSON.parse(xhr.responseText);
