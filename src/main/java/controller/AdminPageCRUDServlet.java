@@ -6,7 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Utente;
 import model.UtenteDAO;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
@@ -40,9 +42,39 @@ public class AdminPageCRUDServlet extends HttpServlet {
     }
     private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String nome= req.getParameter("nome");
+        String cognome = req.getParameter("cognome");
+        String email = req.getParameter("email");
+
+        String password= req.getParameter("password");
+
+
+        String hashPass = BCrypt.hashpw(password,BCrypt.gensalt());
+
+        Utente user = new Utente(nome,cognome,email,hashPass);
+        UtenteDAO U = new UtenteDAO();
+
+        boolean success = U.doSave(user);
+
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
+        if (success) {
+            resp.getWriter().write("{\"success\": true}");
+        } else {
+            resp.getWriter().write("{\"success\": false}");
+        }
     }
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idUtente = Integer.parseInt(req.getParameter("idUtente"));
+        String nome= req.getParameter("nome");
+        String cognome = req.getParameter("cognome");
+        String email = req.getParameter("email");
 
+        Utente user = new Utente(nome,cognome,email,"");
+        user.setId(idUtente);
+        UtenteDAO U = new UtenteDAO();
+        U.updateUser(user);
     }
 
 }
