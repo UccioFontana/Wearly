@@ -12,9 +12,100 @@ body, html{
     margin: 0;
     width: 100vw;
     height: 100vh;
-    animation: brightnessAnimation 1.5s ease-in-out forwards;
 }
 
+body{
+    height: 100%;
+    width: 100vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0px -390px;
+    background-attachment: fixed;
+}
+
+*{
+    font-family: Verdana, sans-serif;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    flex-direction: row;
+}
+
+#logoContainer{
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#logo{
+    width: 80px;
+}
+#logo2{
+    width: 80px;
+}
+
+#spaceFiller{
+    width: 60vw;
+}
+
+#buttonsContainer{
+    width: 20vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.defaultButtons{
+    border-radius: 10px;
+    padding: 0.6vw;
+    color: white;
+    background-color: var(--primary-color);
+    font-weight: lighter;
+    font-size: 0.75rem;
+    font-style: italic;
+    transition: font-size 0.5s ease, padding 0.5s ease;
+}
+
+.defaultButtons:hover{
+    padding: 0.8vw;
+    font-size: 0.75rem;
+    transition: font-size 0.5s ease, padding 0.5s ease;
+    font-weight: bold;
+    cursor: pointer;
+}
+svg path{
+    transition: fill 0.2s linear;
+    fill: var(--text-color);
+}
+
+svg .cls-1{
+    transition: stroke 0.2s linear;
+    stroke: var(--text-color);
+}
+
+svg:hover path{
+    transition: fill 0.2s linear;
+    fill: var(--primary-color);
+    cursor: pointer;
+}
+svg:hover .cls-1{
+    transition: stroke 0.2s linear;
+    stroke: var(--primary-color);
+    cursor: pointer;
+}
+
+svg:hover{
+    cursor: pointer;
+}
 
 
 @keyframes brightnessAnimation {
@@ -26,14 +117,13 @@ body, html{
     }
 }
 
-*{
-    font-family: Verdana, sans-serif;
-}
-
 
 h1{
     width: 80%;
-    text-align: left;
+    text-align: center;
+    color: var(--primary-color);
+    font-family: SignPainter, sans-serif;
+    font-size: 3.5rem;
 }
 
 h2:hover{
@@ -51,7 +141,7 @@ table {
     border-collapse: collapse;
     border: none;
     background-color:  #017681;
-    border-radius: 15px; /* Stondatura dei bordi della tabella */
+    border-radius: 10px; /* Stondatura dei bordi della tabella */
     overflow: hidden; /* Assicura che i contenuti non escano dai bordi stondati */
     border: dotted #4A7A8C 1px;
 }
@@ -63,19 +153,20 @@ th,td {
     height: 50px;
     box-sizing: border-box; /* Aggiunto per includere padding e bordo nella larghezza */
     color: #2C2C2C;
+    font-weight: bolder;
 
 }
 th,td,tr{
     height: auto;
 
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     background-color: #F5F5F5;
 
 }
 
 
 tr{
-    border-bottom: dotted #4A7A8C 1px;
+    border-bottom: dotted var(--primary-color) 2px;
     width: 100%;
 }
 th{
@@ -120,7 +211,7 @@ table input[type=text],input[type=email],input[type=password]{
 .updateButton input[type=submit],.deleteButton input[type=submit] {
     padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
@@ -128,13 +219,13 @@ table input[type=text],input[type=email],input[type=password]{
     margin: 2px;
 }
 .updateButton input[type=submit]{
-    background-color: #4CAF50; /* Colore verde per il pulsante edit */
+    background-color: var(--primary-color); /* Colore verde per il pulsante edit */
 
 
 }
 
 
 .deleteButton input[type=submit] {
-    background-color: #f44336; /* Colore rosso per il pulsante delete */
+    background-color: var(--primary-color); /* Colore rosso per il pulsante delete */
 }
 
