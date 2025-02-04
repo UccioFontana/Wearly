@@ -1,19 +1,25 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Ticket {
 
     private int id;
-
+    private String titolo;
+    private String descrizione;
+    private String stato;
+    private LocalDate dataCreazione;
     private int idUtente;
+    private int idAmministratore;
 
-    private String oggetto;
 
-    private String messaggio;
 
-    public Ticket(int idUtente, String oggetto, String messaggio) {
+    public Ticket(int idUtente, String titolo, String descrizione) {
         this.idUtente = idUtente;
-        this.oggetto = oggetto;
-        this.messaggio = messaggio;
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+    }
+    public Ticket() {
     }
 
     public int getId() {
@@ -24,6 +30,38 @@ public class Ticket {
         this.id = id;
     }
 
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public String getStato() {
+        return stato;
+    }
+
+    public void setStato(String stato) {
+        this.stato = stato;
+    }
+
+    public LocalDate getDataCreazione() {
+        return dataCreazione;
+    }
+
+    public void setDataCreazione(LocalDate dataCreazione) {
+        this.dataCreazione = dataCreazione;
+    }
+
     public int getIdUtente() {
         return idUtente;
     }
@@ -32,29 +70,24 @@ public class Ticket {
         this.idUtente = idUtente;
     }
 
-    public String getOggetto() {
-        return oggetto;
+    public int getIdAmministratore() {
+        return idAmministratore;
     }
 
-    public void setOggetto(String oggetto) {
-        this.oggetto = oggetto;
-    }
-
-    public String getMessaggio() {
-        return messaggio;
-    }
-
-    public void setMessaggio(String messaggio) {
-        this.messaggio = messaggio;
+    public void setIdAmministratore(int idAmministratore) {
+        this.idAmministratore = idAmministratore;
     }
 
     @Override
     public String toString() {
         return "Ticket{" +
                 "id=" + id +
+                ", titolo='" + titolo + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", stato='" + stato + '\'' +
+                ", dataCreazione=" + dataCreazione +
                 ", idUtente=" + idUtente +
-                ", oggetto='" + oggetto + '\'' +
-                ", messaggio='" + messaggio + '\'' +
+                ", idAmministratore=" + idAmministratore +
                 '}';
     }
 }
