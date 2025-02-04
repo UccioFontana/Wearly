@@ -121,3 +121,46 @@ function closePopup2() {
     document.getElementById("popup2").style.display = "none";
     document.getElementById("popupOverlay2").style.display = "none";
 }
+
+    document.getElementById("filterSelect").addEventListener("change", function() {
+        let filtro = this.value; // Ottieni il valore selezionato
+
+        fetch("filterCapiServlet?filtro=" + filtro) // Richiesta alla servlet
+            .then(response => response.json()) // Converti la risposta in JSON
+            .then(data => {
+                let container = document.getElementById("innerItemsContainer");
+                container.innerHTML = ""; // Svuota il contenitore delle card
+
+                if (data.length === 0) {
+                    container.innerHTML = "<p>No saved clothing items</p>";
+                } else {
+                    data.forEach(c => {
+                        let card = `
+                <div class="col-md-3">
+                    <div class="wsk-cp-product">
+                        <div class="wsk-cp-img">
+                            <img src="${c.immagine}" alt="Product" class="img-responsive" height="330px"/>
+                        </div>
+                        <div class="wsk-cp-text">
+                            <div class="category">
+                                <span style="font-size: 0.5rem;">${c.stato}</span>
+                            </div>
+                            <div class="title-product">
+                                <h3 style="font-size: 0.8rem;">${c.nome}</h3>
+                            </div>
+                            <div class="description-prod">
+                                <p style="font-size: 0.8rem;">${c.descrizione}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="wcf-left"><span class="price">${c.stagione}</span></div>
+                                <div class="wcf-right"><a href="#" class="buy-btn"><i class="zmdi zmdi-shopping-basket"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                        container.innerHTML += card; // Aggiungi la nuova card
+                    });
+                }
+            })
+            .catch(error => console.error("Errore nella richiesta:", error));
+    });

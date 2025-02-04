@@ -559,6 +559,43 @@ input:hover {
     }
 }
 
+.custom-select {
+    position: relative;
+    width: 250px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    appearance: none; /* Rimuove lo stile predefinito */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.custom-select::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.5);
+}
+
 
 .wsk-cp-product{
     background:#fff;
@@ -748,4 +785,7 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
         background: var(--primary-color);
         color: #fff;
     }
+
+
+
 }

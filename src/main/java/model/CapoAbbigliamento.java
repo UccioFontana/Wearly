@@ -14,6 +14,7 @@ public class CapoAbbigliamento {
     private String colore;
     private String stile;
     private String stagione;
+    private String stato;
     private String immagine;
     private String categoria;
     private String parteDelCorpo;
@@ -21,7 +22,7 @@ public class CapoAbbigliamento {
     public CapoAbbigliamento() {
     }
 
-    public CapoAbbigliamento(int idUtente, String nome, String descrizione, String materiale, String colore, String stile, String stagione, String immagine, String categoria, String parteDelCorpo) {
+    public CapoAbbigliamento(int idUtente, String nome, String descrizione, String materiale, String colore, String stile, String stagione, String stato, String immagine, String categoria, String parteDelCorpo) {
         this.idUtente = idUtente;
         this.nome = nome;
         this.descrizione = descrizione;
@@ -29,10 +30,13 @@ public class CapoAbbigliamento {
         this.colore = colore;
         this.stile = stile;
         this.stagione = stagione;
+        this.stato = stato;
         this.immagine = immagine;
         this.categoria = categoria;
         this.parteDelCorpo = parteDelCorpo;
     }
+
+
 
     public int getId() {
         return id;
@@ -98,6 +102,14 @@ public class CapoAbbigliamento {
         this.stagione = stagione;
     }
 
+    public String getStato() {
+        return stato;
+    }
+
+    public void setStato(String stato) {
+        this.stato = stato;
+    }
+
     public String getImmagine() {
         return immagine;
     }
@@ -133,6 +145,7 @@ public class CapoAbbigliamento {
                 ", colore='" + colore + '\'' +
                 ", stile='" + stile + '\'' +
                 ", stagione='" + stagione + '\'' +
+                ", stato='" + stato + '\'' +
                 ", immagine='" + immagine + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", parteDelCorpo='" + parteDelCorpo + '\'' +

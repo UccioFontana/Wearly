@@ -103,9 +103,6 @@ public class OutfitService {
                     ? Arrays.toString(new int[]{colorNode.get(0).asInt(), colorNode.get(1).asInt(), colorNode.get(2).asInt()}).replace(" ", "")
                     : colorNode.asText().replace(" ", ""); // Rimuove eventuali spazi extra
 
-            System.out.println("Categoria: " + categoria);
-            System.out.println("Materiale: " + materiale);
-            System.out.println("Colore normalizzato: " + colore);
 
             return dao.getCapoByCategoriaMaterialeColore(categoria, materiale, colore);
         }

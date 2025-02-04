@@ -43,6 +43,26 @@
       </div>
   </div>
 
+  <div id="filterContainer" style="margin-left: 5vw">
+    <label for="filterSelect" id="filterLabel" style="font-size: 18px; font-weight: bold; margin-bottom: 8px; display: block;">Filter By</label>
+
+    <div class="custom-select">
+      <select id="filterSelect" name="filter">
+        <option value="None">None</option>
+        <option value="Category - Top">Category - Top</option>
+        <option value="Category - Bottom">Category - Bottom</option>
+        <option value="Category - Shoes">Category - Shoes</option>
+        <option value="In Closet">In Closet</option>
+        <option value="To Wash">To Wash</option>
+        <option value="Season - Spring">Season - Spring</option>
+        <option value="Season - Summer">Season - Summer</option>
+        <option value="Season - Autumn">Season - Autumn</option>
+        <option value="Season - Winter">Season - Winter</option>
+        <option value="Season - All Year">Season - All Year</option>
+      </select>
+    </div>
+  </div>
+
   <div id="outerItemsContainer">
     <div id="innerItemsContainer">
       <%
@@ -59,7 +79,7 @@
             </div>
             <div class="wsk-cp-text">
               <div class="category">
-                <span style="font-size: 0.5rem;"><%=c.getParteDelCorpo()%></span>
+                <span style="font-size: 0.5rem;"><%=c.getStato()%></span>
               </div>
               <div class="title-product">
                 <h3 style="font-size: 0.8rem; "><%= c.getNome()%></h3>
