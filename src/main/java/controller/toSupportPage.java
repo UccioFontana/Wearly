@@ -6,9 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.CapoAbbigliamento;
-import model.CapoAbbigliamentoDAO;
-import model.Utente;
+import model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +21,9 @@ public class toSupportPage extends HttpServlet {
         Utente user = (Utente) req.getSession(false).getAttribute("utente");
 
         if(user != null){
+            TicketDAO T = new TicketDAO();
+            List<Ticket> list = T.getTicketByUser(user.getId());
+            req.setAttribute("listaTicket",list);
             RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/supportPage.jsp");
 
             try {

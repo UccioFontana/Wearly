@@ -22,7 +22,7 @@ public class TicketDAO {
                  String descrizione= rs.getString("descrizione");
                  String stato= rs.getString("stato");
                  LocalDate dataCreazione=rs.getDate("dataCreazione").toLocalDate() ;
-                 int idUtente= rs.getInt("idUtente");
+                 int idUtente= rs.getInt("idUtenteRegistrato");
                  int idAmministratore= rs.getInt("idAmministratore");
 
                 Ticket t = new Ticket();
@@ -86,7 +86,7 @@ public class TicketDAO {
     public List<Ticket> getTicketByUser(int idU){
         List<Ticket> list = new ArrayList<>();
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM Ticket WHERE idUtente=?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Ticket WHERE idUtenteRegistrato=?");
             ps.setInt(1,idU);
             ResultSet rs = ps.executeQuery();
 
@@ -96,7 +96,7 @@ public class TicketDAO {
                 String descrizione= rs.getString("descrizione");
                 String stato= rs.getString("stato");
                 LocalDate dataCreazione=rs.getDate("dataCreazione").toLocalDate() ;
-                int idUtente= rs.getInt("idUtente");
+                int idUtente= rs.getInt("idUtenteRegistrato");
                 int idAmministratore= rs.getInt("idAmministratore");
 
                 Ticket t = new Ticket();
@@ -133,7 +133,7 @@ public class TicketDAO {
                 String descrizione= rs.getString("descrizione");
                 String stato= rs.getString("stato");
                 LocalDate dataCreazione=rs.getDate("dataCreazione").toLocalDate() ;
-                int idUtente= rs.getInt("idUtente");
+                int idUtente= rs.getInt("idUtenteRegistrato");
                 int idAmministratore= rs.getInt("idAmministratore");
 
                 Ticket t = new Ticket();
@@ -155,6 +155,39 @@ public class TicketDAO {
         }
 
     }
+
+    public void assegnaTicket(int idAdmin,int idT){
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("UPDATE Ticket SET IdAmministratore = ?, Stato = 'In corso' WHERE Id = ?");
+            ps.setInt(1, idAdmin);
+            ps.setInt(2, idT);
+
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ConPool.closeConnection(con);
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void closeTicket(int id){
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("UPDATE Ticket SET Stato = 'Chiuso' WHERE Id = ?");
+            ps.setInt(1, id);
+
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ConPool.closeConnection(con);
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
 
 
 

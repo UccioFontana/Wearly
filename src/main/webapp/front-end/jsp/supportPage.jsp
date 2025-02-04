@@ -1,4 +1,5 @@
-
+<%@ page import="model.Ticket" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -36,11 +37,25 @@
 
         <div id="ticketHistory">
             <h2 style="font-family: SignPainter, sans-serif; color: var(--primary-color); font-size: 2.5rem;">Previous Tickets</h2>
+            <%
+                List<Ticket> listaTicket = (List<Ticket>) request.getAttribute("listaTicket");
+
+                if(!listaTicket.isEmpty()){
+                    for(Ticket c: listaTicket){
+            %>
             <div class="ticket"> <!-- Example of a previous ticket -->
-                <h3>Issue with Login</h3>
-                <p>Status: <span class="ticketStatus">Pending</span></p>
-                <p>Submitted on: 2024-02-02</p>
+                <h3><%= c.getTitolo()%></h3>
+                <p>Description: <%=c.getDescrizione()%></p>
+                <p>Status: <span class="ticketStatus"> <%=c.getStato()%></span></p>
+                <p>Submitted on: <%=c.getDataCreazione()%></p>
             </div>
+
+            <%} }
+            else{
+            %>
+            <p>Non sono presenti Ticket</p>
+            <%}%>
+
         </div>
     </div>
 

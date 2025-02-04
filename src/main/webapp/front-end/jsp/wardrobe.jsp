@@ -75,7 +75,7 @@
         <div class="col-md-3">
           <div class="wsk-cp-product">
             <div class="wsk-cp-img">
-              <img src=" <%=c.getImmagine()%>" alt="Product" class="img-responsive"  height="330px"/>
+              <img src="<%=c.getImmagine()%>" alt="Product" class="img-responsive"  height="330px"/>
             </div>
             <div class="wsk-cp-text">
               <div class="category">
@@ -193,7 +193,7 @@
     <button class="closeButton" onclick="closePopup2()">✖</button>
   </div>
 
-  <form id="capoForm">
+  <form id="capoForm" ACTION="addCapoServlet" method="post" enctype="multipart/form-data">
     <label for="name">Clothing Name:</label>
     <input type="text" id="name" name="name" required>
 

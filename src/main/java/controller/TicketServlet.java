@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Ticket;
+import model.TicketDAO;
 import model.Utente;
 
 import java.io.IOException;
@@ -25,7 +26,8 @@ public class TicketServlet extends HttpServlet {
             String problema = req.getParameter("ticketIssue");
 
             Ticket ticket = new Ticket(u.getId(), oggetto, problema);
-            //aggiungere la parte DAO di salvataggio nel database
+            TicketDAO T = new TicketDAO();
+            T.doSave(ticket);
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("toSupportPage");
             try {
