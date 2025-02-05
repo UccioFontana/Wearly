@@ -177,6 +177,9 @@ public class CapoAbbigliamentoDAO {
             if (capo.getStile() != null && !capo.getStile().isEmpty()) {
                 aggiornaCampo(con, capo.getId(), "stile", capo.getStile());
             }
+            if (capo.getStato() != null && !capo.getStato().isEmpty()) { // Aggiunto controllo sullo stato
+                aggiornaCampo(con, capo.getId(), "stato", capo.getStato());
+            }
             if (capo.getStagione() != null && !capo.getStagione().isEmpty()) {
                 aggiornaCampo(con, capo.getId(), "stagione", capo.getStagione());
             }
