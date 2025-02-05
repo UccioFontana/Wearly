@@ -74,7 +74,7 @@
       %>
 
         <div class="col-md-3">
-          <div class="wsk-cp-product">
+          <div class="wsk-cp-product data-id="<%= c.getId() %>">
             <div class="wsk-cp-img">
               <img src="<%=c.getImmagine()%>" alt="Product" class="img-responsive"  height="330px"/>
             </div>
@@ -203,15 +203,58 @@
 
     <label for="material">Material:</label>
     <select id="material" name="material" required>
-      <option value="Material1">Material1</option>
-      <option value="Material2">Material2</option>
+      <option value="Cotton">Cotton</option>
+      <option value="Wool">Wool</option>
+      <option value="Polyester">Polyester</option>
+      <option value="Leather">Leather</option>
+      <option value="Silk">Silk</option>
+      <option value="Denim">Denim</option>
+      <option value="Nylon">Nylon</option>
+      <option value="Linen">Linen</option>
+      <option value="Fleece">Fleece</option>
+      <option value="Velvet">Velvet</option>
+      <option value="Spandex">Spandex</option>
+      <option value="Suede">Suede</option>
+      <option value="Canvas">Canvas</option>
+      <option value="Mesh">Mesh</option>
+      <option value="Rubber">Rubber</option>
+      <option value="Synthetic">Synthetic</option>
+      <option value="Knit">Knit</option>
+      <option value="Faux Leather">Faux Leather</option>
     </select>
 
     <label for="color">Color:</label>
     <select id="color" name="color" required>
       <option value="Red">Red</option>
-      <option value="Blue">Blue</option>
       <option value="Green">Green</option>
+      <option value="Blue">Blue</option>
+      <option value="Yellow">Yellow</option>
+      <option value="Cyan">Cyan</option>
+      <option value="Magenta">Magenta</option>
+      <option value="Black">Black</option>
+      <option value="White">White</option>
+      <option value="Gray">Gray</option>
+      <option value="Orange">Orange</option>
+      <option value="Purple">Purple</option>
+      <option value="Brown">Brown</option>
+      <option value="Pink">Pink</option>
+      <option value="Turquoise">Turquoise</option>
+      <option value="Beige">Beige</option>
+      <option value="Lavender">Lavender</option>
+      <option value="Maroon">Maroon</option>
+      <option value="Olive">Olive</option>
+      <option value="Navy">Navy</option>
+      <option value="Teal">Teal</option>
+      <option value="Silver">Silver</option>
+      <option value="Gold">Gold</option>
+      <option value="Indigo">Indigo</option>
+      <option value="Coral">Coral</option>
+      <option value="Salmon">Salmon</option>
+      <option value="Chocolate">Chocolate</option>
+      <option value="Peru">Peru</option>
+      <option value="Crimson">Crimson</option>
+      <option value="Sky Blue">Sky Blue</option>
+      <option value="Lime">Lime</option>
     </select>
 
     <label for="style">Style:</label>
@@ -221,14 +264,48 @@
       <option value="Sporty">Sporty</option>
     </select>
 
+    <label for="season">Season:</label>
+    <select id="season" name="season" required>
+      <option value="Summer">Summer</option>
+      <option value="Winter">Winter</option>
+      <option value="Spring">Spring</option>
+      <option value="Fall">Fall</option>
+    </select>
+
     <label for="image">Upload an Image:</label>
     <input type="file" id="image" name="image" accept="image/*" required>
 
     <label for="category">Category:</label>
     <select id="category" name="category" required>
-      <option value="T-Shirt">T-Shirt</option>
-      <option value="Pants">Pants</option>
-      <option value="Shoes">Shoes</option>
+      <option value="Hoodie">Hoodie</option>
+      <option value="Blazer">Blazer</option>
+      <option value="T-shirt">T-Shirt</option>
+      <option value="Sweater">Sweater</option>
+      <option value="Jacket">Jacket</option>
+      <option value="Coat">Coat</option>
+      <option value="Vest">Vest</option>
+      <option value="Cardigan">Cardigan</option>
+      <option value="Shirt">Shirt</option>
+      <option value="Tank Top">Tank Top</option>
+      <option value="Jeans">Jeans</option>
+      <option value="Shorts">Shorts</option>
+      <option value="Trousers">Trousers</option>
+      <option value="Sweatpants">Sweatpants</option>
+      <option value="Leggings">Leggings</option>
+      <option value="Skirt">Skirt</option>
+      <option value="Cargo Pants">Cargo Pants</option>
+      <option value="Chinos">Chinos</option>
+      <option value="Joggers">Joggers</option>
+      <option value="Culottes">Culottes</option>
+      <option value="Sneakers">Sneakers</option>
+      <option value="Boots">Boots</option>
+      <option value="Loafers">Loafers</option>
+      <option value="Heels">Heels</option>
+      <option value="Sandals">Sandals</option>
+      <option value="Flats">Flats</option>
+      <option value="Running Shoes">Running Shoes</option>
+      <option value="Oxfords">Oxfords</option>
+      <option value="Espadrilles">Espadrilles</option>
     </select>
 
     <label for="bodyPart">Body Part:</label>

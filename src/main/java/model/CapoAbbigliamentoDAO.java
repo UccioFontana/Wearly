@@ -120,7 +120,7 @@ public class CapoAbbigliamentoDAO {
             return false;
         else{
             try (Connection con = ConPool.getConnection()){
-                PreparedStatement ps = con.prepareStatement("INSERT INTO CapoDAbbigliamento (IdUtenteRegistrato, Nome, Descrizione, Materiale, Colore, Stile, Stagione, Immagine, Categoria, ParteDelCorpo) VALUES (?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("INSERT INTO CapoDAbbigliamento (IdUtenteRegistrato, Nome, Descrizione, Materiale, Colore, Stile, Stagione, Stato, Immagine, Categoria, ParteDelCorpo) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
                 ps.setInt(1,c.getIdUtente());
                 ps.setString(2,c.getNome());
                 ps.setString(3,c.getDescrizione());
@@ -128,9 +128,10 @@ public class CapoAbbigliamentoDAO {
                 ps.setString(5,c.getColore());
                 ps.setString(6,c.getStile());
                 ps.setString(7,c.getStagione());
-                ps.setString(8,c.getImmagine());
-                ps.setString(9,c.getCategoria());
-                ps.setString(10,c.getParteDelCorpo());
+                ps.setString(8, c.getStato());
+                ps.setString(9,c.getImmagine());
+                ps.setString(10,c.getCategoria());
+                ps.setString(11,c.getParteDelCorpo());
                 if (ps.executeUpdate() != 1) {
                     throw new RuntimeException("INSERT error.");
                 }

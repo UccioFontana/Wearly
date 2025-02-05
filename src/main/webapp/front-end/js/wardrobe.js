@@ -224,3 +224,38 @@ function saveOutfitAI() {
     // Reindirizza alla servlet con i parametri
     window.location.href = "saveOutfitAIServlet" + queryParams;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Seleziona tutti gli elementi cliccabili dei capi d'abbigliamento
+    let clothingItems = document.querySelectorAll(".wsk-cp-product");
+
+    clothingItems.forEach(item => {
+        item.addEventListener("click", function () {
+
+            // Trova i dati all'interno dell'elemento cliccato
+            let imageSrc = item.querySelector(".wsk-cp-img img").src;
+            let name = item.querySelector(".title-product h3").textContent.trim();
+            let description = item.querySelector(".description-prod p").textContent.trim();
+            let category = item.querySelector(".category span").textContent.trim();
+
+            // Precompila il form nel popup
+            document.getElementById("image").value = ""; // I file input non possono essere valorizzati per sicurezza
+            document.getElementById("name").value = name;
+            document.getElementById("description").value = description;
+
+
+            // Seleziona il valore giusto per la categoria
+            let categorySelect = document.getElementById("category");
+            for (let option of categorySelect.options) {
+                if (option.value.toLowerCase() === category.toLowerCase()) {
+                    categorySelect.value = option.value;
+                    break;
+                }
+            }
+
+            // Mostra il popup
+            document.getElementById("popupOverlay2").style.display = "block";
+            document.getElementById("popup2").style.display = "block";
+        });
+    });
+});
