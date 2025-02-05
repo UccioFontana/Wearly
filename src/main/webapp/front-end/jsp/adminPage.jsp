@@ -1,5 +1,6 @@
 <%@ page import="model.Utente" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="model.Ticket" %><%--
   Created by IntelliJ IDEA.
   User: pietro
   Date: 02/02/25
@@ -9,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Admin Page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/css/adminPage.css">
 </head>
 <body>
@@ -78,7 +79,91 @@
 
     </table>
 
-<script src="front-end/js/admin.js" defer></script>
+    <h1>Tutti i Ticket:</h1>
+    <%
+        List<Ticket> tickets = (List<Ticket>) request.getAttribute("ticket");// Lista di tutti i ticket
+        if(!tickets.isEmpty())  {%>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titolo</th>
+            <th>Descrizione</th>
+            <th>Stato</th>
+            <th>Data Creazione</th>
+            <th>ID Utente</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            for (Ticket t : tickets) {
+        %>
+        <tr>
+            <td><%= t.getId() %></td>
+            <td><%= t.getTitolo() %></td>
+            <td><%= t.getDescrizione() %></td>
+            <td><%= t.getStato() %></td>
+            <td><%= t.getDataCreazione() %></td>
+            <td><%= t.getIdUtente() %></td>
+            <form action="adminTicketServlet" method="post">
+                <input type="hidden" name="idT" value="<%= t.getId() %>">
+                <input type="hidden" name="type" value="claim">
+                <td class="deleteButton"><input type="submit" value="Claim Ticket" ></td>
+            </form>
+        </tr>
+        <% }}else{ %>
+        <p>Non ci sono ticket aperti</p>
+        <% }%>
+        </tbody>
+    </table>
+
+    <br>
+
+    <h1>Ticket Gestiti dall'Amministratore:</h1>
+    <%
+        List<Ticket> adminTickets = (List<Ticket>) request.getAttribute("ticketAdmin"); // Lista dei ticket gestiti dall'amministratore
+        if(!adminTickets.isEmpty()){
+    %>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titolo</th>
+            <th>Descrizione</th>
+            <th>Stato</th>
+            <th>Data Creazione</th>
+            <th>ID Amministratore</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            for (Ticket t : adminTickets) {
+        %>
+        <tr>
+            <td><%= t.getId() %></td>
+            <td><%= t.getTitolo() %></td>
+            <td><%= t.getDescrizione() %></td>
+            <td><%= t.getStato() %></td>
+            <td><%= t.getDataCreazione() %></td>
+            <td><%= t.getIdAmministratore() %></td>
+            <form action="adminTicketServlet" method="post">
+                <input type="hidden" name="idT" value="<%= t.getId() %>">
+                <input type="hidden" name="type" value="close">
+                <td class="deleteButton"><input type="submit" value="Close Ticket" onclick=""></td>
+            </form>
+
+
+        </tr>
+        <% } }else{%>
+        <p>Non ci sono ticket gestiti</p>
+        <% }%>
+        </tbody>
+    </table>
+
+
+<br><br><br>
+
+    <script src="front-end/js/admin.js" defer></script>
 
 </body>
 </html>
