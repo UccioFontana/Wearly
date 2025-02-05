@@ -40,8 +40,6 @@ public class outfitAIServlet extends HttpServlet {
             else listaCapiFiltrata.add(c);
         }
 
-
-
         List<Outfit> outfitList = outfitService.getOutfits(listaCapiFiltrata);
 
 

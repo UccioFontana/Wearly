@@ -225,6 +225,7 @@
 
     <label for="color">Color:</label>
     <select id="color" name="color" required>
+      <option value=""> - </option>
       <option value="Red">Red</option>
       <option value="Green">Green</option>
       <option value="Blue">Blue</option>
