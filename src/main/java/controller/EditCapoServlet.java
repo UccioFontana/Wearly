@@ -128,8 +128,8 @@ public class EditCapoServlet extends HttpServlet {
         }
         else{
 
-            if (colore == null || colore.isEmpty()) {
-                capo = new CapoAbbigliamento(idUtente, nome, descrizione, materiale, colore, stile, season, state, "", categoria, parteDelCorpo);
+            if (colore.equals("-")) {
+                capo = new CapoAbbigliamento(idUtente, nome, descrizione, materiale, "", stile, season, state, "", categoria, parteDelCorpo);
             }
             else{
                 // Converti colore in formato RGB
@@ -139,6 +139,16 @@ public class EditCapoServlet extends HttpServlet {
 
         }
         capo.setId(idCapo);
+        //stile, bodypart,categoria
+        if(stile.equals("-"))
+            capo.setStile("");
+
+        if(parteDelCorpo.equals("-"))
+            capo.setParteDelCorpo("");
+
+        if(categoria.equals("-"))
+            capo.setCategoria("");
+
         CapoAbbigliamentoDAO C = new CapoAbbigliamentoDAO();
         C.updateCapoAbbigliamento(capo);
 
