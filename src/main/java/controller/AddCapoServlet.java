@@ -55,7 +55,7 @@ public class AddCapoServlet extends HttpServlet {
         }
 
         // URL per accedere al file
-        String fileUrl = "/Users/pietro/apache-tomcat-10.1.19/webapps/img/" + fileName;
+        String fileUrl = "/img/" + fileName;
 
         CapoAbbigliamentoDAO C = new CapoAbbigliamentoDAO();
         CapoAbbigliamento capo = new CapoAbbigliamento(idUtente, nome, descrizione, materiale, colore, stile, "", "In Closet", fileUrl, categoria, parteDelCorpo);
