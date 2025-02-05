@@ -30,6 +30,8 @@ public class OutfitService {
         int temperature = (int) weatherData.getTemperature();
         String weatherCondition = mapWeatherCondition(weatherData.getCondition());
 
+        System.out.println("WEATHER: " + weatherCondition);
+
         // Creazione della richiesta JSON
         OutfitRequest outfitRequest = new OutfitRequest(userItems, temperature, weatherCondition);
         ObjectMapper objectMapper = new ObjectMapper();

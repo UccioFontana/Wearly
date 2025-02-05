@@ -32,6 +32,7 @@
     <div style="display: flex; justify-content: center; gap: 1vw">
       <button class="addItemButton" onclick="openPopup2()">Add New Item</button>
       <button class="addItemButton" onclick="openPopup()">Generate Outfit ✨</button>
+      <button class="addItemButton" onclick="window.location.href = ('ToOutfitServlet')">Go To Outfits</button>
     </div>
   </div>
   <div id="outerWaveContainer">
@@ -56,7 +57,7 @@
         <option value="To Wash">To Wash</option>
         <option value="Season - Spring">Season - Spring</option>
         <option value="Season - Summer">Season - Summer</option>
-        <option value="Season - Autumn">Season - Autumn</option>
+        <option value="Season - Autumn">Season - Fall</option>
         <option value="Season - Winter">Season - Winter</option>
         <option value="Season - All Year">Season - All Year</option>
       </select>
@@ -116,8 +117,8 @@
       <!-- Outfit 1 -->
       <div class="outfitRow">
         <div class="content">
-          <div class="categoryRow">
-            <div class="category">
+          <div class="categoryRow" id="category1">
+            <div class="category" >
               <h3>Top</h3>
               <img src="top1.jpg" alt="Top 1">
             </div>
@@ -131,13 +132,13 @@
             </div>
           </div>
         </div>
-        <button class="selectButton" style="margin-top: 5vw">Select</button>
+        <button class="selectButton" style="margin-top: 5vw" id="button1">Select</button>
       </div>
 
       <!-- Outfit 2 -->
       <div class="outfitRow">
         <div class="content">
-          <div class="categoryRow">
+          <div class="categoryRow"  id="category2">
             <div class="category">
               <h3>Top</h3>
               <img src="top2.jpg" alt="Top 2">
@@ -152,13 +153,13 @@
             </div>
           </div>
         </div>
-        <button class="selectButton" style="margin-top: 5vw">Select</button>
+        <button class="selectButton" style="margin-top: 5vw" id="button2">Select</button>
       </div>
 
       <!-- Outfit 3 -->
       <div class="outfitRow">
         <div class="content">
-          <div class="categoryRow">
+          <div class="categoryRow"  id="category3">
             <div class="category">
               <h3>Top</h3>
               <img src="top3.jpg" alt="Top 3">
@@ -173,7 +174,7 @@
             </div>
           </div>
         </div>
-        <button class="selectButton" style="margin-top: 5vw">Select</button>
+        <button class="selectButton" style="margin-top: 5vw" id="button3">Select</button>
       </div>
 
       <!-- Input per Nome e Descrizione -->
@@ -183,7 +184,7 @@
       </div>
 
       <!-- Pulsante "Salva Outfit" -->
-      <button class="saveButton" style="margin-top: 2vw">Save Outfit</button>
+      <button class="saveButton" style="margin-top: 2vw" onclick="saveOutfitAI()">Save Outfit</button>
     </div>
   </div>
 

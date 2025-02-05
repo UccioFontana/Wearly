@@ -41,6 +41,7 @@ public class outfitAIServlet extends HttpServlet {
         }
 
 
+
         List<Outfit> outfitList = outfitService.getOutfits(listaCapiFiltrata);
 
 

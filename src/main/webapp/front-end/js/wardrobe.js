@@ -72,6 +72,7 @@ function openPopup() {
 
                             if (imgElement) imgElement.src = capo.immagine;
                             if (textElement) textElement.textContent = capo.nome;
+                            if (textElement) textElement.id = "text" + capo.id;
 
                             console.log(capo.nome + ": " + capo.descrizione);
                         });
@@ -164,3 +165,62 @@ function closePopup2() {
             })
             .catch(error => console.error("Errore nella richiesta:", error));
     });
+
+
+function saveOutfitAI() {
+    let buttons = ["button1", "button2", "button3"];
+    let chosenOutfitId = null;
+
+    // Trova il bottone selezionato
+    buttons.forEach(buttonId => {
+        let button = document.getElementById(buttonId);
+        if (button && button.textContent === "Selected!") {
+            chosenOutfitId = buttonId;
+        }
+    });
+
+    if (!chosenOutfitId) {
+        alert("No selected outfit!");
+        return;
+    }
+
+    // Estrai il numero dal bottone (es. "button3" → "3")
+    let outfitNumber = chosenOutfitId.replace("button", "");
+
+    // Seleziona la categoria corrispondente
+    let categoryRow = document.getElementById("category" + outfitNumber);
+
+    if (!categoryRow) {
+        console.warn("No categoryRow found for outfit", outfitNumber);
+        return;
+    }
+
+    // Trova gli <h3> e ottiene gli ID numerici
+    let h3Elements = categoryRow.querySelectorAll(".category h3");
+    let ids = [];
+
+    h3Elements.forEach(h3 => {
+        let id = h3.id; // Es. "text13"
+        let match = id.match(/\d+/); // Estrai numero con RegEx
+        if (match) ids.push(match[0]); // Aggiungi solo se esiste un numero
+    });
+
+    if (ids.length < 3) {
+        alert("Errore: non sono stati trovati 3 ID validi.");
+        return;
+    }
+
+    let outfitName = document.querySelector("input.outfitForms").value.trim();
+    let outfitDescription = document.querySelector("textarea.outfitForms").value.trim();
+
+    if (!outfitName || !outfitDescription) {
+        alert("Compila tutti i campi prima di salvare!");
+        return;
+    }
+
+    // Crea la query string per la servlet
+    let queryParams = `?id1=${ids[0]}&id2=${ids[1]}&id3=${ids[2]}&name=${encodeURIComponent(outfitName)}&desc=${encodeURIComponent(outfitDescription)}`;
+
+    // Reindirizza alla servlet con i parametri
+    window.location.href = "saveOutfitAIServlet" + queryParams;
+}

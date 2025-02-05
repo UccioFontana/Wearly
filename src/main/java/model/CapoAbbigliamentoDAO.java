@@ -44,6 +44,44 @@ public class CapoAbbigliamentoDAO {
         return list;
     }
 
+
+    public CapoAbbigliamento getCapoById(int idCapo) {
+        CapoAbbigliamento c = null;
+
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM CapoDAbbigliamento WHERE Id = ?");
+            ps.setInt(1, idCapo);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                int id = rs.getInt("id");
+                Integer idU = rs.getObject("idUtenteRegistrato") != null ? rs.getInt("idUtenteRegistrato") : null;
+                String nome = rs.getString("Nome");
+                String descrizione = rs.getString("Descrizione");
+                String materiale = rs.getString("Materiale");
+                String colore = rs.getString("Colore");
+                String stile = rs.getString("Stile");
+                String stagione = rs.getString("Stagione");
+                String stato = rs.getString("Stato");
+                String immagine = rs.getString("Immagine");
+                String categoria = rs.getString("Categoria");
+                String parteDelCorpo = rs.getString("ParteDelCorpo");
+
+                c = new CapoAbbigliamento(idU, nome, descrizione, materiale, colore, stile, stagione, stato, immagine, categoria, parteDelCorpo);
+                c.setId(id);
+            }
+
+
+
+
+
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return c;
+    }
+
     public List<CapoAbbigliamento> getCapi(){
         List<CapoAbbigliamento> list = new ArrayList<>();
         try (Connection con = ConPool.getConnection()){
@@ -284,7 +322,7 @@ public class CapoAbbigliamentoDAO {
                     ps = con.prepareStatement("SELECT * FROM CapoDAbbigliamento WHERE Stagione = 'Summer'");
                     break;
                 case "Season - Autumn":
-                    ps = con.prepareStatement("SELECT * FROM CapoDAbbigliamento WHERE Stagione = 'Autumn'");
+                    ps = con.prepareStatement("SELECT * FROM CapoDAbbigliamento WHERE Stagione = 'Fall'");
                     break;
                 case "Season - Winter":
                     ps = con.prepareStatement("SELECT * FROM CapoDAbbigliamento WHERE Stagione = 'Winter'");
