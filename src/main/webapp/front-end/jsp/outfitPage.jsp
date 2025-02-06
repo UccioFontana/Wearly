@@ -62,7 +62,7 @@
     <div id="clothingContainer"></div>
     <input type="text" id="outfitName" placeholder="Nome Outfit">
     <textarea id="outfitDescription" placeholder="Descrizione Outfit"></textarea>
-    <button class="saveButton" onclick="saveOutfit()">Salva Outfit</button>
+    <button class="defaultButtons" onclick="saveOutfit()">Salva Outfit</button>
   </div>
 
   <script src="${pageContext.request.contextPath}/front-end/js/outfitPage.js"></script>

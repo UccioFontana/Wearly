@@ -277,3 +277,13 @@ button:hover {
     font-size: 3.0rem !important;
     color: var(--primary-color);
 }
+
+.clothing-item {
+    display: inline-block;
+    margin: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+.selected {
+    border-color: green;
+}
