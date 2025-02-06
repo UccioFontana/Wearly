@@ -97,7 +97,6 @@ public class EditCapoServlet extends HttpServlet {
         CapoAbbigliamento capo;
 
         if(flag.equals("imageYes")){
-            System.out.println("SONO QUIIIIII");
             // Gestione caricamento immagine
             Part filePart = request.getPart("image");
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();

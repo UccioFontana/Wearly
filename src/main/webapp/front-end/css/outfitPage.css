@@ -284,6 +284,10 @@ button:hover {
     border: 2px solid transparent;
     cursor: pointer;
 }
+#clothingContainer{
+    max-height: 200px;
+    overflow-y: scroll;
+}
 .selected {
     border-color: green;
 }

@@ -108,7 +108,7 @@ function loadClothes() {
                 let div = document.createElement('div');
                 div.classList.add('clothing-item');
                 div.dataset.id = cloth.id;
-                div.innerHTML = `<img src="${cloth.image}" alt="${cloth.name}"><p>${cloth.name}</p>`;
+                div.innerHTML = `<img src="${cloth.immagine}" alt="${cloth.nome}"><p>${cloth.nome}</p>`;
                 div.onclick = function () { selectClothing(cloth.id, div); };
                 container.appendChild(div);
             });
