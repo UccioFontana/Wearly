@@ -32,7 +32,7 @@
   <div class="container">
     <% List<Outfit> listaOutfit = (List<Outfit>) request.getAttribute("listaOutfit");
       for (Outfit o : listaOutfit) { %>
-    <div class="outfit">
+    <div class="outfit" id="<%=o.getId()%>">
       <div class="outfit-header"><%= o.getNome() %></div>
       <div class="outfit-description"><%= o.getDescrizione() %></div>
       <div class="capo-container">

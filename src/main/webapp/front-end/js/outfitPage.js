@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     outfits.forEach(outfit => {
         outfit.addEventListener("click", function () {
-            const outfitId = this.getAttribute("data-id");
+            const outfitId = outfit.id || outfit.getAttribute("id");
             const outfitName = this.querySelector(".outfit-header").innerText;
             const outfitDesc = this.querySelector(".outfit-description").innerText;
             const capoElements = this.querySelectorAll(".capo-card");
