@@ -31,7 +31,7 @@
       <div class="outfit-description"><%= o.getDescrizione() %></div>
       <div class="capo-container">
         <% for (CapoAbbigliamento c : o.getListaCapi()) { %>
-        <div class="capo-card">
+        <div class="capo-card" id="<%=c.getId()%>">
           <img src="<%= c.getImmagine() %>" alt="<%= c.getNome() %>">
           <div class="capo-name"><%= c.getNome() %></div>
           <div class="capo-category"><%= c.getCategoria() %></div>
@@ -40,6 +40,13 @@
       </div>
     </div>
     <% } %>
+  </div>
+
+
+  <div id="popupOverlay" class="overlay"></div>
+  <div id="popup" class="popup">
+
+
   </div>
 
   <script src="${pageContext.request.contextPath}/front-end/js/outfitPage.js"></script>
