@@ -18,10 +18,6 @@ public class AuthenticationServlet extends HttpServlet {
         Utente u = (Utente) req.getSession(false).getAttribute("utente");
         Utente admin = (Utente) req.getSession(false).getAttribute("admin");
 
-        if(admin != null){
-            RequestDispatcher dispatcher = req.getRequestDispatcher("adminServlet");
-            dispatcher.forward(req, resp);
-        }
 
         if( u!= null){
             CapoAbbigliamentoDAO C= new CapoAbbigliamentoDAO();
@@ -40,6 +36,11 @@ public class AuthenticationServlet extends HttpServlet {
             req.setAttribute("numOutfit",contOutfit);
             req.setAttribute("numCapi",contCapi);
             RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/userPage.jsp");
+            dispatcher.forward(req, resp);
+        }
+
+        if(admin != null){
+            RequestDispatcher dispatcher = req.getRequestDispatcher("adminServlet");
             dispatcher.forward(req, resp);
         }
 

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import com.google.gson.Gson; // Assicurati di avere questa libreria nel tuo classpath
+import model.Utente;
 
 @WebServlet("/retrieveCapiServlet")
 public class RetrieveCapiServlet extends HttpServlet {
@@ -18,7 +19,8 @@ public class RetrieveCapiServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         CapoAbbigliamentoDAO capoAbbigliamentoDAO = new CapoAbbigliamentoDAO();
-        List<CapoAbbigliamento> listaCapi =  capoAbbigliamentoDAO.getCapi();
+        Utente u = (Utente) req.getSession(false).getAttribute("utente");
+        List<CapoAbbigliamento> listaCapi =  capoAbbigliamentoDAO.getCapoByUser(u.getId());
 
         // Imposta il tipo di contenuto della risposta come JSON
         resp.setContentType("application/json");

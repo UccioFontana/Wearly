@@ -84,6 +84,7 @@ function openPopup() {
             } else {
                 console.error('Errore nella richiesta:', xhr.status, xhr.statusText);
                 alert("You don't have enough valid items in your wardrobe to generate outfits!");
+                closePopup();
             }
         }
     };

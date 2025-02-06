@@ -284,10 +284,23 @@ button:hover {
     border: 2px solid transparent;
     cursor: pointer;
 }
-#clothingContainer{
-    max-height: 200px;
+#clothingContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; /* Spaziatura tra gli elementi */
     overflow-y: scroll;
+    padding: 16px; /* Opzionale, per aggiungere margine interno */
+    height: 400px;
 }
 .selected {
     border-color: green;
+}
+
+#popup2{
+    width: 60vw;
+}
+
+.clothing-item img{
+    width: 30%;
+    background-size: cover;
 }

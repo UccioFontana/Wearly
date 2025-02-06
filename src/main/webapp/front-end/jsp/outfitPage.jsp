@@ -51,18 +51,16 @@
 
   <div id="popupOverlay" class="overlay"></div>
   <div id="popup" class="popup">
-
-
   </div>
 
   <div id="popupOverlay2" class="overlay"></div>
   <div id="popup2" class="popup">
     <button onclick="closePopup2()">✖</button>
-    <h3>Seleziona i tuoi capi</h3>
+    <h3>Select your items</h3>
     <div id="clothingContainer"></div>
-    <input type="text" id="outfitName" placeholder="Nome Outfit">
-    <textarea id="outfitDescription" placeholder="Descrizione Outfit"></textarea>
-    <button class="defaultButtons" onclick="saveOutfit()">Salva Outfit</button>
+    <input type="text" id="outfitName" placeholder="Outfit Name">
+    <textarea id="outfitDescription" placeholder="Outfit Description"></textarea>
+    <button class="defaultButtons" onclick="saveOutfit()">Save Outfit</button>
   </div>
 
   <script src="${pageContext.request.contextPath}/front-end/js/outfitPage.js"></script>

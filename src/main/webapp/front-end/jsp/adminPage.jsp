@@ -30,6 +30,10 @@
     </header>
 
 
+    <h1>Welcome <%Utente administrator = (Utente) request.getSession(false).getAttribute("admin");%> <%=administrator.getNome()%> !</h1>
+    <button class="defaultButtons" onclick="window.location.href = ('logoutServlet')">Logout</button>
+
+
 
 
     <h1>Users:</h1>

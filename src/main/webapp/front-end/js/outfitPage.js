@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             popup.innerHTML = `
                 <div class="popup-content">
+                     <button onclick="closePopup()">✖</button>
                     <h2>Edit Outfit</h2>
                     <label for="outfitName" style="font-weight: bold">Name:</label>
                     <input type="text" id="outfitName" value="${outfitName}">
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <h3>Clothing Items</h3>
                     <div class="capi-container">${capiHTML}</div>
                     <button onclick="saveChanges(${outfitId})">Save</button>
-                    <button onclick="closePopup()">Cancel</button>
+                    <button style="background: darkred" onclick="window.location.href = ('outfitCRUDServlet?type=delete&id=' + ${outfitId})">Delete</button>
                 </div>`;
 
             popupOverlay.style.display = "block";
