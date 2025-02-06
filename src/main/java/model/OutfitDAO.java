@@ -197,6 +197,51 @@ public class OutfitDAO {
     }
 
 
+    public Outfit getOutfitById(int idO){
+        Outfit out = null;
+
+        try (Connection con = ConPool.getConnection()){
+
+            PreparedStatement ps = con.prepareStatement("SELECT  o.* FROM Outfit o WHERE o.Id =?");
+            ps.setInt(1,idO);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("Id");
+                String nome= rs.getString("Nome");
+                String descrizione= rs.getString("Descrizione");
+                 out = new Outfit(nome,descrizione);
+                out.setId(id);
+                CapoAbbigliamentoDAO C = new CapoAbbigliamentoDAO();
+                out.setListaCapi(C.getCapiByIdOufit(out.getId()));
+            }
+
+            ConPool.closeConnection(con);
+            return out;
+
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    public void rimuoviCapDaOutfit(int idOutfit, int idCapo){
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM DettagliOutfit WHERE idOutfit =? AND idCapo=?");
+            ps.setInt(1, idOutfit);
+            ps.setInt(2, idCapo);
+
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ConPool.closeConnection(con);
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 
