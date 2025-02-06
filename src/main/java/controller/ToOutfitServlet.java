@@ -35,6 +35,15 @@ public class ToOutfitServlet extends HttpServlet {
 
         }
 
+        else{
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/front-end/jsp/login.jsp");
+            try {
+                dispatcher.forward(req, resp);
+            } catch (ServletException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
 
 
     }

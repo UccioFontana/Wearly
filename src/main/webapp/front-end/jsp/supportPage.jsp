@@ -53,7 +53,7 @@
             <%} }
             else{
             %>
-            <p>Non sono presenti Ticket</p>
+            <p>No tickets history.</p>
             <%}%>
 
         </div>

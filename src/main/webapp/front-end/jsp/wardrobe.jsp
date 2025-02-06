@@ -100,7 +100,7 @@
  <%} }
         else{
  %>
-      <p>Non sono presenti capi salvati</p>
+      <h4>No items in the wardrobe.</h4>
 <%}%>
     </div>
   </div>

@@ -32,14 +32,14 @@
 
 
 
-    <h1>Utenti:</h1>
+    <h1>Users:</h1>
     <table>
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Cognome</th>
-            <th>email</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
         </tr>
         </thead>
         <tbody>
@@ -79,7 +79,7 @@
 
     </table>
 
-    <h1>Tutti i Ticket:</h1>
+    <h1>All Tickets:</h1>
     <%
         List<Ticket> tickets = (List<Ticket>) request.getAttribute("ticket");// Lista di tutti i ticket
         if(!tickets.isEmpty())  {%>
@@ -87,11 +87,11 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Titolo</th>
-            <th>Descrizione</th>
-            <th>Stato</th>
-            <th>Data Creazione</th>
-            <th>ID Utente</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>State</th>
+            <th>Creation Date</th>
+            <th>User ID</th>
         </tr>
         </thead>
         <tbody>
@@ -112,14 +112,14 @@
             </form>
         </tr>
         <% }}else{ %>
-        <p>Non ci sono ticket aperti</p>
+        <p>No open tickets.</p>
         <% }%>
         </tbody>
     </table>
 
     <br>
 
-    <h1>Ticket Gestiti dall'Amministratore:</h1>
+    <h1>Your Managed Tickets:</h1>
     <%
         List<Ticket> adminTickets = (List<Ticket>) request.getAttribute("ticketAdmin"); // Lista dei ticket gestiti dall'amministratore
         if(!adminTickets.isEmpty()){
@@ -128,11 +128,11 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Titolo</th>
-            <th>Descrizione</th>
-            <th>Stato</th>
-            <th>Data Creazione</th>
-            <th>ID Amministratore</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>State</th>
+            <th>Creation Date</th>
+            <th>Admin ID</th>
         </tr>
         </thead>
         <tbody>
@@ -155,7 +155,7 @@
 
         </tr>
         <% } }else{%>
-        <p>Non ci sono ticket gestiti</p>
+        <p>No managed tickets.</p>
         <% }%>
         </tbody>
     </table>

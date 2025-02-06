@@ -28,7 +28,7 @@
     <div id="banner1Inner">
       <div id="banner1TextContainer">
         <h1 class="bannerText"><span class="bannerTextSpan">Create</span> outfits <br>at the <span class="bannerTextSpan">blink of an eye</span>.</h1>
-        <button class="defaultButtons">Go To Outfits</button>
+        <button class="defaultButtons" onclick="window.location.href = ('ToOutfitServlet')">Go To Outfits</button>
       </div>
       <div>
 
