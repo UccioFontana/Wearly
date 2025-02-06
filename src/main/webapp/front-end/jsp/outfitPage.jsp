@@ -23,6 +23,12 @@
     </div>
   </header>
 
+  <h1 class="homeFascination"> Here you can find your <span class="homeFascinationSpan">Saved Outfits</span></h1>
+  <div style="display: flex; justify-content: center">
+    <button class="defaultButtons" onclick="openPopup2()">Create New Outfit</button>
+  </div>
+
+
   <div class="container">
     <% List<Outfit> listaOutfit = (List<Outfit>) request.getAttribute("listaOutfit");
       for (Outfit o : listaOutfit) { %>
@@ -47,6 +53,16 @@
   <div id="popup" class="popup">
 
 
+  </div>
+
+  <div id="popupOverlay2" class="overlay"></div>
+  <div id="popup2" class="popup">
+    <button onclick="closePopup2()">✖</button>
+    <h3>Seleziona i tuoi capi</h3>
+    <div id="clothingContainer"></div>
+    <input type="text" id="outfitName" placeholder="Nome Outfit">
+    <textarea id="outfitDescription" placeholder="Descrizione Outfit"></textarea>
+    <button class="saveButton" onclick="saveOutfit()">Salva Outfit</button>
   </div>
 
   <script src="${pageContext.request.contextPath}/front-end/js/outfitPage.js"></script>

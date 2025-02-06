@@ -26,15 +26,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             popup.innerHTML = `
                 <div class="popup-content">
-                    <h2>Modifica Outfit</h2>
-                    <label for="outfitName">Nome:</label>
+                    <h2>Edit Outfit</h2>
+                    <label for="outfitName" style="font-weight: bold">Name:</label>
                     <input type="text" id="outfitName" value="${outfitName}">
-                    <label for="outfitDesc">Descrizione:</label>
+                    <label for="outfitDesc" style="font-weight: bold">Description:</label>
                     <textarea id="outfitDesc">${outfitDesc}</textarea>
-                    <h3>Capi d'Abbigliamento</h3>
+                    <h3>Clothing Items</h3>
                     <div class="capi-container">${capiHTML}</div>
-                    <button onclick="saveChanges(${outfitId})">Salva</button>
-                    <button onclick="closePopup()">Annulla</button>
+                    <button onclick="saveChanges(${outfitId})">Save</button>
+                    <button onclick="closePopup()">Cancel</button>
                 </div>`;
 
             popupOverlay.style.display = "block";
@@ -78,5 +78,60 @@ function saveChanges(outfitId) {
         .join(",");
 
 
-    window.location.href = `outfitCRUDServlet?id=${outfitId}&nome=${encodeURIComponent(newName)}&descrizione=${encodeURIComponent(newDesc)}&idCapi=${encodeURIComponent(idCapi)}`;
+    window.location.href = `outfitCRUDServlet?type=update&id=${outfitId}&nome=${encodeURIComponent(newName)}&descrizione=${encodeURIComponent(newDesc)}&idCapi=${encodeURIComponent(idCapi)}`;
+}
+
+
+
+let selectedClothes = [];
+
+function openPopup2() {
+    document.getElementById('popupOverlay2').style.display = 'block';
+    document.getElementById('popup2').style.display = 'block';
+    loadClothes();
+}
+
+function closePopup2() {
+    document.getElementById('popupOverlay2').style.display = 'none';
+    document.getElementById('popup2').style.display = "none";
+}
+
+function loadClothes() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'retrieveCapiServlet', true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            let clothes = JSON.parse(xhr.responseText);
+            let container = document.getElementById('clothingContainer');
+            container.innerHTML = '';
+            clothes.forEach(cloth => {
+                let div = document.createElement('div');
+                div.classList.add('clothing-item');
+                div.dataset.id = cloth.id;
+                div.innerHTML = `<img src="${cloth.image}" alt="${cloth.name}"><p>${cloth.name}</p>`;
+                div.onclick = function () { selectClothing(cloth.id, div); };
+                container.appendChild(div);
+            });
+        }
+    };
+    xhr.send();
+}
+
+function selectClothing(id, element) {
+    let index = selectedClothes.indexOf(id);
+    if (index === -1) {
+        selectedClothes.push(id);
+        element.classList.add('selected');
+    } else {
+        selectedClothes.splice(index, 1);
+        element.classList.remove('selected');
+    }
+}
+
+function saveOutfit() {
+    let name = document.getElementById('outfitName').value;
+    let description = document.getElementById('outfitDescription').value;
+    let clothes = selectedClothes.join(',');
+
+    window.location.href = `outfitCRUDServlet?type=create&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}&clothes=${encodeURIComponent(clothes)}`;
 }
