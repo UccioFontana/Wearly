@@ -74,7 +74,7 @@
       %>
 
         <div class="col-md-3">
-          <div class="wsk-cp-product data-id="<%= c.getId() %>">
+          <div class="wsk-cp-product" id="data<%= c.getId() %>">
             <div class="wsk-cp-img">
               <img src="<%=c.getImmagine()%>" alt="Product" class="img-responsive"  height="330px"/>
             </div>
@@ -225,7 +225,6 @@
 
     <label for="color">Color:</label>
     <select id="color" name="color" required>
-      <option value=""> - </option>
       <option value="Red">Red</option>
       <option value="Green">Green</option>
       <option value="Blue">Blue</option>
@@ -319,6 +318,182 @@
     <button type="submit" class="bottoneSubmit">Add Clothing Item</button>
   </form>
 </div>
+
+
+
+<div id="overlay3" class="overlay-new"></div>
+<div id="popupContainer3" class="popup-new">
+  <div style="z-index: 2000">
+    <button class="close-btn" onclick="closePopup3()">✖</button>
+  </div>
+
+  <form id="clothingForm" action="editCapoServlet" method="post" enctype="multipart/form-data" onsubmit="onEditFormSubmit()">
+    <div class="form-row-new">
+      <div class="form-group-new">
+        <label for="clothingName2">Clothing Name:</label>
+        <input type="text" id="clothingName2" name="name" required>
+      </div>
+      <div class="form-group-new">
+        <label for="description2">Description:</label>
+        <textarea id="description2" name="description" required></textarea>
+      </div>
+    </div>
+
+    <div class="form-row-new">
+      <div class="form-group-new">
+        <label for="material2">Material:</label>
+        <select id="material2" name="material" required>
+          <option value="Cotton">Cotton</option>
+          <option value="Wool">Wool</option>
+          <option value="Polyester">Polyester</option>
+          <option value="Leather">Leather</option>
+          <option value="Silk">Silk</option>
+          <option value="Denim">Denim</option>
+          <option value="Nylon">Nylon</option>
+          <option value="Linen">Linen</option>
+          <option value="Fleece">Fleece</option>
+          <option value="Velvet">Velvet</option>
+          <option value="Spandex">Spandex</option>
+          <option value="Suede">Suede</option>
+          <option value="Canvas">Canvas</option>
+          <option value="Mesh">Mesh</option>
+          <option value="Rubber">Rubber</option>
+          <option value="Synthetic">Synthetic</option>
+          <option value="Knit">Knit</option>
+          <option value="Faux Leather">Faux Leather</option>
+        </select>
+      </div>
+      <div class="form-group-new">
+        <label for="color2">Color:</label>
+        <select id="color2" name="color" required>
+          <option value="-">-</option>
+          <option value="Red">Red</option>
+          <option value="Green">Green</option>
+          <option value="Blue">Blue</option>
+          <option value="Yellow">Yellow</option>
+          <option value="Cyan">Cyan</option>
+          <option value="Magenta">Magenta</option>
+          <option value="Black">Black</option>
+          <option value="White">White</option>
+          <option value="Gray">Gray</option>
+          <option value="Orange">Orange</option>
+          <option value="Purple">Purple</option>
+          <option value="Brown">Brown</option>
+          <option value="Pink">Pink</option>
+          <option value="Turquoise">Turquoise</option>
+          <option value="Beige">Beige</option>
+          <option value="Lavender">Lavender</option>
+          <option value="Maroon">Maroon</option>
+          <option value="Olive">Olive</option>
+          <option value="Navy">Navy</option>
+          <option value="Teal">Teal</option>
+          <option value="Silver">Silver</option>
+          <option value="Gold">Gold</option>
+          <option value="Indigo">Indigo</option>
+          <option value="Coral">Coral</option>
+          <option value="Salmon">Salmon</option>
+          <option value="Chocolate">Chocolate</option>
+          <option value="Peru">Peru</option>
+          <option value="Crimson">Crimson</option>
+          <option value="Sky Blue">Sky Blue</option>
+          <option value="Lime">Lime</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row-new">
+      <div class="form-group-new">
+        <label for="style2">Style:</label>
+        <select id="style2" name="style" required>
+          <option value="-">-</option>
+          <option value="Casual">Casual</option>
+          <option value="Elegant">Elegant</option>
+          <option value="Sporty">Sporty</option>
+        </select>
+      </div>
+      <div class="form-group-new">
+        <label for="season2">Season:</label>
+        <select id="season2" name="season" required>
+          <option value="Summer">Summer</option>
+          <option value="Winter">Winter</option>
+          <option value="Spring">Spring</option>
+          <option value="Fall">Fall</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row-new">
+      <div class="form-group-new">
+        <label for="imageUpload">Upload an Image:</label>
+        <input type="file" id="imageUpload" name="image" accept="image/*" required>
+      </div>
+      <div class="form-group-new">
+        <label for="category4">Category:</label>
+        <select id="category4" name="category" required>
+          <option value="-">-</option>
+          <option value="Hoodie">Hoodie</option>
+          <option value="Blazer">Blazer</option>
+          <option value="T-shirt">T-Shirt</option>
+          <option value="Sweater">Sweater</option>
+          <option value="Jacket">Jacket</option>
+          <option value="Coat">Coat</option>
+          <option value="Vest">Vest</option>
+          <option value="Cardigan">Cardigan</option>
+          <option value="Shirt">Shirt</option>
+          <option value="Tank Top">Tank Top</option>
+          <option value="Jeans">Jeans</option>
+          <option value="Shorts">Shorts</option>
+          <option value="Trousers">Trousers</option>
+          <option value="Sweatpants">Sweatpants</option>
+          <option value="Leggings">Leggings</option>
+          <option value="Skirt">Skirt</option>
+          <option value="Cargo Pants">Cargo Pants</option>
+          <option value="Chinos">Chinos</option>
+          <option value="Joggers">Joggers</option>
+          <option value="Culottes">Culottes</option>
+          <option value="Sneakers">Sneakers</option>
+          <option value="Boots">Boots</option>
+          <option value="Loafers">Loafers</option>
+          <option value="Heels">Heels</option>
+          <option value="Sandals">Sandals</option>
+          <option value="Flats">Flats</option>
+          <option value="Running Shoes">Running Shoes</option>
+          <option value="Oxfords">Oxfords</option>
+          <option value="Espadrilles">Espadrilles</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row-new">
+      <div class="form-group-new">
+        <label for="bodyPart2">Body Part:</label>
+        <select id="bodyPart2" name="bodyPart" required>
+          <option value="-">-</option>
+          <option value="top">Top</option>
+          <option value="bottom">Bottom</option>
+          <option value="shoes">Shoes</option>
+        </select>
+      </div>
+      <div class="form-group-new">
+        <label for="state2">State:</label>
+        <select id="state2" name="state" required>
+          <option value="To Wash">To Wash</option>
+          <option value="In Closet">In Closet</option>
+        </select>
+      </div>
+    </div>
+
+    <input type="hidden" value="" name="idCapo" id="hiddenParameter">
+    <input type="hidden" value="" name="flag" id="flagParameter">
+
+    <button type="submit" class="submit-btn-new">Edit Clothing Item</button>
+
+  </form>
+
+  <button type="submit" class="submit-btn-new" onclick="deleteItem()">Delete Item</button>
+
+</div>
+
 
 <div style="display: none;" id="loadingOverlay">
   <div class="spinner"></div>

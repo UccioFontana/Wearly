@@ -236,26 +236,54 @@ document.addEventListener("DOMContentLoaded", function () {
             let imageSrc = item.querySelector(".wsk-cp-img img").src;
             let name = item.querySelector(".title-product h3").textContent.trim();
             let description = item.querySelector(".description-prod p").textContent.trim();
-            let category = item.querySelector(".category span").textContent.trim();
+            let state = item.querySelector(".category span").textContent.trim();
+            console.log(state)
+            let season = item.querySelector(".wcf-left span").textContent.trim()
+
+
 
             // Precompila il form nel popup
-            document.getElementById("image").value = ""; // I file input non possono essere valorizzati per sicurezza
-            document.getElementById("name").value = name;
-            document.getElementById("description").value = description;
+                document.getElementById("clothingName2").value = name;
+                document.getElementById("description2").value = description;
+                document.getElementById("season2").value = season;
+                document.getElementById("state2").value = state;
+                document.getElementById("category4").value = "-";
+                document.getElementById("bodyPart2").value = "-";
+                document.getElementById("color2").value = "-";
+                document.getElementById("style2").value = "-";
+
+                let identifier = item.id;
+                let match = identifier.match(/\d+/); // Estrai numero con RegEx
+                identifier = match[0];
+
+                document.getElementById("hiddenParameter").value = identifier;
 
 
-            // Seleziona il valore giusto per la categoria
-            let categorySelect = document.getElementById("category");
-            for (let option of categorySelect.options) {
-                if (option.value.toLowerCase() === category.toLowerCase()) {
-                    categorySelect.value = option.value;
-                    break;
-                }
-            }
+
 
             // Mostra il popup
-            document.getElementById("popupOverlay2").style.display = "block";
-            document.getElementById("popup2").style.display = "block";
+            document.getElementById("overlay3").style.display = "block";
+            document.getElementById("popupContainer3").style.display = "block";
         });
     });
 });
+
+function onEditFormSubmit(){
+    let immagine = document.getElementById("imageUpload");
+    const file = immagine.files[0];
+
+    if (!file) document.getElementById("flagParameter").value = "imageNo";
+    else document.getElementById("flagParameter").value = "imageYes";
+
+    console.log(document.getElementById("flagParameter").value)
+}
+
+function closePopup3() {
+    document.getElementById("overlay3").style.display = "none";
+    document.getElementById("popupContainer3").style.display = "none";
+}
+
+function deleteItem(){
+    let id = document.getElementById("hiddenParameter").value;
+    window.location.href = "deleteCapoServlet?idCapo=" + id;
+}

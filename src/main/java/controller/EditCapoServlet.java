@@ -24,7 +24,7 @@ import java.util.Map;
 @MultipartConfig
 public class EditCapoServlet extends HttpServlet {
 
-    private static final String UPLOAD_DIRECTORY = "/Users/pietro/apache-tomcat-10.1.19/webapps/img";
+    private static final String UPLOAD_DIRECTORY = "/Users/ucciofontana/Documents/apache-tomcat-10.1.19/webapps/img";
 
 
     private static final Map<String, String> COLOR_MAP = new HashMap<>();
@@ -90,11 +90,14 @@ public class EditCapoServlet extends HttpServlet {
         String categoria = request.getParameter("category");
         String parteDelCorpo = request.getParameter("bodyPart");
         String state = request.getParameter("state");
-        boolean flag = Boolean.parseBoolean(request.getParameter("flag"));
+        String flag = (request.getParameter("flag"));
+
+        System.out.println(flag);
 
         CapoAbbigliamento capo;
 
-        if(flag){
+        if(flag.equals("imageYes")){
+            System.out.println("SONO QUIIIIII");
             // Gestione caricamento immagine
             Part filePart = request.getPart("image");
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();

@@ -507,6 +507,7 @@ input:hover {
     border-color: var(--primary-color);
 }
 
+
 .bottoneSubmit {
     background: var(--primary-color);
     color: white;
@@ -594,6 +595,88 @@ select:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.5);
+}
+/* Overlay (Sfondo oscurato) */
+.overlay-new {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Pop-up */
+.popup-new {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 60vw;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Stile del bottone di chiusura */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Layout due colonne */
+.form-row-new {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+/* Form group */
+.form-group-new {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stile degli input, select e textarea */
+.form-group-new input,
+.form-group-new select,
+.form-group-new textarea {
+    width: 100%;
+    padding: 8px;
+    outline: none;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: var(--primary-color);
+}
+
+/* Stile del bottone di submit */
+.submit-btn-new {
+    width: 30%;
+    padding: 10px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-btn-new:hover {
+    background: var(--primary-color);
 }
 
 
@@ -786,6 +869,5 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
         color: #fff;
     }
 
-
-
 }
+
