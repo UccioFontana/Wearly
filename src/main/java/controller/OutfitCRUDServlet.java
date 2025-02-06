@@ -6,10 +6,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.CapoAbbigliamento;
+import model.CapoAbbigliamentoDAO;
 import model.Outfit;
 import model.OutfitDAO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,10 +24,45 @@ public class OutfitCRUDServlet extends HttpServlet {
         String type = req.getParameter("type");
         if (type.equals("delete")) {
             delete(req, resp);
-        } else if (type.equals("update")) {
+        } else if (type.equals("update"))
             update(req, resp);
-        }
+            else if(type.equals("create"))
+                create(req,resp);
+
     }
+
+    private void create(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String nome = req.getParameter("name");
+
+        String descrizione = req.getParameter("description");
+
+        String idCapiString = req.getParameter("clothes");
+
+        System.out.println("nome: "+nome+" descrizione: "+descrizione+" idCapiString: "+idCapiString);
+        // Se idCapiString è null o vuoto, crea una lista vuota
+        List<Integer> idCapi = (idCapiString == null || idCapiString.isEmpty())
+                ? List.of()
+                : Arrays.stream(idCapiString.split(","))
+                .map(String::trim) // Rimuovi eventuali spazi
+                .filter(s -> !s.isEmpty()) // Rimuovi stringhe vuote
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        List<CapoAbbigliamento> capi =new ArrayList<>();
+        CapoAbbigliamentoDAO C = new CapoAbbigliamentoDAO();
+        for(int idCapo : idCapi){
+            capi.add(C.getCapoById(idCapo));
+        }
+        OutfitDAO O= new OutfitDAO();
+        Outfit out= new Outfit(nome,descrizione);
+        out.setListaCapi(capi);
+        O.doSave(out);
+
+        resp.sendRedirect("ToOutfitServlet"); // Redirect alla pagina degli outfit dopo l'aggiornamento
+
+
+    }
+
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
@@ -40,8 +77,6 @@ public class OutfitCRUDServlet extends HttpServlet {
         try {
 
             int id = Integer.parseInt(req.getParameter("id"));
-            System.out.println("Sono qui dopo l id"+id);
-
             String nome = req.getParameter("nome");
 
             System.out.println("Sono qui"+id+nome);
@@ -77,11 +112,14 @@ public class OutfitCRUDServlet extends HttpServlet {
                 O.rimuoviCapDaOutfit(id, idCapo);
             }
 
+            Outfit o2= O.getOutfitById(id);
+            if(o2.getListaCapi().isEmpty()){
+                O.deleteOutfit(id);
+            }
+
             outfit.setDescrizione(descrizione);
             outfit.setNome(nome);
             O.updateOutfit(outfit);
-
-
 
 
             resp.sendRedirect("ToOutfitServlet"); // Redirect alla pagina degli outfit dopo l'aggiornamento
