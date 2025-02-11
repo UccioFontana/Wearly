@@ -180,6 +180,33 @@ public class UtenteDAO {
 
 
 
+    public Utente getUserById(int idU) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps =
+                    con.prepareStatement("SELECT * FROM UtenteRegistrato WHERE id=?");
+            ps.setInt(1, idU);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String cognome = rs.getString("cognome");
+                String em = rs.getString("email");
+                String password = rs.getString("password");
+                Utente user = new Utente(nome,cognome,em,password);
+                user.setId(id);
+                ConPool.closeConnection(con);
+                return user;
+            }
+            ConPool.closeConnection(con);
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 
 }

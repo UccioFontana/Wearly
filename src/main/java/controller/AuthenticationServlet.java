@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.*;
 
 import java.io.IOException;
@@ -20,6 +21,12 @@ public class AuthenticationServlet extends HttpServlet {
 
 
         if( u!= null){
+
+            UtenteDAO U = new UtenteDAO();
+            u = U.getUserById(u.getId());
+            HttpSession session = req.getSession(false);
+            session.setAttribute("utente", u);
+
             CapoAbbigliamentoDAO C= new CapoAbbigliamentoDAO();
             List<CapoAbbigliamento> list = C.getCapoByUser(u.getId());
             int contCapi =0;

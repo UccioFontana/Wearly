@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-Built-By: ucciofontana
-Build-Jdk: Eclipse Temurin version 17.0.8
+Built-By: pietro
+Build-Jdk: Amazon Corretto 17.0.13 - aarch64
 
