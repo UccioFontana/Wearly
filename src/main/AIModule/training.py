@@ -8,6 +8,8 @@ import ast
 
 # ===== 1. Caricamento del dataset =====
 dataset = None
+model = None
+
 
 def load_dataset_once():
     global dataset
@@ -15,9 +17,11 @@ def load_dataset_once():
         dataset = pd.read_csv('dataset_outfits.csv')
     return dataset
 
+
 # ===== 2. Pre-elaborazione dei dati =====
 def preprocess_data(df, label_encoder, is_user_data=False, temperature=None):
-    categorical_columns = ['top_category', 'bottom_category', 'shoes_category', 'top_material', 'bottom_material', 'shoes_material']
+    categorical_columns = ['top_category', 'bottom_category', 'shoes_category', 'top_material', 'bottom_material',
+                           'shoes_material']
     for col in categorical_columns:
         df[col] = df[col].fillna('Unknown').astype(str)
         df[col] = df[col].apply(lambda x: safe_transform(x, label_encoder))
@@ -41,6 +45,7 @@ def safe_transform(value, label_encoder):
         return label_encoder.transform([value])[0]
     return value
 
+
 # ===== 3. Filtro basato su regole =====
 def filter_by_weather(df, label_encoder, temperature, weather_condition):
     # Se la temperatura è superiore ai 30 gradi, mantieni solo capi leggeri
@@ -50,18 +55,28 @@ def filter_by_weather(df, label_encoder, temperature, weather_condition):
 
     # Se la temperatura è tra i 20 e i 25 gradi, mantieni capi leggeri ma adatti a temperature moderate
     if 20 < temperature <= 25:
-        df = df[df['top_category'].apply(lambda x: label_encoder.inverse_transform([x])[0] in ['T-shirt', 'Tank Top', 'Shirt'])]
-        df = df[df['bottom_category'].apply(lambda x: label_encoder.inverse_transform([x])[0] in ['Shorts', 'Jeans', 'Chinos', 'Skirt', 'Culottes'])]
+        df = df[df['top_category'].apply(
+            lambda x: label_encoder.inverse_transform([x])[0] in ['T-shirt', 'Tank Top', 'Shirt'])]
+        df = df[df['bottom_category'].apply(
+            lambda x: label_encoder.inverse_transform([x])[0] in ['Shorts', 'Jeans', 'Chinos', 'Skirt', 'Culottes'])]
 
     # Se la temperatura è inferiore a 10 gradi, mantieni capi molto pesanti come giacche e piumini
     if temperature < 10:
-        df = df[df['top_category'].apply(lambda x: label_encoder.inverse_transform([x])[0] in ["Hoodie", "Blazer", "Sweater", "Jacket", "Coat", "Vest", "Cardigan", "Puffer"])]
-        df = df[df['bottom_category'].apply(lambda x: label_encoder.inverse_transform([x])[0] in ['Jeans', 'Trousers', 'Chinos', 'Sweatpants', 'Cargo Pants', 'Joggers'])]
+        df = df[df['top_category'].apply(
+            lambda x: label_encoder.inverse_transform([x])[0] in ["Hoodie", "Blazer", "Sweater", "Jacket", "Coat",
+                                                                  "Vest", "Cardigan", "Puffer"])]
+        df = df[df['bottom_category'].apply(
+            lambda x: label_encoder.inverse_transform([x])[0] in ['Jeans', 'Trousers', 'Chinos', 'Sweatpants',
+                                                                  'Cargo Pants', 'Joggers'])]
 
     # Se la temperatura è inferiore ai 20 gradi, mantieni top e pantaloni più pesanti
     if 10 <= temperature < 20:
-        df = df[df['top_category'].apply(lambda x: label_encoder.inverse_transform([x])[0] in ["Hoodie", "Blazer", "Sweater", "Jacket", "Coat", "Vest", "Cardigan"])]
-        df = df[df['bottom_category'].apply(lambda x: label_encoder.inverse_transform([x])[0] in ['Jeans', 'Trousers', 'Chinos', 'Sweatpants', 'Cargo Pants', 'Joggers', 'Leggings'])]
+        df = df[df['top_category'].apply(
+            lambda x: label_encoder.inverse_transform([x])[0] in ["Hoodie", "Blazer", "Sweater", "Jacket", "Coat",
+                                                                  "Vest", "Cardigan"])]
+        df = df[df['bottom_category'].apply(
+            lambda x: label_encoder.inverse_transform([x])[0] in ['Jeans', 'Trousers', 'Chinos', 'Sweatpants',
+                                                                  'Cargo Pants', 'Joggers', 'Leggings'])]
 
     # Se la condizione meteo è pioggia, escludi materiali come suede e pelle
     if weather_condition == 'rain':
@@ -81,17 +96,21 @@ def filter_by_weather(df, label_encoder, temperature, weather_condition):
 
     return df
 
+
 # ===== 4. Modello ML per il punteggio =====
 def train_outfit_model(df):
-    feature_cols = ['top_category', 'top_material', 'top_color_code',
-                    'bottom_category', 'bottom_material', 'bottom_color_code',
-                    'shoes_category', 'shoes_material', 'shoes_color_code',
-                    'temperature']
-    X = df[feature_cols]
-    y = df['score'] if 'score' in df.columns else np.random.uniform(5, 10, len(df))
-    model = RandomForestRegressor()
-    model.fit(X, y)
+    global model
+    if model is None:
+        feature_cols = ['top_category', 'top_material', 'top_color_code',
+                        'bottom_category', 'bottom_material', 'bottom_color_code',
+                        'shoes_category', 'shoes_material', 'shoes_color_code',
+                        'temperature']
+        X = df[feature_cols]
+        y = df['score'] if 'score' in df.columns else np.random.uniform(5, 10, len(df))
+        model = RandomForestRegressor()
+        model.fit(X, y)
     return model
+
 
 # ===== 5. Generazione degli outfit =====
 def generate_outfits(user_data):
@@ -102,6 +121,7 @@ def generate_outfits(user_data):
         for shoes in user_data['shoes']
     ]
     return outfit_combinations
+
 
 # ===== 6. Valutazione degli outfit =====
 def evaluate_outfits(outfits, model, label_encoder, temperature):
@@ -123,12 +143,14 @@ def evaluate_outfits(outfits, model, label_encoder, temperature):
         scored_outfits.append((outfit, score))
     return sorted(scored_outfits, key=lambda x: x[1], reverse=True)
 
+
 def decode_outfit(outfit, label_encoder):
     """Converte i valori numerici dell'outfit nei nomi originali."""
     decoded_outfit = {}
 
     for key in outfit.keys():
-        if key in ['top_category', 'bottom_category', 'shoes_category', 'top_material', 'bottom_material', 'shoes_material']:
+        if key in ['top_category', 'bottom_category', 'shoes_category', 'top_material', 'bottom_material',
+                   'shoes_material']:
             try:
                 print(f"DEBUG - Valore numerico prima della decodifica ({key}): {outfit[key]}")
                 decoded_value = label_encoder.inverse_transform([outfit[key]])[0]
@@ -142,8 +164,10 @@ def decode_outfit(outfit, label_encoder):
     print(f"DEBUG - Outfit decodificato: {decoded_outfit}")
     return decoded_outfit
 
+
 # ===== 7. Integrazione con Flask =====
 app = Flask(__name__)
+
 
 @app.route('/generate_outfit', methods=['POST'])
 def generate_outfit_api():
@@ -157,9 +181,13 @@ def generate_outfit_api():
 
     training_data = load_dataset_once()
     all_categories = pd.concat([
-                                   training_data[col] for col in ['top_category', 'bottom_category', 'shoes_category', 'top_material', 'bottom_material', 'shoes_material']
+                                   training_data[col] for col in
+                                   ['top_category', 'bottom_category', 'shoes_category', 'top_material',
+                                    'bottom_material', 'shoes_material']
                                ] + [
-                                   user_df[col] for col in ['top_category', 'bottom_category', 'shoes_category', 'top_material', 'bottom_material', 'shoes_material']
+                                   user_df[col] for col in
+                                   ['top_category', 'bottom_category', 'shoes_category', 'top_material',
+                                    'bottom_material', 'shoes_material']
                                ]).astype(str)
 
     label_encoder = LabelEncoder()
@@ -170,10 +198,12 @@ def generate_outfit_api():
     filtered_items = filter_by_weather(user_df, label_encoder, data['temperature'], data['weatherCondition'])
 
     model = train_outfit_model(training_data)
-    scored_outfits = evaluate_outfits(filtered_items.to_dict(orient='records'), model, label_encoder, data['temperature'])
+    scored_outfits = evaluate_outfits(filtered_items.to_dict(orient='records'), model, label_encoder,
+                                      data['temperature'])
 
     decoded_outfits = [{"outfit": decode_outfit(o[0], label_encoder), "score": o[1]} for o in scored_outfits[:3]]
     return jsonify(decoded_outfits)
+
 
 if __name__ == "__main__":
     app.run()

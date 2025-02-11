@@ -9,12 +9,31 @@ import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class WeatherService {
 
-    private static final String API_KEY = "7626c27501f526a8a74599f6d1755e83";
+
+    private static final String API_KEY;
+    private static final String IP_API_URL;
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather?";
-    private static final String IP_API_URL = "https://ipinfo.io/json?token=ad227f096e8349"; // URL per ottenere la città tramite IP
+
+    // Caricamento delle proprietà all'inizio dell'esecuzione
+    static {
+        Properties properties = new Properties();
+        try (InputStream input = WeatherService.class.getClassLoader().getResourceAsStream("api.properties")) {
+            if (input == null) {
+                throw new IOException("File api.properties non trovato!");
+            }
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        API_KEY = properties.getProperty("API_KEY");
+        IP_API_URL = properties.getProperty("IP_API_URL");
+    }
 
     public WeatherData getWeather() throws IOException {
         // 1. Ottieni la città automatica tramite l'indirizzo IP

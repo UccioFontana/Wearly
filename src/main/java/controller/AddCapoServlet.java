@@ -64,7 +64,7 @@ public class AddCapoServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         Utente utente = (Utente) request.getSession(false).getAttribute("utente");
         int idUtente = 0;
         if (utente == null) {
@@ -120,7 +120,7 @@ public class AddCapoServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
     }
 }

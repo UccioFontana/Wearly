@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Utente {
@@ -76,5 +77,18 @@ public class Utente {
                 ", nome= " + nome + '\'' +
                 ", cognome= " + cognome + '\'' +
                 ';';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Utente)) return false;
+        Utente utente = (Utente) o;
+        return id == utente.id && Objects.equals(email, utente.email) && Objects.equals(password, utente.password) && Objects.equals(nome, utente.nome) && Objects.equals(cognome, utente.cognome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, password, nome, cognome);
     }
 }
