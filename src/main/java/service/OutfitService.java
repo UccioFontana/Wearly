@@ -38,6 +38,7 @@ public class OutfitService {
         String jsonBody = objectMapper.writeValueAsString(outfitRequest);
 
 
+
         // Invio della richiesta HTTP
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPost request = new HttpPost(FLASK_SERVER_URL);

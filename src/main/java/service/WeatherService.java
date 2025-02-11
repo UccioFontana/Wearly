@@ -47,13 +47,23 @@ public class WeatherService {
 
         HttpResponse response = httpClient.execute(request);
         String jsonResponse = EntityUtils.toString(response.getEntity());
+        System.out.println(jsonResponse);
 
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode rootNode = objectMapper.readTree(jsonResponse);
+            System.out.println("JSON parsato: " + rootNode);
+        } catch (Exception e) {
+            System.err.println("Errore nel parsing del JSON: " + e.getMessage());
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(jsonResponse);
+
 
         // Estrai temperatura e condizioni meteo
         double temperature = rootNode.path("main").path("temp").asDouble();
         String weatherCondition = rootNode.path("weather").get(0).path("description").asText();
+
 
         return new WeatherData(temperature, weatherCondition);
     }
