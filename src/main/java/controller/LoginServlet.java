@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
         req.setAttribute("numCapi",returnValues.get("numCapi"));
 
         int loginType = returnValues.get("loginType");
+
         if(loginType == 0){
             RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/userPage.jsp");
             dispatcher.forward(req, resp);
