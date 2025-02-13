@@ -38,6 +38,10 @@ public class WeatherService {
     public WeatherData getWeather() throws IOException {
         // 1. Ottieni la città automatica tramite l'indirizzo IP
         String city = getCityFromIP();
+        System.out.println(city);
+        if (city.contains("-")) {
+            city =  city.split("-")[0];
+        }
 
         // 2. Usa la città ottenuta per fare la richiesta meteo
         String url = BASE_URL + "q=" + city + "&appid=" + API_KEY + "&units=metric";  // unità metriche (°C)
