@@ -9,6 +9,7 @@
             font-family: 'Montserrat';
             src: url('../webapp/front-end/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
         }
+
         /* Global Styles */
         body {
             font-family: 'Montserrat', sans-serif;
@@ -22,6 +23,13 @@
             justify-content: center;
             height: 100vh;
             text-align: center;
+        }
+
+        /* Logo Styling */
+        .logo {
+            width: 180px; /* Regola la dimensione */
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out;
         }
 
         h1 {
@@ -43,12 +51,11 @@
 
         /* Container for Buttons */
         .button-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
             width: 80%;
-            max-width: 1000px;
+            max-width: 900px;
             animation: fadeIn 1.5s ease-out 1s;
         }
 
@@ -63,7 +70,6 @@
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            width: 200px;
             text-align: center;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -78,18 +84,13 @@
 
         .button:active {
             transform: translateY(0);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         /* Responsive Grid */
         @media (max-width: 768px) {
             .button-container {
                 width: 90%;
-            }
-
-            .button {
-                width: 100%;
-                max-width: 250px;
             }
         }
 
@@ -107,6 +108,9 @@
     </style>
 </head>
 <body>
+
+<img src="logo.png" alt="Logo Wearly" class="logo"> <!-- Sostituisci logo.png con il percorso corretto -->
+
 <h1>Documentazione di Wearly</h1>
 <p>Esplora la nostra documentazione completa per comprendere a fondo il funzionamento e l'uso di Wearly. Clicca sui documenti sottostanti per maggiori dettagli.</p>
 
@@ -123,21 +127,22 @@
     <a href="/docs/documento4.pdf" target="_blank">
         <button class="button">TPD</button>
     </a>
-    <a href="/docs/documento4.pdf" target="_blank">
+    <a href="/docs/documento5.pdf" target="_blank">
         <button class="button">TCSD</button>
     </a>
-    <a href="/docs/documento4.pdf" target="_blank">
+    <a href="/docs/documento6.pdf" target="_blank">
         <button class="button">TIR</button>
     </a>
-    <a href="/docs/documento5.pdf" target="_blank">
+    <a href="/docs/documento7.pdf" target="_blank">
         <button class="button">TSR</button>
     </a>
-    <a href="/docs/documento6.pdf" target="_blank">
+    <a href="/docs/documento8.pdf" target="_blank">
         <button class="button">MDR</button>
     </a>
-    <a href="/docs/documento7.pdf" target="_blank">
+    <a href="/docs/documento9.pdf" target="_blank">
         <button class="button">MDT</button>
     </a>
 </div>
+
 </body>
 </html>
