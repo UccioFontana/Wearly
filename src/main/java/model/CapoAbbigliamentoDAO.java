@@ -115,6 +115,15 @@ public class CapoAbbigliamentoDAO {
     }
 
     public boolean doSave(CapoAbbigliamento c){
+
+        if (c.getNome().isEmpty() || c.getDescrizione().isEmpty() ||
+                c.getMateriale().isEmpty() || c.getColore().isEmpty() ||
+                c.getStile().isEmpty() || c.getStagione().isEmpty() ||
+                c.getStato().isEmpty() || c.getImmagine().isEmpty() ||
+                c.getCategoria().isEmpty() || c.getParteDelCorpo().isEmpty()) {
+            return false;
+        }
+
         List<CapoAbbigliamento> list = getCapi();
         if(list.contains(c))
             return false;

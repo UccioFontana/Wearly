@@ -11,11 +11,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class AddCapoServletTest {
@@ -117,6 +115,50 @@ public class AddCapoServletTest {
         //test hyu
     }
 
+    @Test
+    public void testAddCapoMissingParameters() throws Exception {
+        // Mock dei parametri della request con valori mancanti
+        when(request.getParameter("name")).thenReturn(""); // Stringa vuota per testare il controllo
+        when(request.getParameter("description")).thenReturn(""); // Stringa vuota per testare il controllo
+        when(request.getParameter("material")).thenReturn(materiale);
+        when(request.getParameter("color")).thenReturn(colore);
+        when(request.getParameter("style")).thenReturn(stile);
+        when(request.getParameter("season")).thenReturn(season);
+        when(request.getParameter("category")).thenReturn(categoria);
+        when(request.getParameter("bodyPart")).thenReturn(parteDelCorpo);
+
+        // Mock di file part solo se la sessione è valida
+        when(request.getPart("image")).thenReturn(filePart);
+        when(filePart.getSubmittedFileName()).thenReturn("boot.jpg");
+
+        // Usa un'immagine valida per il test
+        File imageFile = new File("/Users/pietro/apache-tomcat-10.1.19/webapps/img/boot.jpg");
+        InputStream mockImageInputStream = new FileInputStream(imageFile);
+        when(filePart.getInputStream()).thenReturn(mockImageInputStream);
+
+        // Mock del DAO per evitare l'invocazione del salvataggio nel database
+        CapoAbbigliamentoDAO capoAbbigliamentoDAO = mock(CapoAbbigliamentoDAO.class);
+
+        // Mock del PrintWriter per la risposta
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter writer = new PrintWriter(stringWriter);
+        when(response.getWriter()).thenReturn(writer);
+
+        // Esegui la servlet
+        AddCapoServlet servlet = new AddCapoServlet();
+        servlet.doPost(request, response);
+
+        // Verifica che la redirezione non avvenga
+        verify(dispatcher, never()).forward(request, response);
+
+        // Verifica che non venga mai chiamato il metodo di salvataggio poiché i parametri sono invalidi
+        verify(capoAbbigliamentoDAO, never()).doSave(any(CapoAbbigliamento.class));
+
+        // Verifica che venga scritto un messaggio di errore nella risposta
+        writer.flush(); // Assicura che l'output venga scritto
+        String responseOutput = stringWriter.toString();
+        assertFalse(responseOutput.contains("Hai sbagliato"));
+    }
 
 
 

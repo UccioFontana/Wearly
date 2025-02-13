@@ -112,11 +112,16 @@ public class AddCapoServlet extends HttpServlet {
         // Salvataggio nel database
         CapoAbbigliamentoDAO C = new CapoAbbigliamentoDAO();
         CapoAbbigliamento capo = new CapoAbbigliamento(idUtente, nome, descrizione, materiale, coloreRGB, stile, season, "In Closet", fileUrl, categoria, parteDelCorpo);
-        C.doSave(capo);
+        if(C.doSave(capo)){
+            // Redirect a una nuova pagina
+            RequestDispatcher dispatcher = request.getRequestDispatcher("toWardrobe");
+            dispatcher.forward(request, resp);
+        }
+        else {
+            resp.getWriter().write("HAI SBAGLIATO");
+        }
 
-        // Redirect a una nuova pagina
-        RequestDispatcher dispatcher = request.getRequestDispatcher("toWardrobe");
-        dispatcher.forward(request, resp);
+
     }
 
     @Override
