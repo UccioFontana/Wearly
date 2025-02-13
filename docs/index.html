@@ -8,104 +8,84 @@
         /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #02484f;
+            background-color: white;
             margin: 0;
             padding: 0;
-            color: white;
+            color: #02484f;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            overflow-x: hidden;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: white;
-            text-align: center;
-            margin: 30px 0;
+            font-size: 3rem;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 700;
-            animation: fadeIn 2s ease-out;
+            font-weight: bold;
+            animation: fadeIn 1.5s ease-out;
         }
 
         p {
-            font-size: 1.1rem;
-            color: white;
-            text-align: center;
-            margin: 0 20px 40px;
+            font-size: 1.2rem;
             max-width: 700px;
+            margin-bottom: 40px;
             line-height: 1.6;
-            animation: fadeIn 2s ease-out 1s;
+            animation: fadeIn 1.5s ease-out 0.5s;
         }
 
-        /* Button Container */
+        /* Container for Buttons */
         .button-container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 20px;
-            padding: 0 20px;
-            animation: fadeIn 2s ease-out 1.5s;
+            width: 80%;
+            max-width: 1000px;
+            animation: fadeIn 1.5s ease-out 1s;
         }
 
         /* Button Styles */
         .button {
-            background-color: white;
-            color: #02484f;
+            background-color: #02484f;
+            color: white;
             border: 2px solid #02484f;
-            padding: 18px 30px;
-            border-radius: 25px;
+            padding: 15px 30px;
+            border-radius: 30px;
             font-size: 1.1rem;
-            cursor: pointer;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            width: 180px;
+            cursor: pointer;
+            width: 200px;
             text-align: center;
-            font-weight: 600;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         .button:hover {
-            background-color: #02484f;
-            color: white;
+            background-color: white;
+            color: #02484f;
             transform: translateY(-5px);
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .button:active {
-            background-color: white;
-            color: #02484f;
             transform: translateY(0);
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
-        /* Button Grid Layout */
-        @media (min-width: 1024px) {
-            .button-container {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
-                margin-top: 40px;
-            }
-        }
-
+        /* Responsive Grid */
         @media (max-width: 768px) {
             .button-container {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
+                width: 90%;
             }
-        }
 
-        @media (max-width: 480px) {
-            .button-container {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .button {
+                width: 100%;
+                max-width: 250px;
             }
         }
 
@@ -128,25 +108,31 @@
 
 <div class="button-container">
     <a href="/docs/documento1.pdf" target="_blank">
-        <button class="button">Documentazione 1</button>
+        <button class="button">SOW</button>
     </a>
     <a href="/docs/documento2.pdf" target="_blank">
-        <button class="button">Documentazione 2</button>
+        <button class="button">RAD</button>
     </a>
     <a href="/docs/documento3.pdf" target="_blank">
-        <button class="button">Documentazione 3</button>
+        <button class="button">SDD</button>
     </a>
     <a href="/docs/documento4.pdf" target="_blank">
-        <button class="button">Documentazione 4</button>
+        <button class="button">TPD 4</button>
+    </a>
+    <a href="/docs/documento4.pdf" target="_blank">
+        <button class="button">TCSD 4</button>
+    </a>
+    <a href="/docs/documento4.pdf" target="_blank">
+        <button class="button">TIR 4</button>
     </a>
     <a href="/docs/documento5.pdf" target="_blank">
-        <button class="button">Documentazione 5</button>
+        <button class="button">TSR 5</button>
     </a>
     <a href="/docs/documento6.pdf" target="_blank">
-        <button class="button">Documentazione 6</button>
+        <button class="button">Matrice delle responsabilità</button>
     </a>
     <a href="/docs/documento7.pdf" target="_blank">
-        <button class="button">Documentazione 7</button>
+        <button class="button">Matrice di tracciabilità</button>
     </a>
 </div>
 </body>
