@@ -14,6 +14,9 @@ public class OutfitDAO {
 
 
     public boolean doSave(Outfit out) {
+        if(out.getNome().isEmpty() || out.getDescrizione().isEmpty()){
+            return false;
+        }
         // Creazione outfit
         try (Connection con = ConPool.getConnection()) {
             // Preparazione della query con ritorno della chiave generata

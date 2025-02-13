@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 
             }
             for(Utente user :adminL){
-                if(BCrypt.checkpw(password,user.getPassword())){
+                if( user.getEmail().equals(email) && BCrypt.checkpw(password,user.getPassword())){
 
                     HttpSession session = req.getSession();
                     session.setAttribute("admin", user);

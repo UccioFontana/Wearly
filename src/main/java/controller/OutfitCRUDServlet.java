@@ -1,14 +1,12 @@
 package controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.CapoAbbigliamento;
-import model.CapoAbbigliamentoDAO;
-import model.Outfit;
-import model.OutfitDAO;
+import model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +18,14 @@ import java.util.stream.Collectors;
 public class OutfitCRUDServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Utente utente = (Utente) req.getSession(false).getAttribute("utente");
+        if (utente == null) {
+            RequestDispatcher dispatcher = req.getRequestDispatcher("front-end/jsp/login.jsp");
+            dispatcher.forward(req, resp);
+            return;
+            }
+
         String type = req.getParameter("type");
         if (type.equals("delete")) {
             delete(req, resp);
@@ -31,7 +36,7 @@ public class OutfitCRUDServlet extends HttpServlet {
 
     }
 
-    private void create(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void create(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nome = req.getParameter("name");
 
         String descrizione = req.getParameter("description");
@@ -56,9 +61,14 @@ public class OutfitCRUDServlet extends HttpServlet {
         OutfitDAO O= new OutfitDAO();
         Outfit out= new Outfit(nome,descrizione);
         out.setListaCapi(capi);
-        O.doSave(out);
+        if( O.doSave(out)){
+            resp.sendRedirect("ToOutfitServlet"); // Redirect alla pagina degli outfit dopo l'aggiornamento
+        }
+        else{
+            resp.getWriter().write("HAI SBAGLIATO");
+        }
 
-        resp.sendRedirect("ToOutfitServlet"); // Redirect alla pagina degli outfit dopo l'aggiornamento
+
 
 
     }
