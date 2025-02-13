@@ -3,58 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina con 7 Bottoni</title>
+    <title>Documentazione di Wearly</title>
     <style>
+        /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #6e7dff, #8c8cff);
             height: 100vh;
+            margin: 0;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
-            color: #fff;
-        }
-
-        .container {
-            text-align: center;
+            flex-direction: column;
         }
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 40px;
+            text-align: center;
             color: #fff;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
         }
 
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Button Styles */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
-            max-width: 600px;
-            margin: 0 auto;
+            justify-content: center;
+            margin-top: 30px;
         }
 
         .button {
             background: linear-gradient(45deg, #ff9a8b, #ff6a88);
             border: none;
-            padding: 15px 30px;
+            padding: 20px 40px;
             border-radius: 50px;
             font-size: 1.2rem;
             color: white;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+            width: 180px;
+            margin-bottom: 15px;
         }
 
         .button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-7px);
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.4);
+            background-color: #ff4f58;
         }
 
         .button:active {
             transform: translateY(0);
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .button:nth-child(odd) {
@@ -64,19 +87,42 @@
         .button:nth-child(even) {
             background: linear-gradient(45deg, #32cd32, #2e8b57);
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>7 Bottoni Esteticamente Perfetti</h1>
-    <div class="buttons">
-        <button class="button">Button 1</button>
-        <button class="button">Button 2</button>
-        <button class="button">Button 3</button>
-        <button class="button">Button 4</button>
-        <button class="button">Button 5</button>
-        <button class="button">Button 6</button>
-        <button class="button">Button 7</button>
+    <h1>Documentazione di Wearly</h1>
+    <p>Benvenuti alla documentazione completa di Wearly. Qui troverai tutte le risorse e i documenti necessari per comprendere appieno il nostro sistema e i suoi utilizzi. Scegli uno dei seguenti documenti per iniziare!</p>
+
+    <div class="button-container">
+        <a href="/docs/documento1.pdf" target="_blank">
+            <button class="button">Documentazione 1</button>
+        </a>
+        <a href="/docs/documento2.pdf" target="_blank">
+            <button class="button">Documentazione 2</button>
+        </a>
+        <a href="/docs/documento3.pdf" target="_blank">
+            <button class="button">Documentazione 3</button>
+        </a>
+        <a href="/docs/documento4.pdf" target="_blank">
+            <button class="button">Documentazione 4</button>
+        </a>
+        <a href="/docs/documento5.pdf" target="_blank">
+            <button class="button">Documentazione 5</button>
+        </a>
+        <a href="/docs/documento6.pdf" target="_blank">
+            <button class="button">Documentazione 6</button>
+        </a>
+        <a href="/docs/documento7.pdf" target="_blank">
+            <button class="button">Documentazione 7</button>
+        </a>
     </div>
 </div>
 </body>
