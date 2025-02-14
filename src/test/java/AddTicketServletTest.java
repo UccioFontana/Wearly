@@ -42,9 +42,6 @@ public class AddTicketServletTest {
         MockitoAnnotations.openMocks(this);
         servlet = new TicketServlet();
 
-
-        // Mock del RequestDispatcher
-        when(request.getRequestDispatcher("toWardrobe")).thenReturn(dispatcher);
     }
 
 
@@ -86,8 +83,6 @@ public class AddTicketServletTest {
         when(request.getParameter("ticketObject")).thenReturn(titolo);
         when(request.getParameter("ticketIssue")).thenReturn(descrizione);
 
-        when(request.getSession(false)).thenReturn(session);
-        when(session.getAttribute("utente")).thenReturn(new Utente("Mario", "Rossi", "mario.rossi@example.com", "password123"));
 
 
         Ticket ticket = new Ticket(1,titolo,descrizione);
