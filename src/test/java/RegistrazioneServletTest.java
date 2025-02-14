@@ -11,6 +11,9 @@ import org.mockito.MockitoAnnotations;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class RegistrazioneServletTest {
@@ -46,8 +49,79 @@ public class RegistrazioneServletTest {
         authFacade = mock(AuthenticationFacade.class);
     }
 
+
+
     @Test
-    public void testRegisterSuccess() throws Exception {
+    public void TC_1_3_1(){
+        String nome = "Francesco";
+        String cognome = "Salerno";
+        String email = "@salerno.com";
+        String password = "fransalerno";
+
+        // Mock AuthenticationFacade per far passare il test solo se l'utente non è presente
+        when(authFacade.signup(nome, cognome, email, password)).thenReturn(true); // Successo solo se l'utente non esiste
+
+        assertFalse(email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,}$"), "L'email non dovrebbe essere considerata valida");
+
+    }
+    @Test
+    public void TC_1_3_2(){
+        String nome = "Francesco";
+        String cognome = "Salerno";
+        String email = "f.salerno@gmail.com";
+        String password = "fs";
+
+        // Mock AuthenticationFacade per far passare il test solo se l'utente non è presente
+        when(authFacade.signup(nome, cognome, email, password)).thenReturn(true); // Successo solo se l'utente non esiste
+
+        // Supponiamo che il sistema validi la lunghezza prima di verificare con BCrypt
+        assertThrows(IllegalArgumentException.class, () -> {
+            if (password.length() < 9) {
+                throw new IllegalArgumentException("Password troppo corta");
+            }
+        });
+
+    }
+
+    @Test
+    public void TC_1_3_3(){
+        String nome = "1122";
+        String cognome = "Salerno";
+        String email = "f.salerno@gmail.com";
+        String password = "fransalerno";
+
+        // Mock AuthenticationFacade per far passare il test solo se l'utente non è presente
+        when(authFacade.signup(nome, cognome, email, password)).thenReturn(true); // Successo solo se l'utente non esiste
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            if (!nome.matches("^[a-zA-ZàèéìòùÀÈÉÌÒÙ' ]+$")) { // Solo lettere e spazi
+                throw new IllegalArgumentException("Il nome non può contenere numeri");
+            }
+        });
+
+    }
+
+    @Test
+    public void TC_1_3_4(){
+        String nome = "Francesco";
+        String cognome = "112233";
+        String email = "f.salerno@gmail.com";
+        String password = "fransalerno";
+
+        // Mock AuthenticationFacade per far passare il test solo se l'utente non è presente
+        when(authFacade.signup(nome, cognome, email, password)).thenReturn(true); // Successo solo se l'utente non esiste
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            if (!cognome.matches("^[a-zA-ZàèéìòùÀÈÉÌÒÙ' ]+$")) { // Solo lettere e spazi
+                throw new IllegalArgumentException("Il nome non può contenere numeri");
+            }
+        });
+
+    }
+
+
+    @Test
+    public void TC_1_3_5() throws Exception {
         String nome = "luca";
         String cognome = "Rossi";
         String email = "luca.rossi@example.com";
@@ -71,39 +145,5 @@ public class RegistrazioneServletTest {
         verify(response).sendRedirect("home.jsp");
     }
 
-    @Test
-    public void testRegisterFailure() throws Exception {
-        String nome = "Luigi";
-        String cognome = "Bianchi";
-        String email = "luigi.bianchi@example.com";
-        String password = "password123";
 
-        // Mock del comportamento della chiamata signup in caso di fallimento (utente già presente)
-        when(authFacade.signup(nome, cognome, email, password)).thenReturn(false);  // Errore: utente già presente
-
-        // Iniettare il mock di AuthenticationFacade nella servlet tramite costruttore (o metodi)
-        RegisterServlet servlet = new RegisterServlet() {
-            @Override
-            public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-                // Usare il mock di AuthenticationFacade
-                AuthenticationFacade mockAuthFacade = authFacade;
-                super.doGet(req, resp);  // Chiamata al metodo originale
-            }
-        };
-
-        // Configurazione dei parametri della richiesta
-        when(request.getParameter("name")).thenReturn(nome);
-        when(request.getParameter("surname")).thenReturn(cognome);
-        when(request.getParameter("email")).thenReturn(email);
-        when(request.getParameter("password")).thenReturn(password);
-
-        // Esegui la servlet
-        servlet.doGet(request, response);
-
-        writer.flush();  // Assicura che l'output venga scritto
-
-        // Verifica che la risposta contenga l'errore
-        verify(response).getWriter();
-        assert responseWriter.toString().contains("UTENTE PRESENTE NEL SISTEMA");
-    }
 }

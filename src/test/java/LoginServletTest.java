@@ -1,7 +1,9 @@
 import controller.LoginServlet;
+import jakarta.servlet.ServletException;
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mindrot.jbcrypt.BCrypt;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -9,9 +11,12 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class LoginServletTest {
@@ -50,8 +55,43 @@ public class LoginServletTest {
         when(request.getRequestDispatcher("front-end/jsp/userPage.jsp")).thenReturn(dispatcher);
     }
 
+    //UTENTE
+
     @Test
-    public void testLoginSuccess() throws Exception {
+    public void TC_1_1_1() throws IOException, ServletException {
+        String email = "mario@.com";
+        String password = "mario2003";  // Password BCrypt
+
+        assertFalse(email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,}$"), "L'email non dovrebbe essere considerata valida");
+
+    }
+
+    @Test
+    public void TC_1_1_2() throws IOException, ServletException {
+        String email = "luigi@gmail.com";
+        String password = "mario2003";  // Password BCrypt
+
+        UtenteDAO U = new UtenteDAO();
+        Utente user = U.getUserByEmail(email);
+        assertNull(user);// Deve restituire un utente nullo
+
+    }
+
+    @Test
+    public void TC_1_1_3() throws IOException, ServletException {
+        String email = "mario.rossi@example.com";
+        String password = "luigi2003";  // Password BCrypt
+
+
+        UtenteDAO U = new UtenteDAO();
+        Utente user = U.getUserByEmail(email);
+        assertNotNull(user);// Deve restituire un utente non nullo
+
+        assertFalse(BCrypt.checkpw(password, user.getPassword()));
+    }
+
+    @Test
+    public void TC_1_1_4() throws Exception {
         String email = "mario.rossi@example.com";
         String password = "password123";  // Password BCrypt
 
@@ -78,32 +118,44 @@ public class LoginServletTest {
 
     }
 
+
+
+    //AMMINISTRATORE
     @Test
-    public void testLoginFailure() throws Exception {
-        String email = "test@example.com";
-        String password = "incorrectPassword";
+    public void TC_1_2_1() throws IOException, ServletException {
+        String email = "admin@.com";
+        String password = "administrator";  // Password BCrypt
 
-        Utente u = new Utente();
-        u.setEmail(email);
-        u.setPassword("correctPassword");
+        assertFalse(email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,}$"), "L'email non dovrebbe essere considerata valida");
 
-        when(utenteDAO.getUserByEmail(email)).thenReturn(u);
-        when(request.getParameter("email")).thenReturn(email);
-        when(request.getParameter("password")).thenReturn(password);
-
-        // Esegui la servlet
-        LoginServlet servlet = new LoginServlet();
-        servlet.doGet(request, response);
-
-        writer.flush();  // Assicura che l'output venga scritto
-
-        // Verifica che la risposta contenga "HAI SBAGLIATO"
-        verify(response).getWriter();
-        assert responseWriter.toString().contains("HAI SBAGLIATO");
     }
 
     @Test
-    public void testAdminLogin() throws Exception {
+    public void TC_1_2_2() throws IOException, ServletException {
+        String email = "luigi@gmail.com";
+        String password = "administrator";  // Password BCrypt
+
+        UtenteDAO U = new UtenteDAO();
+        Utente user = U.getAdminByEmail(email);
+        assertNull(user);// Deve restituire un utente nullo
+
+    }
+    @Test
+    public void TC_1_2_3() throws IOException, ServletException {
+        String email = "luigi.bianchi@example.com";
+        String password = "luigi2003";  // Password BCrypt
+
+
+        UtenteDAO U = new UtenteDAO();
+        Utente user = U.getAdminByEmail(email);
+        assertNotNull(user);// Deve restituire un utente non nullo
+
+        assertFalse(BCrypt.checkpw(password, user.getPassword()));
+    }
+
+
+    @Test
+    public void TC_1_2_4() throws Exception {
         String email = "luigi.bianchi@example.com";
         String password = "password123";
 

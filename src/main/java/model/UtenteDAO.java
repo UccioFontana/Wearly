@@ -208,5 +208,33 @@ public class UtenteDAO {
 
 
 
+    public Utente getAdminByEmail(String email) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps =
+                    con.prepareStatement("SELECT * FROM Amministratore WHERE email=?");
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String cognome = rs.getString("cognome");
+                String em = rs.getString("email");
+                String password = rs.getString("password");
+                Utente user = new Utente(nome,cognome,em,password);
+                user.setId(id);
+                ConPool.closeConnection(con);
+                return user;
+            }
+            ConPool.closeConnection(con);
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
 }
