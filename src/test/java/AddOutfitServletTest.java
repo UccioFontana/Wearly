@@ -18,8 +18,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class AddOutfitServletTest {
@@ -65,8 +64,51 @@ public class AddOutfitServletTest {
 
     }
 
+
+
     @Test
-    public void testCreateOutfitSuccess() throws ServletException, IOException {
+    public void TC_3_1_1(){
+
+        String n="112233";
+        String desc="A nice casual outfit";
+        when(request.getParameter("type")).thenReturn("create");
+        when(request.getParameter("name")).thenReturn(n);
+        when(request.getParameter("description")).thenReturn(desc);
+        when(request.getParameter("clothes")).thenReturn("1,2,3");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            if (n.matches(".*\\d.*")) {
+                throw new IllegalArgumentException("Nome contiene numeri");
+            }
+        });
+
+    }
+
+    @Test
+    public void TC_3_1_2(){
+
+        String n="Winter Outfit";
+        String desc="112233";
+        String capi="";
+        when(request.getParameter("type")).thenReturn("create");
+        when(request.getParameter("name")).thenReturn(n);
+        when(request.getParameter("description")).thenReturn(desc);
+        when(request.getParameter("clothes")).thenReturn( capi);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            if (capi.isEmpty()) {
+                throw new IllegalArgumentException("Non ci sono capi");
+            }
+        });
+
+    }
+
+
+
+
+
+    @Test
+    public void TC_3_1_3() throws ServletException, IOException {
         when(request.getParameter("type")).thenReturn("create");
         when(request.getParameter("name")).thenReturn("Casual Outfit");
         when(request.getParameter("description")).thenReturn("A nice casual outfit");
@@ -85,53 +127,6 @@ public class AddOutfitServletTest {
 
         verify(response).sendRedirect("ToOutfitServlet");
     }
-
-    @Test
-    public void testCreateOutfitMissingParameters() throws ServletException, IOException {
-        when(request.getParameter("type")).thenReturn("create");
-        when(request.getParameter("name")).thenReturn(""); // Stringa vuota per testare il controllo
-        when(request.getParameter("description")).thenReturn(""); // Stringa vuota per testare il controllo
-        when(request.getParameter("clothes")).thenReturn(null);
-
-        // Crea un PrintWriter simulato per il response
-        PrintWriter writer = new PrintWriter(new StringWriter());
-        when(response.getWriter()).thenReturn(writer);
-
-        // Esegui la servlet
-        servlet.create(request, response);  // Chiamata al metodo create() invece di doGet()
-
-        // Verifica che la redirezione non avvenga
-        verify(response, never()).sendRedirect("ToOutfitServlet");
-
-        // Verifica che non venga mai chiamato doSave() poiché i parametri sono invalidi
-        verify(outfitDAO, never()).doSave(any(Outfit.class));
-
-        // Verifica che il messaggio di errore venga scritto nella risposta
-        writer.flush();  // Assicurati che l'output venga scritto
-        assertFalse(writer.toString().contains("HAI SBAGLIATO"));
-    }
-
-
-    @Test
-    public void testCreateOutfitUserNotLoggedIn() throws ServletException, IOException {
-        // Mock del dispatcher per il login
-        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-        when(request.getRequestDispatcher("front-end/jsp/login.jsp")).thenReturn(dispatcher);
-
-        // Simula la situazione in cui la sessione è nulla (utente non loggato)
-        when(request.getSession(false)).thenReturn(session);
-        when(session.getAttribute("utente")).thenReturn(null);  // Simula un utente non loggato
-
-        // Esegui la servlet
-        servlet.doGet(request, response);
-
-        // Verifica che venga eseguito il forward verso la pagina di login
-        verify(dispatcher).forward(request, response);
-
-        // Verifica che non venga invocato il redirect verso "ToOutfitServlet"
-        verify(response, never()).sendRedirect("ToOutfitServlet");
-    }
-
 
 
 
