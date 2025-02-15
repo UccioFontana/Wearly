@@ -845,7 +845,7 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
     background-size: cover;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 768px) {
     .wsk-cp-product{
         margin:40px auto;
     }
@@ -870,4 +870,140 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
     }
 
 }
+@media screen and (min-width: 769px) and (max-width: 2560px) {
+
+
+}
+
+@media screen and (min-width: 2561px) and (max-width: 3840px) {
+    h1{
+        font-size: 4rem !important;
+    }
+    h2, button{
+        font-size: 2.5rem !important;
+    }
+
+    #fascinationSpan{
+        font-size: 5rem !important;
+    }
+
+    #outerWaveContainer {
+        position: relative;
+        width: 100vw;
+        height: 14vw;
+        overflow: hidden;
+        background-color: #ffffff;
+        margin-top: 0.5vw;
+    }
+
+    #wave {
+        scale: 1;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        cursor: default;
+    }
+
+    #wave path{
+        cursor: default;
+    }
+
+    #waveContainer {
+        position: absolute;
+        left: -100%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        background-color: #ffffff;
+        z-index: 2;
+        animation: reveal-wave 5s ease-in-out forwards;
+    }
+
+
+
+    header{
+        margin-top: 30px;
+    }
+    #logo{
+        width: 150px;
+    }
+    #logo2{
+        width: 150px;
+    }
+
+    #spaceFiller{
+        width: 60vw;
+    }
+
+    #buttonsContainer{
+        width: 20vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .defaultButtons{
+        border-radius: 10px;
+        padding: 0.6vw;
+        color: white;
+        background-color: var(--primary-color);
+        font-weight: lighter;
+        font-size: 1.5rem;
+        font-style: italic;
+        transition: font-size 0.5s ease, padding 0.5s ease;
+    }
+
+    .defaultButtons:hover{
+        padding: 0.8vw;
+        font-size: 1.5rem;
+        transition: font-size 0.5s ease, padding 0.5s ease;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    svg path{
+        transition: fill 0.2s linear;
+        fill: var(--text-color);
+    }
+
+    svg .cls-1{
+        transition: stroke 0.2s linear;
+        stroke: var(--text-color);
+    }
+
+    svg:hover path{
+        transition: fill 0.2s linear;
+        fill: var(--primary-color);
+        cursor: pointer;
+    }
+    svg:hover .cls-1{
+        transition: stroke 0.2s linear;
+        stroke: var(--primary-color);
+        cursor: pointer;
+    }
+
+    svg:hover{
+        cursor: pointer;
+    }
+
+    #filterLabel, select{
+        font-size: 2rem !important;
+    }
+
+    .wsk-cp-text {
+        padding-top: 100%;
+    }
+
+    .wsk-cp-img img{
+        height: 700px !important;
+    }
+
+
+
+}
+
 

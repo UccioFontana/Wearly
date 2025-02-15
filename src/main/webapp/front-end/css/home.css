@@ -305,15 +305,14 @@ svg:hover{
 .faq_text{
     display: none;
 }
-dd{
-    margin-left: 0px;
-}
+
 #faq_t{
     color:black;
     font-family: 'Montserrat', sans-serif;
 }
 dd{
     font-size: 1.4vw;
+    margin-left: 0px;
 }
 
 
@@ -355,4 +354,303 @@ ul{
     gap: 40px;
     list-style: none;
     padding-left: 0;
+}
+
+
+/* Responsive Styles for Screens from Mobile to 4K */
+
+
+
+@media screen and (max-width: 768px) {
+
+    dd{
+        font-size: 0.8rem;
+    }
+
+    dt{
+        font-size: 1rem;
+    }
+
+    #banner2Container{
+        min-height: 350px;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10vw;
+    }
+
+    #banner2Inner{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width: 90vw;
+        min-height: 350px;
+        border-radius: 10px;
+        background-image: url("../../images/banner2.jpg");
+        background-repeat: no-repeat;
+        background-position-y: 0px;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+
+    #banner2TextContainer{
+        padding-right: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .homeFascination{
+        text-align: center;
+        font-size: 1.5rem !important;
+        color: var(--text-color);
+        font-style: italic;
+    }
+    .homeFascinationSpan{
+        font-family: SignPainter, sans-serif;
+        font-size: 3rem !important;
+        color: var(--primary-color);
+    }
+    .line-outer{
+        display: flex;
+        justify-content: center;
+        min-height: 400px;
+    }
+
+    .line-container {
+        display: flex;
+        opacity: 1;
+        pointer-events: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        z-index: 2;
+    }
+
+
+    .line.horizontal {
+        width: 0;
+        height: 4px;
+        background: var(--primary-color);
+        transition: width 1s ease;
+    }
+
+    .line.vertical.line1{
+        width: 4px;
+        height: 0;
+        background: var(--primary-color);
+        transition: height 1s ease;
+    }
+
+    .line-container.active .horizontal {
+        width: 50.5vw;
+    }
+
+    .line-container.active .vertical {
+        height: 150px;
+        transition-delay: 0.8s;
+    }
+
+    .verticalLinesContainer{
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .benefitsContainerOuter{
+        width: 60vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .benefitsContainer{
+        margin-top: 2vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: scale(0%);
+        transition: transform 1s ease, opacity 1s ease;
+        opacity: 0;
+    }
+    .line-container.active .benefitsContainer{
+        margin-top: 2vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition-delay: 1.5s;
+        transform: scale(100%);
+        opacity: 1;
+    }
+    .benefitsText{
+        font-size: 0.8rem;
+        text-align: center;
+    }
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 2560px) {
+
+
+
+}
+
+@media screen and (min-width: 2561px) and (max-width: 3840px) {
+
+    .bannerText{
+        text-align: left;
+        font-size: 2.5rem !important;
+        color: var(--text-color);
+        font-style: italic;
+    }
+    .bannerTextSpan{
+        font-style: italic;
+        font-size: 2.5rem !important;
+        color: var(--primary-color);
+    }
+
+
+    header{
+        margin-top: 30px;
+    }
+    #logo{
+        width: 150px;
+    }
+    #logo2{
+        width: 150px;
+    }
+
+    #spaceFiller{
+        width: 60vw;
+    }
+
+    #buttonsContainer{
+        width: 20vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .defaultButtons{
+        border-radius: 10px;
+        padding: 0.6vw;
+        color: white;
+        background-color: var(--primary-color);
+        font-weight: lighter;
+        font-size: 1.5rem;
+        font-style: italic;
+        transition: font-size 0.5s ease, padding 0.5s ease;
+    }
+
+    .defaultButtons:hover{
+        padding: 0.8vw;
+        font-size: 1.5rem;
+        transition: font-size 0.5s ease, padding 0.5s ease;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    svg path{
+        transition: fill 0.2s linear;
+        fill: var(--text-color);
+    }
+
+    svg .cls-1{
+        transition: stroke 0.2s linear;
+        stroke: var(--text-color);
+    }
+
+    svg:hover path{
+        transition: fill 0.2s linear;
+        fill: var(--primary-color);
+        cursor: pointer;
+    }
+    svg:hover .cls-1{
+        transition: stroke 0.2s linear;
+        stroke: var(--primary-color);
+        cursor: pointer;
+    }
+
+    svg:hover{
+        cursor: pointer;
+    }
+    .homeFascination{
+        text-align: center;
+        font-size: 3rem !important;
+        color: var(--text-color);
+        font-style: italic;
+    }
+    .homeFascinationSpan{
+        font-family: SignPainter, sans-serif;
+        font-size: 6rem !important;
+        color: var(--primary-color);
+    }
+
+    .benefitsText{
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    svg{
+        width: 100px;
+        height: 100px;
+    }
+
+    #banner1Inner{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 70vw;
+        min-height: 600px;
+        border-radius: 30px;
+        background-image: url("../../images/banner1.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    #banner2Inner{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width: 70vw;
+        min-height: 600px;
+        border-radius: 30px;
+        background-image: url("../../images/banner2.jpg");
+        background-repeat: no-repeat;
+        background-position-y: -450px;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+
+    #banner2Container{
+        min-height: 600px;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10vw;
+        margin-top:3vw;
+    }
+
+    dd{
+        font-size: 2rem;
+    }
+
+    dt{
+        font-size: 2.5rem;
+    }
+
+    .footerLinks, h5{
+        font-size: 2rem;
+    }
+
+
+
+
 }
