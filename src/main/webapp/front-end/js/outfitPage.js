@@ -94,6 +94,19 @@ function saveChanges(outfitId) {
     const newDesc = document.getElementById("outfitDesc").value;
     const popup = document.getElementById("popup");
 
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+
+
+    if (!nameRegex.test(newName)) {
+        alert('The name must not contain numbers or special characters.');
+        return;
+    }
+
+    if (!nameRegex.test(newDesc)) {
+        alert('The description must not contain numbers or special characters.');
+        return;
+    }
+
     // Debug per controllare gli elementi dentro il popup
     console.log("Popup HTML generato:", popup.innerHTML);
 
@@ -158,13 +171,18 @@ function selectClothing(id, element) {
 }
 
 function saveOutfit() {
-    let name = document.getElementById('outfitName').value;
-    let description = document.getElementById('outfitDescription').value;
+    let name = document.getElementById('outfitName').value.trim();
+    let description = document.getElementById('outfitDescription').value.trim();
     let clothes = selectedClothes.join(',');
 
     console.log(description)
 
     const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+
+    if(name ==="" || description===""){
+        alert('Fill in all fields before sending.');
+        return;
+    }
 
 
     if (!nameRegex.test(name)) {
@@ -178,4 +196,5 @@ function saveOutfit() {
     }
 
     window.location.href = `outfitCRUDServlet?type=create&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}&clothes=${encodeURIComponent(clothes)}`;
+    alert('Add done.');
 }
