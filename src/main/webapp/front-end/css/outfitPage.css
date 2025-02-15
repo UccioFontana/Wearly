@@ -193,7 +193,8 @@ svg:hover{
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
-    width: 400px;
+    width: 30vw;
+    min-height: 70vh;
     text-align: center;
     color: var(--text-color);
 }
@@ -301,6 +302,139 @@ button:hover {
 }
 
 .clothing-item img{
-    width: 30%;
+    width: 60%;
     background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+
+    h1{
+        font-size: 1rem !important;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2560px) {
+
+
+
+}
+
+@media screen and (min-width: 2561px) and (max-width: 3840px) {
+
+    .homeFascination{
+        font-size: 3.5rem !important;
+    }
+
+    .homeFascinationSpan{
+        font-size: 4.5rem !important;
+    }
+
+    .outfit-header, .outfit-description, .capo-name, .capo-category{
+        font-size: 2rem !important;
+    }
+
+    .outfit{
+        width: 100%;
+    }
+
+    header{
+        margin-top: 30px;
+    }
+    #logo{
+        width: 150px;
+    }
+    #logo2{
+        width: 150px;
+    }
+
+    #spaceFiller{
+        width: 60vw;
+    }
+
+    #buttonsContainer{
+        width: 20vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .defaultButtons{
+        border-radius: 10px;
+        padding: 0.6vw;
+        color: white;
+        background-color: var(--primary-color);
+        font-weight: lighter;
+        font-size: 1.5rem;
+        font-style: italic;
+        transition: font-size 0.5s ease, padding 0.5s ease;
+    }
+
+    .defaultButtons:hover{
+        padding: 0.8vw;
+        font-size: 1.5rem;
+        transition: font-size 0.5s ease, padding 0.5s ease;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    svg path{
+        transition: fill 0.2s linear;
+        fill: var(--text-color);
+    }
+
+    svg .cls-1{
+        transition: stroke 0.2s linear;
+        stroke: var(--text-color);
+    }
+
+    svg:hover path{
+        transition: fill 0.2s linear;
+        fill: var(--primary-color);
+        cursor: pointer;
+    }
+    svg:hover .cls-1{
+        transition: stroke 0.2s linear;
+        stroke: var(--primary-color);
+        cursor: pointer;
+    }
+
+    svg:hover{
+        cursor: pointer;
+    }
+
+    .container {
+        width: 100vw;
+        margin: 60px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2, h3, label, span, button, #outfitName, #outfitDesc, textarea, #outfitDescription, p{
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    #outfitDescription{
+        display: block;
+        margin: auto;
+    }
+
+    #outfitName{
+        margin-top: 40px;
+    }
+
+    #clothingContainer{
+        display: grid
+    ;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 16px;
+        overflow-y: scroll;
+        padding: 16px;
+        height: 700px;
+    }
+
+
 }

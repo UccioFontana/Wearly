@@ -309,3 +309,122 @@ input[type="submit"]:hover {
     border-radius: 10px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    body{
+        height: 100%;
+        width: 100vw;
+        background: url("../../images/userPageBackground.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 0px 0px;
+        background-attachment: fixed;
+    }
+
+    .doubleInputContainer{
+        margin-bottom: 8vw;
+        margin-top: 5vw;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2560px) {
+
+
+}
+
+@media screen and (min-width: 2561px) and (max-width: 3840px) {
+    h1{
+        font-size: 4rem !important;
+    }
+    h2{
+        font-size: 2.5rem !important;
+    }
+    .Input{
+        width: 30%;
+    }
+
+    input{
+        font-size: 2rem !important;
+    }
+
+    header{
+        margin-top: 30px;
+    }
+    #logo{
+        width: 150px;
+    }
+    #logo2{
+        width: 150px;
+    }
+
+    #spaceFiller{
+        width: 60vw;
+    }
+
+    #buttonsContainer{
+        width: 20vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .defaultButtons{
+        border-radius: 10px;
+        padding: 0.6vw;
+        color: white;
+        background-color: var(--primary-color);
+        font-weight: lighter;
+        font-size: 1.5rem;
+        font-style: italic;
+        transition: font-size 0.5s ease, padding 0.5s ease;
+    }
+
+    .defaultButtons:hover{
+        padding: 0.8vw;
+        font-size: 1.5rem;
+        transition: font-size 0.5s ease, padding 0.5s ease;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    svg path{
+        transition: fill 0.2s linear;
+        fill: var(--text-color);
+    }
+
+    svg .cls-1{
+        transition: stroke 0.2s linear;
+        stroke: var(--text-color);
+    }
+
+    svg:hover path{
+        transition: fill 0.2s linear;
+        fill: var(--primary-color);
+        cursor: pointer;
+    }
+    svg:hover .cls-1{
+        transition: stroke 0.2s linear;
+        stroke: var(--primary-color);
+        cursor: pointer;
+    }
+
+    svg:hover{
+        cursor: pointer;
+    }
+
+    #profileImage {
+        width: 300px;
+        height: 300px;
+        background: url("../../images/profile pic.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+        position: relative;
+        top: -6vw;
+        margin: auto;
+    }
+
+
+}
