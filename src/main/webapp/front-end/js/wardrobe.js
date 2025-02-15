@@ -280,6 +280,21 @@ function onEditFormSubmit(){
 
     console.log(document.getElementById("flagParameter").value)
 
+    const nome = document.getElementById('clothingName2').value;
+    const desc = document.getElementById('description2').value;
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+
+
+    if (!nameRegex.test(nome)) {
+        alert('The name must not contain numbers or special characters.');
+        return false;
+    }
+
+    if (!nameRegex.test(desc)) {
+        alert('The description must not contain numbers or special characters.');
+        return false;
+    }
+
 
 
 }
@@ -291,5 +306,48 @@ function closePopup3() {
 
 function deleteItem(){
     let id = document.getElementById("hiddenParameter").value;
-    window.location.href = "deleteCapoServlet?idCapo=" + id;
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState==4 && xhr.status==200){
+            try {
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    alert("Delete done.");
+                    location.reload();
+                } else {
+                    alert("Delete NOT done.");
+                    location.reload();
+                }
+            } catch (e) {
+                alert("Errore nella risposta del server");
+            }
+        }
+    };
+
+    const url = `deleteCapoServlet?idCapo=${encodeURIComponent(id)}`;
+    xhr.open("GET", url, true);
+    xhr.send();
+}
+
+
+function validateC(){
+    const nome = document.getElementById('name').value;
+    const desc = document.getElementById('description').value;
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+
+
+    if (!nameRegex.test(nome)) {
+        alert('The name must not contain numbers or special characters.');
+        return false;
+    }
+
+    if (!nameRegex.test(desc)) {
+        alert('The description must not contain numbers or special characters.');
+        return false;
+    }
+
+    setTimeout(alert('Add done.'), 2000); // Ritardo di 2 secondi (2000 millisecondi)
+
 }

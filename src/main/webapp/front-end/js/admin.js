@@ -12,7 +12,7 @@ function deleteUser(idUtente){
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if(xhr.readyState==4 && xhr.status==200){
-            alert("Cancellazione effettuata con successo");
+            alert("Delete made.");
             location.reload();
         }
     };
@@ -37,9 +37,33 @@ function addUser(){
     const cognome = document.getElementById("cognome").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const regex = /.{8,}/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
 
     if(nome ==="" || cognome==="" || email==="" || password===""){
-        alert("riempi tutti i campi prima di inviare");
+        alert("Fill in all fields before sending.");
+        return;
+    }
+
+
+    if (!nameRegex.test(nome)) {
+        alert('The name must not contain numbers or special characters.');
+        return false;
+    }
+
+    if (!nameRegex.test(cognome)) {
+        alert('The surname must not contain numbers or special characters.');
+        return false;
+    }
+
+
+    if (!regex.test(password)) {
+        alert('The password must be at least 8 characters long.');
+        return;
+    }
+    if( !emailRegex.test(email)){
+        alert('The email does not conform to the correct format.');
         return;
     }
 
@@ -50,10 +74,10 @@ function addUser(){
             try {
                 const response = JSON.parse(xhr.responseText);
                 if (response.success) {
-                    alert("Utente aggiunto con successo");
+                    alert("User added.");
                     location.reload();
                 } else {
-                    alert("Impossibile effettuare l'aggiunto");
+                    alert("User NOT added.");
                     location.reload();
                 }
             } catch (e) {
@@ -74,15 +98,41 @@ function updateUser(idUtente){
     const nome = document.getElementById("n"+idUtente).value;
     const cognome = document.getElementById("c"+idUtente).value;
     const email = document.getElementById("e"+idUtente).value;
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if(nome ==="" && cognome === "" && email === "" && tipo===""){
-        alert("non hai inserito nessun campo da modificare");
+
+    if(nome ==="" && cognome === "" && email === "" ){
+        alert("You have not entered any fields to edit.");
         return;
     }
+
+
+    if(nome !== ""){
+        if (!nameRegex.test(nome)) {
+            alert('The name must not contain numbers or special characters.');
+            return;
+        }
+    }
+
+    if(cognome !== ""){
+        if (!nameRegex.test(cognome)) {
+            alert('The surname must not contain numbers or special characters.');
+            return;
+        }
+    }
+    if(email !==""){
+        if( !emailRegex.test(email)){
+            alert('The email does not conform to the correct format.');
+            return;
+        }
+    }
+
+
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if(xhr.readyState==4 && xhr.status==200){
-            alert("Modifica effettuata con successo");
+            alert("Edit made.");
             location.reload();
         }
     };

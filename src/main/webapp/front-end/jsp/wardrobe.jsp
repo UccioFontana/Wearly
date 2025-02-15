@@ -191,7 +191,7 @@
     <button class="closeButton" onclick="closePopup2()">✖</button>
   </div>
 
-  <form id="capoForm" ACTION="addCapoServlet" method="post" enctype="multipart/form-data">
+  <form id="capoForm" ACTION="addCapoServlet" method="post" enctype="multipart/form-data" onsubmit=" return validateC()">
     <label for="name">Clothing Name:</label>
     <input type="text" id="name" name="name" required>
 
@@ -324,7 +324,7 @@
     <button class="close-btn" onclick="closePopup3()">✖</button>
   </div>
 
-  <form id="clothingForm" action="editCapoServlet" method="post" enctype="multipart/form-data" onsubmit="onEditFormSubmit()">
+  <form id="clothingForm" action="editCapoServlet" method="post" enctype="multipart/form-data" onsubmit=" return onEditFormSubmit()">
     <div class="form-row-new">
       <div class="form-group-new">
         <label for="clothingName2">Clothing Name:</label>

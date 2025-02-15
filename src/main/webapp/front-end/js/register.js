@@ -4,7 +4,7 @@ function validateR(){
     const passwordInput = document.querySelector("input[name='password']");
     const password = passwordInput.value;
     const regex = /.{8,}/;
-    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/;
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
 
     if (registerFields.style.display === "none"){
         return true;

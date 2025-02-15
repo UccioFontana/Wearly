@@ -14,19 +14,23 @@ import java.io.IOException;
 public class deleteCapoServlet extends HttpServlet {
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp){
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int id = Integer.parseInt(req.getParameter("idCapo"));
         CapoAbbigliamentoDAO capoAbbigliamentoDAO = new CapoAbbigliamentoDAO();
         capoAbbigliamentoDAO.deleteCapo(id);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("toWardrobe");
-        try {
-            requestDispatcher.forward(req, resp);
-        } catch (ServletException | IOException e) {
-            throw new RuntimeException(e);
+        boolean success = true;
+
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
+        if (success) {
+            resp.getWriter().write("{\"success\": true}");
+        } else {
+            resp.getWriter().write("{\"success\": false}");
         }
     }
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp){
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         doGet(req, resp);
     }
 }

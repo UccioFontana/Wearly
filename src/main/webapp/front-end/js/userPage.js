@@ -64,7 +64,7 @@ function updateUser(idUtente){
     const email = document.getElementById("newEmail").value;
     const password = document.getElementById("newPassword").value;
     const regex = /.{8,}/;
-    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/;
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(nome ==="" && cognome === "" && email === "" && password===""){
