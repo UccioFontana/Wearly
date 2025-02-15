@@ -63,16 +63,51 @@ function updateUser(idUtente){
     const cognome = document.getElementById("newCognome").value;
     const email = document.getElementById("newEmail").value;
     const password = document.getElementById("newPassword").value;
+    const regex = /.{8,}/;
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(nome ==="" && cognome === "" && email === "" && password===""){
-        alert("non hai inserito nessun campo da modificare");
+        alert("You have not entered any fields to edit.");
         return;
     }
+
+    if(nome !== ""){
+        if (!nameRegex.test(nome)) {
+            alert('The name must not contain numbers or special characters.');
+            return;
+        }
+    }
+
+    if(cognome !== ""){
+        if (!nameRegex.test(cognome)) {
+            alert('The surname must not contain numbers or special characters.');
+            return;
+        }
+    }
+    if(email !==""){
+        if( !emailRegex.test(email)){
+            alert('The email does not conform to the correct format.');
+            return;
+        }
+    }
+
+
+    if(password !== ""){
+        if (!regex.test(password)) {
+            alert('The password must be at least 8 characters long.');
+            return;
+        }
+    }
+
+
+
+
 
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if(xhr.readyState==4 && xhr.status==200){
-            alert("Modifica effettuata con successo");
+            alert("Change made.");
 
         }
     };

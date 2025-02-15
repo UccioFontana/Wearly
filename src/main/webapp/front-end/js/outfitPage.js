@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <h3>Clothing Items</h3>
                     <div class="capi-container">${capiHTML}</div>
                     <button onclick="saveChanges(${outfitId})">Save</button>
-                    <button style="background: darkred" onclick="window.location.href = ('outfitCRUDServlet?type=delete&id=' + ${outfitId})">Delete</button>
+                    <button style="background: darkred" onclick="deleteC(${outfitId})">Delete</button>
                 </div>`;
 
             popupOverlay.style.display = "block";
@@ -55,6 +55,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+function deleteC(id){
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState==4 && xhr.status==200){
+            try {
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    alert("Cancellation made");
+                    location.reload();
+                } else {
+                    alert("Cancellation not made");
+                    location.reload();
+                }
+            } catch (e) {
+                alert("Errore nella risposta del server");
+            }
+        }
+    };
+
+    const url = `outfitCRUDServlet?type=delete&id=${encodeURIComponent(id)}`;
+    xhr.open("GET", url, true);
+    xhr.send();
+
+}
+
 
 function closePopup() {
     document.getElementById("popupOverlay").style.display = "none";

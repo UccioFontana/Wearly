@@ -78,7 +78,16 @@ public class OutfitCRUDServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         OutfitDAO outfitDAO = new OutfitDAO();
         outfitDAO.deleteOutfit(id);
-        resp.sendRedirect("ToOutfitServlet"); // Redirect alla pagina degli outfit dopo l'eliminazione
+
+        boolean success =true;
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
+        if (success) {
+            resp.getWriter().write("{\"success\": true}");
+        } else {
+            resp.getWriter().write("{\"success\": false}");
+        }
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

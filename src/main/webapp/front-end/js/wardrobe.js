@@ -269,6 +269,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+
 function onEditFormSubmit(){
     let immagine = document.getElementById("imageUpload");
     const file = immagine.files[0];
@@ -277,6 +279,9 @@ function onEditFormSubmit(){
     else document.getElementById("flagParameter").value = "imageYes";
 
     console.log(document.getElementById("flagParameter").value)
+
+
+
 }
 
 function closePopup3() {

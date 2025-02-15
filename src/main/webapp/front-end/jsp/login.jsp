@@ -43,25 +43,25 @@
 <div class="container">
   <div class="screen">
     <div class="screen__content">
-      <form class="login" id="loginForm" action="${pageContext.request.contextPath}/loginServlet" method="POST">
+      <form class="login" id="loginForm" action="${pageContext.request.contextPath}/loginServlet" method="POST" onsubmit=" return validateR()">
         <img id="logo" src="${pageContext.request.contextPath}/images/Wearly_Logo.png" onclick="window.location.href = ('${pageContext.request.contextPath}/home')">
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="email" class="login__input" name="email" placeholder="Email">
+          <input type="email" class="login__input" name="email" placeholder="Email" required>
         </div>
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
-          <input type="password" class="login__input" name="password" placeholder="Password">
+          <input type="password" class="login__input" name="password" placeholder="Password" required>
         </div>
 
         <div id="registerFields" style="display: none;">
           <div class="login__field">
             <i class="login__icon fas fa-user"></i>
-            <input type="text" class="login__input" name="name" placeholder="Your Name">
+            <input type="text" class="login__input" name="name" placeholder="Your Name" id="firstName" >
           </div>
           <div class="login__field">
             <i class="login__icon fas fa-lock"></i>
-            <input type="text" class="login__input" name="surname" placeholder="Your Surname">
+            <input type="text" class="login__input" name="surname" placeholder="Your Surname" id="lastName">
           </div>
         </div>
 
@@ -92,5 +92,6 @@
     </div>
   </div>
 </div>
+<script src="front-end/js/register.js" defer></script>
 </body>
 </html>

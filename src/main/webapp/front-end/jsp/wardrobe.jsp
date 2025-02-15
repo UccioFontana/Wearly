@@ -38,10 +38,7 @@
   <div id="outerWaveContainer">
     <div id="waveContainer"></div>
       <svg id="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" version="1.0" viewBox="-0.2 -4.4 466.0 60.6" zoomAndPan="magnify" style="fill: rgb(1, 118, 129);" original_string_length="635"><g id="__id0_shh9k08pmz"><path d="M369.54,55.44c-35.04,0-70.06-4.9-104-14.7l-76.93-22.2C132.61,2.39,72.76-0.33,15.53,10.7L2.38,13.23 c-1.08,0.21-2.13-0.5-2.34-1.59c-0.21-1.08,0.5-2.13,1.59-2.34l13.15-2.53c57.85-11.15,118.35-8.4,174.95,7.93l76.93,22.2 c64.03,18.48,131.95,19.36,196.44,2.56c1.07-0.28,2.16,0.36,2.44,1.43s-0.36,2.16-1.43,2.44C433.1,51.41,401.31,55.44,369.54,55.44z" style="fill: #017681;"/></g></svg>
-      <div id="searchBarContainer">
-        <h1 id="searchHeading">Search</h1>
-        <input id="searchBar" type="text" placeholder="Search Something">
-      </div>
+
   </div>
 
   <div id="filterContainer" style="margin-left: 5vw">
@@ -425,7 +422,7 @@
     <div class="form-row-new">
       <div class="form-group-new">
         <label for="imageUpload">Upload an Image:</label>
-        <input type="file" id="imageUpload" name="image" accept="image/*" required>
+        <input type="file" id="imageUpload" name="image" accept="image/*" >
       </div>
       <div class="form-group-new">
         <label for="category4">Category:</label>
