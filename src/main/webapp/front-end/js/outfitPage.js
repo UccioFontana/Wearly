@@ -162,5 +162,20 @@ function saveOutfit() {
     let description = document.getElementById('outfitDescription').value;
     let clothes = selectedClothes.join(',');
 
+    console.log(description)
+
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+
+
+    if (!nameRegex.test(name)) {
+        alert('The name must not contain numbers or special characters.');
+        return;
+    }
+
+    if (!nameRegex.test(description)) {
+        alert('The description must not contain numbers or special characters.');
+        return;
+    }
+
     window.location.href = `outfitCRUDServlet?type=create&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}&clothes=${encodeURIComponent(clothes)}`;
 }
