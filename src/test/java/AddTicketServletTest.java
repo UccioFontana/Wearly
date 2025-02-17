@@ -53,7 +53,7 @@ public class AddTicketServletTest {
         when(request.getParameter("ticketIssue")).thenReturn(descrizione);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            if (titolo.matches(".*\\d.*")) {
+            if (!titolo.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$")) {
                 throw new IllegalArgumentException("Titolo contiene numeri");
             }
         });
@@ -67,7 +67,7 @@ public class AddTicketServletTest {
         when(request.getParameter("ticketIssue")).thenReturn(descrizione);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            if (descrizione.matches(".*\\d.*")) {
+            if (!descrizione.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$")) {
                 throw new IllegalArgumentException("Descrizione contiene numeri");
             }
         });

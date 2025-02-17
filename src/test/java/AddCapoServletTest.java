@@ -99,7 +99,7 @@ public class AddCapoServletTest {
 
         // Supponiamo che il sistema validi la lunghezza prima di verificare con BCrypt
         assertThrows(IllegalArgumentException.class, () -> {
-            if (n.matches(".*\\d.*")) {
+            if (!n.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$")) {
                 throw new IllegalArgumentException("Nome contiene numeri");
             }
         });

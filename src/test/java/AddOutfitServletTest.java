@@ -77,7 +77,7 @@ public class AddOutfitServletTest {
         when(request.getParameter("clothes")).thenReturn("1,2,3");
 
         assertThrows(IllegalArgumentException.class, () -> {
-            if (n.matches(".*\\d.*")) {
+            if (!n.matches(".*\\d.*")) {
                 throw new IllegalArgumentException("Nome contiene numeri");
             }
         });
