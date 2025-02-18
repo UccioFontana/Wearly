@@ -77,7 +77,24 @@ public class AddOutfitServletTest {
         when(request.getParameter("clothes")).thenReturn("1,2,3");
 
         assertThrows(IllegalArgumentException.class, () -> {
-            if (!n.matches(".*\\d.*")) {
+            if (!n.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$")) {
+                throw new IllegalArgumentException("Nome contiene numeri");
+            }
+        });
+
+    }
+    @Test
+    public void TC_3_1_2(){
+
+        String n="Winter Outfit";
+        String desc="112233";
+        when(request.getParameter("type")).thenReturn("create");
+        when(request.getParameter("name")).thenReturn(n);
+        when(request.getParameter("description")).thenReturn(desc);
+        when(request.getParameter("clothes")).thenReturn("1,2,3");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            if (!desc.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$")) {
                 throw new IllegalArgumentException("Nome contiene numeri");
             }
         });
@@ -85,10 +102,10 @@ public class AddOutfitServletTest {
     }
 
     @Test
-    public void TC_3_1_2(){
+    public void TC_3_1_3(){
 
         String n="Winter Outfit";
-        String desc="112233";
+        String desc="A nice casual outfit";
         String capi="";
         when(request.getParameter("type")).thenReturn("create");
         when(request.getParameter("name")).thenReturn(n);
@@ -107,8 +124,10 @@ public class AddOutfitServletTest {
 
 
 
+
+
     @Test
-    public void TC_3_1_3() throws ServletException, IOException {
+    public void TC_3_1_4() throws ServletException, IOException {
         when(request.getParameter("type")).thenReturn("create");
         when(request.getParameter("name")).thenReturn("Casual Outfit");
         when(request.getParameter("description")).thenReturn("A nice casual outfit");
