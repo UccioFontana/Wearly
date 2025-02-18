@@ -179,10 +179,12 @@ function saveOutfit() {
 
     const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
 
-    if(name ==="" || description===""){
+    if(name ==="" || description==="" || clothes===""){
         alert('Fill in all fields before sending.');
         return;
     }
+
+
 
 
     if (!nameRegex.test(name)) {

@@ -25,7 +25,7 @@
     <div id="supportContainer">
         <div id="ticketForm">
             <h2 style="font-family: SignPainter, sans-serif; color: var(--primary-color); font-size: 2.5rem;">Submit a Support Ticket</h2>
-            <form action="${pageContext.request.contextPath}/ticketServlet" method="POST">
+            <form action="${pageContext.request.contextPath}/ticketServlet" method="POST" onsubmit=" return validateT()">
                 <label for="ticketSubject">Subject</label>
                 <input type="text" id="ticketSubject" name="ticketObject" placeholder="Enter the subject" required>
 
@@ -60,6 +60,6 @@
         </div>
     </div>
 
-    <script src="${pageContext.request.contextPath}/front-end/js/supportPage.js.css"></script>
+    <script src="${pageContext.request.contextPath}/front-end/js/supportPage.js"></script>
 </body>
 </html>
