@@ -137,7 +137,7 @@ public class AddCapoServletTest {
         when(filePart.getSubmittedFileName()).thenReturn("shirt1.jpg");
 
         // Usa un'immagine valida per il test
-        File imageFile = new File("/Users/pietro/apache-tomcat-10.1.19/webapps/img/boot.jpg");
+        File imageFile = new File("/Users/ucciofontana/Documents/apache-tomcat-10.1.19/webapps/img/boot.jpg");
         InputStream mockImageInputStream = new FileInputStream(imageFile);
         when(filePart.getInputStream()).thenReturn(mockImageInputStream);
 
@@ -538,7 +538,7 @@ public class AddCapoServletTest {
         when(filePart.getSubmittedFileName()).thenReturn("boot.jpg");
 
         // Usa un'immagine valida per il test
-        File imageFile = new File("/Users/pietro/apache-tomcat-10.1.19/webapps/img/boot.jpg");
+        File imageFile = new File("/Users/ucciofontana/Documents/apache-tomcat-10.1.19/webapps/img/boot.jpg");
         InputStream mockImageInputStream = new FileInputStream(imageFile);
         when(filePart.getInputStream()).thenReturn(mockImageInputStream);
 

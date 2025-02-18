@@ -24,7 +24,7 @@ import java.util.Map;
 @MultipartConfig
 public class EditCapoServlet extends HttpServlet {
 
-    private static final String UPLOAD_DIRECTORY = "/Users/pietro/apache-tomcat-10.1.19/webapps/img";
+    private static final String UPLOAD_DIRECTORY = "/Users/ucciofontana/Documents/apache-tomcat-10.1.19/webapps/img";
 
 
     private static final Map<String, String> COLOR_MAP = new HashMap<>();

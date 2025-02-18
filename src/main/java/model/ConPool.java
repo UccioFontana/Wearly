@@ -19,7 +19,7 @@ public class ConPool {
         if (datasource == null) {
             // Carica il file di configurazione
             Properties props = new Properties();
-            String configFilePath = "/Users/pietro/IdeaProjects/pd/Wearly/src/main/java/model/db_properties.properties"; // Percorso del file
+            String configFilePath = "/Users/ucciofontana/IdeaProjects/ProgettoIdS/src/main/java/model/db_properties.properties"; // Percorso del file
             FileInputStream input = new FileInputStream(configFilePath);
             props.load(input);
 

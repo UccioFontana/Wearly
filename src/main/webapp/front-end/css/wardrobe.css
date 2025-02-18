@@ -990,7 +990,19 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
         cursor: pointer;
     }
 
-    #filterLabel, select{
+    #filterLabel, select, input, textarea, label{
+        font-size: 2rem !important;
+    }
+
+    .category h3, .title-product h3,.description-prod h3, .price{
+        font-size: 2rem !important;
+    }
+
+    span{
+        font-size: 1rem !important;
+    }
+
+    h3{
         font-size: 2rem !important;
     }
 
@@ -1002,7 +1014,23 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
         height: 700px !important;
     }
 
+    .form-group-new input, .form-group-new select, .form-group-new textarea {
+        width: 100%;
+        padding: 20px;
+        outline: none;
+        border: 2px solid;
+        border-radius: 10px;
+        border-color: var(--primary-color);
+    }
 
+
+    form{
+        margin: 0 auto;
+    }
+
+    #popup2{
+        width: 30vw;
+    }
 
 }
 
