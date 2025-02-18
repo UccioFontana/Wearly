@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Outfit Page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front-end/css/outfitPage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -59,8 +59,8 @@
     <button onclick="closePopup2()">✖</button>
     <h3>Select your items</h3>
     <div id="clothingContainer"></div>
-    <input type="text" id="outfitName" placeholder="Outfit Name">
-    <textarea id="outfitDescription" placeholder="Outfit Description"></textarea>
+    <input type="text" id="outfitName" placeholder="Outfit Name" required>
+    <textarea id="outfitDescription" placeholder="Outfit Description" required></textarea>
     <button class="defaultButtons" onclick="saveOutfit()">Save Outfit</button>
   </div>
 

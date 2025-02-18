@@ -94,7 +94,7 @@ public class RegistrazioneServletTest {
         when(authFacade.signup(nome, cognome, email, password)).thenReturn(true); // Successo solo se l'utente non esiste
 
         assertThrows(IllegalArgumentException.class, () -> {
-            if (!nome.matches("^[a-zA-ZàèéìòùÀÈÉÌÒÙ' ]+$")) { // Solo lettere e spazi
+            if (!nome.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$")) { // Solo lettere e spazi
                 throw new IllegalArgumentException("Il nome non può contenere numeri");
             }
         });
@@ -112,7 +112,7 @@ public class RegistrazioneServletTest {
         when(authFacade.signup(nome, cognome, email, password)).thenReturn(true); // Successo solo se l'utente non esiste
 
         assertThrows(IllegalArgumentException.class, () -> {
-            if (!cognome.matches("^[a-zA-ZàèéìòùÀÈÉÌÒÙ' ]+$")) { // Solo lettere e spazi
+            if (!cognome.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$")) { // Solo lettere e spazi
                 throw new IllegalArgumentException("Il nome non può contenere numeri");
             }
         });
